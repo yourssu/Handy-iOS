@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		02BDB7F32C3E95580050FB67 /* Handy.h in Headers */ = {isa = PBXBuildFile; fileRef = 02BDB7F22C3E95580050FB67 /* Handy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02BDB7FC2C3E99920050FB67 /* HandyFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BDB7FB2C3E99920050FB67 /* HandyFont.swift */; };
+		E5669A3F2C443E7300DABC21 /* HandyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5669A3E2C443E7300DABC21 /* HandyColor.swift */; };
+		E5669A452C44431100DABC21 /* HandyBasicColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02BDB7EF2C3E95580050FB67 /* Handy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Handy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02BDB7F22C3E95580050FB67 /* Handy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Handy.h; sourceTree = "<group>"; };
 		02BDB7FB2C3E99920050FB67 /* HandyFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyFont.swift; sourceTree = "<group>"; };
+		E5669A3E2C443E7300DABC21 /* HandyColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyColor.swift; sourceTree = "<group>"; };
+		E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HandyBasicColor.xcassets; sourceTree = "<group>"; };
+		E5669A472C44447900DABC21 /* Handy_Essential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Handy_Essential.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,7 @@
 			isa = PBXGroup;
 			children = (
 				02BDB7F12C3E95580050FB67 /* Handy */,
+				E5669A402C443F7100DABC21 /* Handy-Essential */,
 				02BDB7F02C3E95580050FB67 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +71,24 @@
 			isa = PBXGroup;
 			children = (
 				02BDB7FB2C3E99920050FB67 /* HandyFont.swift */,
+				E5669A3E2C443E7300DABC21 /* HandyColor.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		E5669A402C443F7100DABC21 /* Handy-Essential */ = {
+			isa = PBXGroup;
+			children = (
+				E5669A412C443FA100DABC21 /* Foundation */,
+				E5669A472C44447900DABC21 /* Handy_Essential.h */,
+			);
+			path = "Handy-Essential";
+			sourceTree = "<group>";
+		};
+		E5669A412C443FA100DABC21 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -139,6 +163,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5669A452C44431100DABC21 /* HandyBasicColor.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5669A3F2C443E7300DABC21 /* HandyColor.swift in Sources */,
 				02BDB7FC2C3E99920050FB67 /* HandyFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
