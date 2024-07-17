@@ -1,135 +1,124 @@
 //
-//  HandyColor.swift
+//  File.swift
 //  Handy
 //
-//  Created by 성현주 on 7/15/24.
+//  Created by 성현주 on 7/17/24.
 //
 
 import UIKit
 
-internal extension UIColor {
+public enum HandyPrimitiveColor {
 
     // MARK: - Violet
 
-    static var colorViolet50: UIColor {
-        return UIColor.load(name: "violet_50")
+    public static var colorViolet50: UIColor {
+        return .violet50
     }
 
-    static var colorViolet100: UIColor {
-        return UIColor.load(name: "violet_100")
+    public static var colorViolet100: UIColor {
+        return .violet100
     }
 
-    static var colorViolet200: UIColor {
-        return UIColor.load(name: "violet_200")
+    public static var colorViolet200: UIColor {
+        return  .violet200
     }
 
-    static var colorViolet300: UIColor {
-        return UIColor.load(name: "violet_300")
+    public static var colorViolet300: UIColor {
+        return  .violet300
     }
 
-    static var colorViolet400: UIColor {
-        return UIColor.load(name: "violet_400")
+    public static var colorViolet400: UIColor {
+        return  .violet400
     }
 
-    static var colorViolet500: UIColor {
-        return UIColor.load(name: "violet_500")
+    public static var colorViolet500: UIColor {
+        return  .violet500
     }
 
-    static var colorViolet600: UIColor {
-        return UIColor.load(name: "violet_600")
+    public static var colorViolet600: UIColor {
+        return  .violet600
     }
 
-    static var colorViolet700: UIColor {
-        return UIColor.load(name: "violet_700")
+    public static var colorViolet700: UIColor {
+        return  .violet700
     }
 
-    static var colorViolet800: UIColor {
-        return UIColor.load(name: "violet_800")
+    public static var colorViolet800: UIColor {
+        return .violet800
     }
 
-    static var colorViolet900: UIColor {
-        return UIColor.load(name: "violet_900")
+    public static var colorViolet900: UIColor {
+        return .violet900
     }
 
-    static var colorViolet950: UIColor {
-        return UIColor.load(name: "violet_950")
+    public static var colorViolet950: UIColor {
+        return .violet950
     }
 
     // MARK: - Gray
 
-    static var colorGray50: UIColor {
-        return UIColor.load(name: "gray_50")
+    public static var colorGray50: UIColor {
+        return .gray50
     }
 
-    static var colorGray100: UIColor {
-        return UIColor.load(name: "gray_100")
+    public static var colorGray100: UIColor {
+        return .gray100
     }
 
-    static var colorGray200: UIColor {
-        return UIColor.load(name: "gray_200")
+    public static var colorGray200: UIColor {
+        return .gray200
     }
 
-    static var colorGray300: UIColor {
-        return UIColor.load(name: "gray_300")
+    public static var colorGray300: UIColor {
+        return .gray300
     }
 
-    static var colorGray400: UIColor {
-        return UIColor.load(name: "gray_400")
+    public static var colorGray400: UIColor {
+        return .gray400
     }
 
-    static var colorGray500: UIColor {
-        return UIColor.load(name: "gray_500")
+    public static var colorGray500: UIColor {
+        return .gray500
     }
 
-    static var colorGray600: UIColor {
-        return UIColor.load(name: "gray_600")
+    public static var colorGray600: UIColor {
+        return .gray600
     }
 
-    static var colorGray700: UIColor {
-        return UIColor.load(name: "gray_700")
+    public static var colorGray700: UIColor {
+        return .gray700
     }
 
-    static var colorGray800: UIColor {
-        return UIColor.load(name: "gray_800")
+    public static var colorGray800: UIColor {
+        return .gray800
     }
 
-    static var colorGray900: UIColor {
-        return UIColor.load(name: "gray_900")
+    public static var colorGray900: UIColor {
+        return .gray900
     }
 
-    static var colorGray950: UIColor {
-        return UIColor.load(name: "gray_950")
+    public static var colorGray950: UIColor {
+        return .gray950
     }
 
     // MARK: - Neutral
 
-    static var colorNeutralBlack: UIColor {
-        return UIColor.load(name: "black")
+    public static var colorNeutralBlack: UIColor {
+        return .black
     }
 
-    static var colorNeutralWhite: UIColor {
-        return UIColor.load(name: "white")
+    public static var colorNeutralWhite: UIColor {
+        return .white
     }
 
 
     // MARK: - Status
 
-    static var colorStatusRedMain: UIColor {
-        return UIColor.load(name: "red_main")
+    public static var colorStatusRedMain: UIColor {
+        return .redMain
     }
 
-    static var colorStatusRedSub: UIColor {
-        return UIColor.load(name: "red_sub")
-    }
-}
-
-
-fileprivate extension UIColor {
-    static func load(name: String) -> UIColor {
-        guard let color = UIColor(named: name, in: nil, compatibleWith: nil) else {
-            assert(false, "\(name) 컬러 로드 실패")
-            return UIColor.clear
-        }
-        return color
+    public static var colorStatusRedSub: UIColor {
+        return .redSub
     }
 }

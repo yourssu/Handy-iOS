@@ -15,121 +15,121 @@ public enum HandySemanticColor {
     // MARK: - Background
 
     public static var bgBasicDefault: UIColor {
-        return .colorNeutralWhite
+        return .white
     }
 
     public static var bgBasicLight: UIColor {
-        return color(light: .colorGray50)
+        return .gray50
     }
 
     public static var bgBasicStrong: UIColor {
-        return color(light: .colorGray100)
+        return .gray100
     }
 
     public static var bgBasicBlack: UIColor {
-        return color(light: .colorNeutralBlack)
+        return .black
     }
 
     public static var bgBrandPrimary: UIColor {
-        return color(light: .colorViolet500)
+        return .violet500
     }
 
     public static var bgBrandSecondary: UIColor {
-        return color(light: .colorViolet50)
+        return .violet50
     }
 
     public static var bgStatusNegative: UIColor {
-        return color(light: .colorStatusRedSub)
+        return .redSub
     }
 
     public static var bgStatusPositive: UIColor {
-        return color(light: .colorViolet500)
+        return .violet500
     }
 
     // MARK: - Text
 
     public static var textBasicPrimary: UIColor {
-        return color(light: .colorNeutralBlack)
+        return .black
     }
 
     public static var textBasicSecondary: UIColor {
-        return color(light: .colorGray700)
+        return .gray700
     }
 
     public static var textBasicTertiary: UIColor {
-        return color(light: .colorGray500)
+        return .gray500
     }
 
     public static var textBasicDisabled: UIColor {
-        return color(light: .colorGray300)
+        return .gray300
     }
 
     public static var textBasicWhite: UIColor {
-        return color(light: .colorNeutralBlack)
+        return .black
     }
 
     public static var textBrandPrimary: UIColor {
-        return color(light: .colorViolet500)
+        return .violet500
     }
 
     public static var textBrandSecondary: UIColor {
-        return color(light: .colorViolet600)
+        return .violet600
     }
 
     public static var textStatusNegative: UIColor {
-        return color(light: .colorStatusRedMain)
+        return .redMain
     }
 
     public static var textStatusPositive: UIColor {
-        return color(light: .colorViolet500)
+        return .violet500
     }
 
     // MARK: - Line
 
     public static var lineBasicLight: UIColor {
-        return color(light: .colorGray100)
+        return .gray100
     }
 
     public static var lineBasicMedium: UIColor {
-        return color(light: .colorGray200)
+        return .gray200
     }
 
     public static var lineBasicStrong: UIColor {
-        return color(light: .colorGray300)
+        return .gray300
     }
 
     // MARK: - Button
 
     public static var buttonBoxPrimaryEnabled: UIColor {
-        return color(light: .colorViolet500)
+        return .violet500
     }
 
     public static var buttonBoxPrimaryPressed: UIColor {
-        return color(light: .colorViolet700)
+        return .violet700
     }
 
     public static var buttonBoxPrimaryDisabled: UIColor {
-        return color(light: .colorGray100)
+        return .gray100
     }
 
     public static var buttonBoxSecondaryEnabled: UIColor {
-        return color(light: .colorViolet50)
+        return .violet50
     }
 
     public static var buttonBoxSecondaryPressed: UIColor {
-        return color(light: .colorViolet200)
+        return .violet200
     }
 
     public static var buttonBoxSecondaryDisabled: UIColor {
-        return color(light: .colorGray100)
+        return .gray100
     }
 
     public static var buttonBoxTertiaryEnabled: UIColor {
-        return color(light: .colorGray100)
+        return .gray100
     }
 
     public static var buttonBoxTertiaryPressed: UIColor {
-        return color(light: .colorGray100)
+        return .gray100
     }
 
     public static var buttonBoxTertiaryDisabled: UIColor {
@@ -141,7 +141,7 @@ public enum HandySemanticColor {
     }
 
     public static var buttonTextPrimaryPressed: UIColor {
-        return color(light: .colorViolet50)
+        return .violet50
     }
 
     public static var buttonTextPrimaryDisabled: UIColor {
@@ -149,35 +149,35 @@ public enum HandySemanticColor {
     }
 
     public static var buttonFabPrimaryEnabled: UIColor {
-        return color(light: .colorViolet500)
+        return .violet500
     }
 
     public static var buttonFabPrimaryPressed: UIColor {
-        return color(light: .colorViolet700)
+        return .violet700
     }
 
     public static var buttonFabPrimaryDisabled: UIColor {
-        return color(light: .colorGray100)
+        return .gray100
     }
 
     public static var buttonRadioSelected: UIColor {
-        return color(light: .colorViolet500)
+        return .violet500
     }
 
     public static var buttonRadioUnselected: UIColor {
-        return color(light: .colorGray200)
+        return .gray200
     }
 
     public static var buttonRadioDisabled: UIColor {
-        return color(light: .colorNeutralWhite)
+        return .white
     }
 
     public static var buttonTextSecondaryEnabled: UIColor {
-        return color(light: .colorNeutralWhite)
+        return .white
     }
 
     public static var buttonTextSecondaryPressed: UIColor {
-        return color(light: .colorGray100)
+        return .gray100
     }
 
     public static var buttonTextSecondaryDisabled: UIColor {
@@ -185,58 +185,58 @@ public enum HandySemanticColor {
     }
 
     public static var buttonFabSecondaryEnabled: UIColor {
-        return color(light: .colorNeutralWhite)
+        return .white
     }
 
     public static var buttonFabSecondaryPressed: UIColor {
-        return color(light: .colorGray100)
+        return .gray100
     }
 
     public static var buttonFabSecondaryDisabled: UIColor {
-        return color(light: .colorNeutralWhite)
+        return .white
     }
 
     // MARK: - Icon
 
     public static var iconBasicPrimary: UIColor {
-        return color(light: .colorNeutralBlack)
+        return .black
     }
 
     public static var iconBasicSecondary: UIColor {
-        return color(light: .colorGray700)
+        return .gray700
     }
 
     public static var iconBasicTertiary: UIColor {
-        return color(light: .colorGray500)
+        return .gray500
     }
 
     public static var iconBasicDisabled: UIColor {
-        return color(light: .colorGray200)
+        return .gray200
     }
 
     public static var iconBasicWhite: UIColor {
-        return color(light: .colorNeutralWhite)
+        return .white
     }
 
     public static var iconBrandPrimary: UIColor {
-        return color(light: .colorViolet500)
+        return .violet500
     }
 
     public static var iconBrandSecondary: UIColor {
-        return color(light: .colorViolet600)
+        return .violet600
     }
 
     // MARK: - CheckBox
 
     public static var checkboxSelected: UIColor {
-        return color(light: .colorViolet500)
+        return .violet500
     }
 
     public static var checkboxUnSelected: UIColor {
-        return color(light: .colorNeutralWhite)
+        return .white
     }
 
     public static var checkboxDisabled: UIColor {
-        return color(light: .colorGray200)
+        return .gray200
     }
 }
