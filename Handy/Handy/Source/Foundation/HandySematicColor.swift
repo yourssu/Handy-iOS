@@ -1,5 +1,5 @@
 //
-//  HandyPrimitiveColor.swift
+//  HandySemantic.swift
 //  Handy
 //
 //  Created by 성현주 on 7/17/24.
@@ -237,6 +237,28 @@ public enum HandySemantic {
         return .gray200
     }
 
+    // MARK: - Spacing
+
+    public static var spacingRadiusXS: Int {
+        return HandyPrimitive.spacing8
+    }
+
+    public static var spacingRadiusS: Int {
+        return HandyPrimitive.spacing10
+    }
+
+    public static var spacingRadiusM: Int {
+        return HandyPrimitive.spacing12
+    }
+
+    public static var spacingRadiusL: Int {
+        return HandyPrimitive.spacing14
+    }
+
+    public static var spacingRadiusXL: Int {
+        return HandyPrimitive.spacing16
+    }
+
     // MARK: - Chip
 
     public static var chipSelected: UIColor {
@@ -252,7 +274,7 @@ public enum HandySemantic {
     }
 
     // MARK: - Pagination
-
+    
     public static var paginationBrandPressed: UIColor {
         return .redMain
     }
