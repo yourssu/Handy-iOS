@@ -7,7 +7,7 @@
 
 import UIKit
 
-public enum HandyPrimitiveColor {
+public enum HandyPrimitive {
 
     // MARK: - Violet
 

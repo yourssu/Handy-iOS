@@ -111,6 +111,10 @@ internal extension UIColor {
         return UIColor.load(name: "white")
     }
 
+    static var transparent: UIColor {
+        return UIColor.clear
+    }
+
 
     // MARK: - Status
 

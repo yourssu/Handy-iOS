@@ -7,10 +7,7 @@
 
 import UIKit
 
-public enum HandySemanticColor {
-    private static func color(light: UIColor) -> UIColor {
-        return light
-    }
+public enum HandySemantic {
 
     // MARK: - Background
 
@@ -125,7 +122,7 @@ public enum HandySemanticColor {
     }
 
     public static var buttonBoxTertiaryEnabled: UIColor {
-        return .gray100
+        return .transparent
     }
 
     public static var buttonBoxTertiaryPressed: UIColor {
@@ -133,11 +130,11 @@ public enum HandySemanticColor {
     }
 
     public static var buttonBoxTertiaryDisabled: UIColor {
-        return color(light: .colorNeutralWhite)
+        return .transparent
     }
 
     public static var buttonTextPrimaryEnabled: UIColor {
-        return color(light: .colorNeutralWhite)
+        return .transparent
     }
 
     public static var buttonTextPrimaryPressed: UIColor {
@@ -145,7 +142,7 @@ public enum HandySemanticColor {
     }
 
     public static var buttonTextPrimaryDisabled: UIColor {
-        return color(light: .colorNeutralWhite)
+        return .transparent
     }
 
     public static var buttonFabPrimaryEnabled: UIColor {
@@ -173,7 +170,7 @@ public enum HandySemanticColor {
     }
 
     public static var buttonTextSecondaryEnabled: UIColor {
-        return .white
+        return .transparent
     }
 
     public static var buttonTextSecondaryPressed: UIColor {
@@ -181,7 +178,7 @@ public enum HandySemanticColor {
     }
 
     public static var buttonTextSecondaryDisabled: UIColor {
-        return color(light: .colorNeutralWhite)
+        return .transparent
     }
 
     public static var buttonFabSecondaryEnabled: UIColor {
@@ -238,5 +235,33 @@ public enum HandySemanticColor {
 
     public static var checkboxDisabled: UIColor {
         return .gray200
+    }
+
+    // MARK: - Chip
+
+    public static var chipSelected: UIColor {
+        return .redMain
+    }
+
+    public static var chipUnselected: UIColor {
+        return .redSub
+    }
+
+    public static var chipDisabled: UIColor {
+        return .redSub
+    }
+
+    // MARK: - Pagination
+
+    public static var paginationBrandPressed: UIColor {
+        return .redMain
+    }
+
+    public static var paginationBasicSelected: UIColor {
+        return .redSub
+    }
+
+    public static var paginationBasicUnSelected: UIColor {
+        return .redMain
     }
 }
