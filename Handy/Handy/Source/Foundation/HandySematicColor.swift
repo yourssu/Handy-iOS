@@ -237,6 +237,7 @@ public enum HandySemantic {
         return .gray200
     }
 
+<<<<<<< HEAD
     // MARK: - Spacing
 
     public static var spacingRadiusXS: Int {
@@ -259,6 +260,8 @@ public enum HandySemantic {
         return HandyPrimitive.spacing16
     }
 
+=======
+>>>>>>> 608158ce4d292b0d057a118272428a6004051d6b
     // MARK: - Chip
 
     public static var chipSelected: UIColor {
@@ -274,7 +277,11 @@ public enum HandySemantic {
     }
 
     // MARK: - Pagination
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 608158ce4d292b0d057a118272428a6004051d6b
     public static var paginationBrandPressed: UIColor {
         return .redMain
     }
