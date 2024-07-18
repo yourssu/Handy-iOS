@@ -36,7 +36,7 @@ public enum HandySemantic {
     }
 
     public static var bgStatusNegative: UIColor {
-        return .redSub
+        return .redMain
     }
 
     public static var bgStatusPositive: UIColor {
@@ -93,6 +93,14 @@ public enum HandySemantic {
 
     public static var lineBasicStrong: UIColor {
         return .gray300
+    }
+
+    public static var lineStatusNegative: UIColor {
+        return .redMain
+    }
+
+    public static var lineStatusPositive: UIColor {
+        return .violet500
     }
 
     // MARK: - Button
@@ -262,28 +270,28 @@ public enum HandySemantic {
     // MARK: - Chip
 
     public static var chipSelected: UIColor {
-        return .redMain
+        return .violet100
     }
 
     public static var chipUnselected: UIColor {
-        return .redSub
+        return .gray100
     }
 
     public static var chipDisabled: UIColor {
-        return .redSub
+        return .gray50
     }
 
     // MARK: - Pagination
 
     public static var paginationBrandPressed: UIColor {
-        return .redMain
+        return .violet50
     }
 
     public static var paginationBasicSelected: UIColor {
-        return .redSub
+        return .black
     }
 
     public static var paginationBasicUnSelected: UIColor {
-        return .redMain
+        return .gray500
     }
 }
