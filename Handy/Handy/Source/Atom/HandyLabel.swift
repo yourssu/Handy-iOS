@@ -8,7 +8,7 @@
 import UIKit
 
 public class HandyLabel: UILabel {
-    @Invalidating(.layout) public var style: String.TypoStyle = .D1Sb56
+    @Invalidating(.layout) public var style: String.HandyTypoStyle = .D1Sb56
 
     public override var text: String? {
         didSet { layoutIfNeeded() }
@@ -30,14 +30,10 @@ public class HandyLabel: UILabel {
         didSet { setNeedsLayout() }
     }
 
-    public init(style: String.TypoStyle = .D1Sb56) {
+    public init(style: String.HandyTypoStyle = .D1Sb56) {
         self.style = style
         self.alignment = .left
         super.init(frame: CGRect.zero)
-
-        if #available(iOS 14.0, *) {
-            self.lineBreakStrategy = .hangulWordPriority
-        }
     }
 
     required init?(coder: NSCoder) {
@@ -59,3 +55,4 @@ public class HandyLabel: UILabel {
         setAttributedText()
     }
 }
+

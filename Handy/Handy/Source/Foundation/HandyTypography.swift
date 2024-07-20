@@ -8,7 +8,7 @@
 import UIKit
 
 extension String {
-    public enum TypoStyle {
+    public enum HandyTypoStyle {
         case D1Sb56
         case D1Rg56
         case D1Lt56
@@ -185,47 +185,47 @@ extension String {
         public var lineHeight: CGFloat {
             switch self {
             case .D1Sb56, .D1Rg56, .D1Lt56:
-                return 1.07
+                return 72
 
-            case .D2Sb48, .D2Rg48, .D2Lt48,
-                    .D3Sb40, .D3Rg40, .D3Lt40:
-                return 1.08
+            case .D2Sb48, .D2Rg48, .D2Lt48:
+                return 62
+
+            case .D3Sb40, .D3Rg40, .D3Lt40:
+                return 52
 
             case .D4Sb36, .D4Rg36, .D4Lt36:
-                return 1.02
+                return 44
 
             case .H1Sb32, .H1Rg32, .H1Lt32:
-                return 1.09
+                return 42
 
             case .H2Sb28, .H2Rg28, .H2Lt28:
-                return 1.13
+                return 38
 
             case .H3Sb24, .H3Rg24, .H3Lt24:
-                return 1.18
+                return 34
 
             case .T1Sb20, .T1Rg20, .T1Lt20:
-                return 1.17
+                return 28
 
             case .T2Sb18, .T2Rg18, .T2Lt18:
-                return 1.2
+                return 26
 
             case .B1Sb16, .B1Rg16, .B1Lt16:
-                return 1.25
+                return 24
 
             case .B2Sb15, .B2Rg15, .B2Lt15:
-                return 1.22
+                return 22
 
             case .B3Sb14, .B3Rg14, .B3Lt14:
-                return 1.19
+                return 20
 
-            case .B4Sb13, .B4Rg13, .B4Lt13:
-                return 1.15
-
-            case .B5Sb12, .B5Rg12, .B5Lt12:
-                return 1.25
+            case .B4Sb13, .B4Rg13, .B4Lt13,
+                    .B5Sb12, .B5Rg12, .B5Lt12:
+                return 18
 
             case .C1Sb11, .C1Rg11, .C1Lt11:
-                return 1.21
+                return 16
             }
         }
 
@@ -286,7 +286,8 @@ extension String {
                             alignment: NSTextAlignment? = nil) -> [NSAttributedString.Key: Any] {
             let paragraphStyle = NSMutableParagraphStyle()
 
-            paragraphStyle.lineHeightMultiple = self.font.lineHeight
+            paragraphStyle.lineSpacing = self.lineHeight - self.font.lineHeight
+
             if let lineBreakMode = lineBreakMode {
                 paragraphStyle.lineBreakMode = lineBreakMode
             }
@@ -307,7 +308,7 @@ extension String {
 
     }
 
-    internal func attributedString(byPreset preset: TypoStyle,
+    internal func attributedString(byPreset preset: HandyTypoStyle,
                                    color: UIColor? = nil,
                                    lineBreakMode: NSLineBreakMode? = nil,
                                    lineBreakStrategy: NSParagraphStyle.LineBreakStrategy? = nil,
@@ -319,3 +320,4 @@ extension String {
                                                                 alignment: alignment))
     }
 }
+
