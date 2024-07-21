@@ -40,7 +40,6 @@
 			isa = PBXGroup;
 			children = (
 				02BDB7F12C3E95580050FB67 /* Handy */,
-				E5669A402C443F7100DABC21 /* Handy-Essential */,
 				02BDB7F02C3E95580050FB67 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,24 +76,17 @@
 				E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */,
 				E5D02AFF2C480A180056CE7B /* HandyPrimitiveColor.swift */,
 				E5D02AFC2C46C5A70056CE7B /* HandySematicColor.swift */,
+				E5650D412C4D30B9002790CC /* Asset */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
 		};
-		E5669A402C443F7100DABC21 /* Handy-Essential */ = {
-			isa = PBXGroup;
-			children = (
-				E5669A412C443FA100DABC21 /* Foundation */,
-			);
-			path = "Handy-Essential";
-			sourceTree = "<group>";
-		};
-		E5669A412C443FA100DABC21 /* Foundation */ = {
+		E5650D412C4D30B9002790CC /* Asset */ = {
 			isa = PBXGroup;
 			children = (
 				E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */,
 			);
-			path = Foundation;
+			path = Asset;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
