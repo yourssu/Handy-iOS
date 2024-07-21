@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		029C44682C468F8300331F61 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 029C44652C468F8300331F61 /* Pretendard-Light.otf */; };
+		029C44692C468F8300331F61 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 029C44662C468F8300331F61 /* Pretendard-Regular.otf */; };
+		029C446A2C468F8300331F61 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 029C44672C468F8300331F61 /* Pretendard-SemiBold.otf */; };
+		029E47FD2C49FD1A00D2F3B7 /* HandyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E47FC2C49FD1A00D2F3B7 /* HandyLabel.swift */; };
+		029E48002C49FD4000D2F3B7 /* HandyTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E47FF2C49FD4000D2F3B7 /* HandyTypography.swift */; };
 		02BDB7F32C3E95580050FB67 /* Handy.h in Headers */ = {isa = PBXBuildFile; fileRef = 02BDB7F22C3E95580050FB67 /* Handy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02BDB7FC2C3E99920050FB67 /* HandyFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BDB7FB2C3E99920050FB67 /* HandyFont.swift */; };
 		E5669A3F2C443E7300DABC21 /* HandyBasicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */; };
@@ -16,6 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		029C44652C468F8300331F61 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		029C44662C468F8300331F61 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		029C44672C468F8300331F61 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		029C44732C468FEA00331F61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		029E47FC2C49FD1A00D2F3B7 /* HandyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyLabel.swift; sourceTree = "<group>"; };
+		029E47FF2C49FD4000D2F3B7 /* HandyTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyTypography.swift; sourceTree = "<group>"; };
 		02BDB7EF2C3E95580050FB67 /* Handy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Handy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02BDB7F22C3E95580050FB67 /* Handy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Handy.h; sourceTree = "<group>"; };
 		02BDB7FB2C3E99920050FB67 /* HandyFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyFont.swift; sourceTree = "<group>"; };
@@ -36,6 +47,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		029C446B2C468F8E00331F61 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				029C44652C468F8300331F61 /* Pretendard-Light.otf */,
+				029C44662C468F8300331F61 /* Pretendard-Regular.otf */,
+				029C44672C468F8300331F61 /* Pretendard-SemiBold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		029E47FE2C49FD2E00D2F3B7 /* Atom */ = {
+			isa = PBXGroup;
+			children = (
+				029E47FC2C49FD1A00D2F3B7 /* HandyLabel.swift */,
+			);
+			path = Atom;
+			sourceTree = "<group>";
+		};
 		02BDB7E52C3E95580050FB67 = {
 			isa = PBXGroup;
 			children = (
@@ -55,6 +84,7 @@
 		02BDB7F12C3E95580050FB67 /* Handy */ = {
 			isa = PBXGroup;
 			children = (
+				029C44732C468FEA00331F61 /* Info.plist */,
 				02BDB7F92C3E962D0050FB67 /* Source */,
 				02BDB7F22C3E95580050FB67 /* Handy.h */,
 			);
@@ -64,6 +94,8 @@
 		02BDB7F92C3E962D0050FB67 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				029C446B2C468F8E00331F61 /* Font */,
+				029E47FE2C49FD2E00D2F3B7 /* Atom */,
 				02BDB7FA2C3E964A0050FB67 /* Foundation */,
 			);
 			path = Source;
@@ -77,6 +109,7 @@
 				E5D02AFF2C480A180056CE7B /* HandyPrimitiveColor.swift */,
 				E5D02AFC2C46C5A70056CE7B /* HandySematicColor.swift */,
 				E5650D412C4D30B9002790CC /* Asset */,
+				029E47FF2C49FD4000D2F3B7 /* HandyTypography.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -160,6 +193,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5D02AFE2C46C9980056CE7B /* HandyBasicColor.xcassets in Resources */,
+				029C446A2C468F8300331F61 /* Pretendard-SemiBold.otf in Resources */,
+				029C44682C468F8300331F61 /* Pretendard-Light.otf in Resources */,
+				029C44692C468F8300331F61 /* Pretendard-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +210,8 @@
 				E5D02B002C480A180056CE7B /* HandyPrimitiveColor.swift in Sources */,
 				E5669A3F2C443E7300DABC21 /* HandyBasicColor.swift in Sources */,
 				02BDB7FC2C3E99920050FB67 /* HandyFont.swift in Sources */,
+				029E48002C49FD4000D2F3B7 /* HandyTypography.swift in Sources */,
+				029E47FD2C49FD1A00D2F3B7 /* HandyLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,9 +356,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Handy/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -352,9 +392,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Handy/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
