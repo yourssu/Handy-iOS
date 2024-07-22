@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		025776352C4EA98C00272EC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025776342C4EA98C00272EC6 /* AppDelegate.swift */; };
+		025776372C4EA98C00272EC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025776362C4EA98C00272EC6 /* SceneDelegate.swift */; };
+		025776392C4EA98C00272EC6 /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025776382C4EA98C00272EC6 /* LabelViewController.swift */; };
+		0257763E2C4EA98E00272EC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0257763D2C4EA98E00272EC6 /* Assets.xcassets */; };
+		025776412C4EA98E00272EC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0257763F2C4EA98E00272EC6 /* LaunchScreen.storyboard */; };
+		0257764A2C4EB68D00272EC6 /* Handy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02BDB7EF2C3E95580050FB67 /* Handy.framework */; };
+		0257764B2C4EB68D00272EC6 /* Handy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 02BDB7EF2C3E95580050FB67 /* Handy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		025776502C4EB6C000272EC6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0257764F2C4EB6C000272EC6 /* SnapKit */; };
+		025776542C4EB7BB00272EC6 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025776512C4EB7BB00272EC6 /* Pretendard-Regular.otf */; };
+		025776562C4EB7BB00272EC6 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025776532C4EB7BB00272EC6 /* Pretendard-SemiBold.otf */; };
+		025776592C4EB8BC00272EC6 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025776582C4EB8BC00272EC6 /* Pretendard-Light.otf */; };
+		0257765D2C4EB9EF00272EC6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0257765C2C4EB9EF00272EC6 /* BaseViewController.swift */; };
 		029C44682C468F8300331F61 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 029C44652C468F8300331F61 /* Pretendard-Light.otf */; };
 		029C44692C468F8300331F61 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 029C44662C468F8300331F61 /* Pretendard-Regular.otf */; };
 		029C446A2C468F8300331F61 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 029C44672C468F8300331F61 /* Pretendard-SemiBold.otf */; };
@@ -20,7 +32,42 @@
 		E5D02B002C480A180056CE7B /* HandyPrimitiveColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D02AFF2C480A180056CE7B /* HandyPrimitiveColor.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0257764C2C4EB68D00272EC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02BDB7E62C3E95580050FB67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02BDB7EE2C3E95580050FB67;
+			remoteInfo = Handy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0257764E2C4EB68D00272EC6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0257764B2C4EB68D00272EC6 /* Handy.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		025776322C4EA98C00272EC6 /* Handy-Storybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Handy-Storybook.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		025776342C4EA98C00272EC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		025776362C4EA98C00272EC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		025776382C4EA98C00272EC6 /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
+		0257763D2C4EA98E00272EC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		025776402C4EA98E00272EC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		025776422C4EA98E00272EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		025776512C4EB7BB00272EC6 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "Handy-Storybook/Font/Pretendard-Regular.otf"; sourceTree = SOURCE_ROOT; };
+		025776532C4EB7BB00272EC6 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "Handy-Storybook/Font/Pretendard-SemiBold.otf"; sourceTree = SOURCE_ROOT; };
+		025776582C4EB8BC00272EC6 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		0257765C2C4EB9EF00272EC6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		029C44652C468F8300331F61 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		029C44662C468F8300331F61 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		029C44672C468F8300331F61 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -37,6 +84,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0257762F2C4EA98C00272EC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0257764A2C4EB68D00272EC6 /* Handy.framework in Frameworks */,
+				025776502C4EB6C000272EC6 /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		02BDB7EC2C3E95580050FB67 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,6 +103,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		025776332C4EA98C00272EC6 /* Handy-Storybook */ = {
+			isa = PBXGroup;
+			children = (
+				025776482C4EB0E700272EC6 /* Atom */,
+				025776572C4EB7C700272EC6 /* Font */,
+				0257765A2C4EB9B800272EC6 /* Storybook */,
+				025776342C4EA98C00272EC6 /* AppDelegate.swift */,
+				025776362C4EA98C00272EC6 /* SceneDelegate.swift */,
+				0257763D2C4EA98E00272EC6 /* Assets.xcassets */,
+				025776422C4EA98E00272EC6 /* Info.plist */,
+			);
+			path = "Handy-Storybook";
+			sourceTree = "<group>";
+		};
+		025776482C4EB0E700272EC6 /* Atom */ = {
+			isa = PBXGroup;
+			children = (
+				025776382C4EA98C00272EC6 /* LabelViewController.swift */,
+			);
+			path = Atom;
+			sourceTree = "<group>";
+		};
+		025776492C4EB68D00272EC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		025776572C4EB7C700272EC6 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				025776582C4EB8BC00272EC6 /* Pretendard-Light.otf */,
+				025776512C4EB7BB00272EC6 /* Pretendard-Regular.otf */,
+				025776532C4EB7BB00272EC6 /* Pretendard-SemiBold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		0257765A2C4EB9B800272EC6 /* Storybook */ = {
+			isa = PBXGroup;
+			children = (
+				0257763F2C4EA98E00272EC6 /* LaunchScreen.storyboard */,
+				0257765B2C4EB9C700272EC6 /* Base */,
+			);
+			path = Storybook;
+			sourceTree = "<group>";
+		};
+		0257765B2C4EB9C700272EC6 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0257765C2C4EB9EF00272EC6 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		029C446B2C468F8E00331F61 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,7 +181,9 @@
 			isa = PBXGroup;
 			children = (
 				02BDB7F12C3E95580050FB67 /* Handy */,
+				025776332C4EA98C00272EC6 /* Handy-Storybook */,
 				02BDB7F02C3E95580050FB67 /* Products */,
+				025776492C4EB68D00272EC6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				02BDB7EF2C3E95580050FB67 /* Handy.framework */,
+				025776322C4EA98C00272EC6 /* Handy-Storybook.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,11 +220,11 @@
 			isa = PBXGroup;
 			children = (
 				02BDB7FB2C3E99920050FB67 /* HandyFont.swift */,
+				029E47FF2C49FD4000D2F3B7 /* HandyTypography.swift */,
 				E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */,
 				E5D02AFF2C480A180056CE7B /* HandyPrimitiveColor.swift */,
 				E5D02AFC2C46C5A70056CE7B /* HandySematicColor.swift */,
 				E5650D412C4D30B9002790CC /* Asset */,
-				029E47FF2C49FD4000D2F3B7 /* HandyTypography.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -136,6 +251,28 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		025776312C4EA98C00272EC6 /* Handy-Storybook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 025776432C4EA98E00272EC6 /* Build configuration list for PBXNativeTarget "Handy-Storybook" */;
+			buildPhases = (
+				0257762E2C4EA98C00272EC6 /* Sources */,
+				0257762F2C4EA98C00272EC6 /* Frameworks */,
+				025776302C4EA98C00272EC6 /* Resources */,
+				0257764E2C4EB68D00272EC6 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0257764D2C4EB68D00272EC6 /* PBXTargetDependency */,
+			);
+			name = "Handy-Storybook";
+			packageProductDependencies = (
+				0257764F2C4EB6C000272EC6 /* SnapKit */,
+			);
+			productName = "Handy-Storybook";
+			productReference = 025776322C4EA98C00272EC6 /* Handy-Storybook.app */;
+			productType = "com.apple.product-type.application";
+		};
 		02BDB7EE2C3E95580050FB67 /* Handy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02BDB7F62C3E95580050FB67 /* Build configuration list for PBXNativeTarget "Handy" */;
@@ -161,8 +298,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					025776312C4EA98C00272EC6 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
 					02BDB7EE2C3E95580050FB67 = {
 						CreatedOnToolsVersion = 15.0.1;
 						LastSwiftMigration = 1500;
@@ -178,16 +319,32 @@
 				Base,
 			);
 			mainGroup = 02BDB7E52C3E95580050FB67;
+			packageReferences = (
+				025776462C4EB08D00272EC6 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 02BDB7F02C3E95580050FB67 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				02BDB7EE2C3E95580050FB67 /* Handy */,
+				025776312C4EA98C00272EC6 /* Handy-Storybook */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		025776302C4EA98C00272EC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				025776412C4EA98E00272EC6 /* LaunchScreen.storyboard in Resources */,
+				025776562C4EB7BB00272EC6 /* Pretendard-SemiBold.otf in Resources */,
+				025776542C4EB7BB00272EC6 /* Pretendard-Regular.otf in Resources */,
+				025776592C4EB8BC00272EC6 /* Pretendard-Light.otf in Resources */,
+				0257763E2C4EA98E00272EC6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		02BDB7ED2C3E95580050FB67 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -202,6 +359,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0257762E2C4EA98C00272EC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				025776392C4EA98C00272EC6 /* LabelViewController.swift in Sources */,
+				0257765D2C4EB9EF00272EC6 /* BaseViewController.swift in Sources */,
+				025776352C4EA98C00272EC6 /* AppDelegate.swift in Sources */,
+				025776372C4EA98C00272EC6 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		02BDB7EB2C3E95580050FB67 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -217,7 +385,86 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0257764D2C4EB68D00272EC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02BDB7EE2C3E95580050FB67 /* Handy */;
+			targetProxy = 0257764C2C4EB68D00272EC6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0257763F2C4EA98E00272EC6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				025776402C4EA98E00272EC6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		025776442C4EA98E00272EC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2N3PMJ78CA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Handy-Storybook/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.joeun.Handy-Storybook";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		025776452C4EA98E00272EC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2N3PMJ78CA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Handy-Storybook/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.joeun.Handy-Storybook";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		02BDB7F42C3E95580050FB67 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -417,6 +664,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		025776432C4EA98E00272EC6 /* Build configuration list for PBXNativeTarget "Handy-Storybook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				025776442C4EA98E00272EC6 /* Debug */,
+				025776452C4EA98E00272EC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		02BDB7E92C3E95580050FB67 /* Build configuration list for PBXProject "Handy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -436,6 +692,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		025776462C4EB08D00272EC6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0257764F2C4EB6C000272EC6 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 025776462C4EB08D00272EC6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 02BDB7E62C3E95580050FB67 /* Project object */;
 }
