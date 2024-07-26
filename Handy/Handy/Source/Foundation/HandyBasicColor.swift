@@ -119,11 +119,11 @@ internal extension UIColor {
     // MARK: - Status
 
     static var redMain: UIColor {
-        return UIColor.load(name: "red_main")
+        return UIColor.load(name: "r_main")
     }
 
     static var redSub: UIColor {
-        return UIColor.load(name: "red_sub")
+        return UIColor.load(name: "r_sub")
     }
 }
 
