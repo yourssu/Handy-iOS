@@ -58,11 +58,11 @@ public class HandyCheckBox: UIButton {
         fileprivate var font: UIFont {
             switch self {
             case .small:
-                return HandyFont.B5Sb12
+                return HandyFont.B1Rg16
             case .medium:
-                return HandyFont.B5Sb12
+                return HandyFont.B1Rg16
             case .large:
-                return HandyFont.B5Sb12
+                return HandyFont.B1Rg16
             }
         }
 
@@ -129,19 +129,19 @@ public class HandyCheckBox: UIButton {
     }
 
     private func setIconImage() {
-        self.setImage(HandyIcon.icCancelFilled
+        self.setImage(HandyIcon.checkBoxSelected
                         .resize(to: size.iconSize)
-                        .withRenderingMode(.alwaysTemplate),
+                        .withRenderingMode(.automatic),
                       for: .selected)
 
-        self.setImage(HandyIcon.icCancelFilled
+        self.setImage(HandyIcon.checkBoxDisabled
                         .resize(to: size.iconSize)
-                        .withRenderingMode(.alwaysTemplate),
-                      for: UIControl.State.selected.union(.disabled))
+                        .withRenderingMode(.automatic),
+                      for: .disabled)
 
-        self.setImage(HandyIcon.icCancelLine
+        self.setImage(HandyIcon.checkBoxUnSelected
                         .resize(to: size.iconSize)
-                        .withRenderingMode(.alwaysTemplate),
+                        .withRenderingMode(.automatic),
                       for: .normal)
     }
 

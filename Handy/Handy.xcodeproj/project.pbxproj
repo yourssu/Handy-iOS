@@ -26,6 +26,9 @@
 		029E48002C49FD4000D2F3B7 /* HandyTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E47FF2C49FD4000D2F3B7 /* HandyTypography.swift */; };
 		02BDB7F32C3E95580050FB67 /* Handy.h in Headers */ = {isa = PBXBuildFile; fileRef = 02BDB7F22C3E95580050FB67 /* Handy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02BDB7FC2C3E99920050FB67 /* HandyFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BDB7FB2C3E99920050FB67 /* HandyFont.swift */; };
+		E51FBF9B2C5399A00097B0DA /* CheckBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51FBF9A2C5399A00097B0DA /* CheckBoxViewController.swift */; };
+		E51FBF9C2C539BC10097B0DA /* HandyBasicColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */; };
+		E51FBF9D2C539BC30097B0DA /* HandyIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5650D442C4E366F002790CC /* HandyIcon.xcassets */; };
 		E5650D432C4D326D002790CC /* HandyCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5650D422C4D326D002790CC /* HandyCheckBox.swift */; };
 		E5650D452C4E366F002790CC /* HandyIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5650D442C4E366F002790CC /* HandyIcon.xcassets */; };
 		E5650D472C512B07002790CC /* HandyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5650D462C512B07002790CC /* HandyIcon.swift */; };
@@ -80,6 +83,7 @@
 		02BDB7EF2C3E95580050FB67 /* Handy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Handy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02BDB7F22C3E95580050FB67 /* Handy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Handy.h; sourceTree = "<group>"; };
 		02BDB7FB2C3E99920050FB67 /* HandyFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyFont.swift; sourceTree = "<group>"; };
+		E51FBF9A2C5399A00097B0DA /* CheckBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxViewController.swift; sourceTree = "<group>"; };
 		E5650D422C4D326D002790CC /* HandyCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyCheckBox.swift; sourceTree = "<group>"; };
 		E5650D442C4E366F002790CC /* HandyIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HandyIcon.xcassets; sourceTree = "<group>"; };
 		E5650D462C512B07002790CC /* HandyIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyIcon.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				025776382C4EA98C00272EC6 /* LabelViewController.swift */,
+				E51FBF9A2C5399A00097B0DA /* CheckBoxViewController.swift */,
 			);
 			path = Atom;
 			sourceTree = "<group>";
@@ -227,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				02BDB7FB2C3E99920050FB67 /* HandyFont.swift */,
-				029E47FF2C49FD4000D2F3B7 /* HandyTypography.swift */,
 				E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */,
 				E5D02AFF2C480A180056CE7B /* HandyPrimitiveColor.swift */,
 				E5D02AFC2C46C5A70056CE7B /* HandySematicColor.swift */,
@@ -348,6 +352,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				025776412C4EA98E00272EC6 /* LaunchScreen.storyboard in Resources */,
+				E51FBF9D2C539BC30097B0DA /* HandyIcon.xcassets in Resources */,
+				E51FBF9C2C539BC10097B0DA /* HandyBasicColor.xcassets in Resources */,
 				025776562C4EB7BB00272EC6 /* Pretendard-SemiBold.otf in Resources */,
 				025776542C4EB7BB00272EC6 /* Pretendard-Regular.otf in Resources */,
 				025776592C4EB8BC00272EC6 /* Pretendard-Light.otf in Resources */,
@@ -376,6 +382,7 @@
 			files = (
 				025776392C4EA98C00272EC6 /* LabelViewController.swift in Sources */,
 				0257765D2C4EB9EF00272EC6 /* BaseViewController.swift in Sources */,
+				E51FBF9B2C5399A00097B0DA /* CheckBoxViewController.swift in Sources */,
 				025776352C4EA98C00272EC6 /* AppDelegate.swift in Sources */,
 				025776372C4EA98C00272EC6 /* SceneDelegate.swift in Sources */,
 			);

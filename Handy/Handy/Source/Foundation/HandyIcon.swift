@@ -10,6 +10,10 @@ import UIKit
 public enum HandyIcon {
     public static var icCancelFilled: UIImage { .load(name: "icCancelFilled") }
     public static var icCancelLine: UIImage { .load(name: "icCancelLine") }
+
+    public static var checkBoxUnSelected: UIImage { .load(name: "checkBoxUnSelected") }
+    public static var checkBoxSelected: UIImage { .load(name: "checkBoxSelected") }
+    public static var checkBoxDisabled: UIImage { .load(name: "checkBoxDisabled") }
 }
 
 extension UIImage {
