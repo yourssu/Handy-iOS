@@ -9,18 +9,18 @@ import Handy
 
 final class RadioButtonViewController: BaseViewController {
 
-    let checkBox: HandyRadioButton = {
+    let radioButton: HandyRadioButton = {
         let checkBox = HandyRadioButton()
         return checkBox
     }()
 
-    let textCheckBox: HandyRadioButton = {
+    let textRadioButton: HandyRadioButton = {
         let checkBox = HandyRadioButton()
-        checkBox.text = "HandyCheckBox"
+        checkBox.text = "RadioButton"
         return checkBox
     }()
 
-    let disabledCheckBox: HandyRadioButton = {
+    let disabledRadioButton: HandyRadioButton = {
         let checkBox = HandyRadioButton()
         checkBox.isDisabled = true
         return checkBox
@@ -31,21 +31,21 @@ final class RadioButtonViewController: BaseViewController {
     }
 
     override func setViewHierarchies() {
-        self.view.addSubview(checkBox)
-        self.view.addSubview(textCheckBox)
-        self.view.addSubview(disabledCheckBox)
+        [radioButton, textRadioButton, disabledRadioButton].forEach {
+            view.addSubview($0)
+        }
     }
 
     override func setViewLayouts() {
-        checkBox.snp.makeConstraints {
+        radioButton.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
-        textCheckBox.snp.makeConstraints {
-            $0.top.equalTo(checkBox.snp.bottom).offset(16)
+        textRadioButton.snp.makeConstraints {
+            $0.top.equalTo(radioButton.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
-        disabledCheckBox.snp.makeConstraints {
-            $0.top.equalTo(textCheckBox.snp.bottom).offset(16)
+        disabledRadioButton.snp.makeConstraints {
+            $0.top.equalTo(textRadioButton.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
     }
