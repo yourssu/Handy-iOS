@@ -14,24 +14,36 @@ public class HandyCheckBox: UIButton {
     /**
      체크박스를 비활성화 시킬 때 사용합니다.
      */
-    @Invalidating(.layout, .display) public var isDisabled: Bool = false
+    @Invalidating(.layout, .display) public var isDisabled: Bool = false {
+        didSet {
+            setConfiguration()
+        }
+    }
 
     /**
      체크박스의 선택 여부를 나타낼 때 사용합니다.
      */
     public override var isSelected: Bool {
-        didSet { setNeedsDisplay() }
+        didSet { setConfiguration() }
     }
 
     /**
      타이포 크기, 아이콘 크기, 아이콘과 라벨 사이 간격을 결정할 때 사용합니다.
      */
-    @Invalidating(.layout, .display) public var size: CheckboxSize = .large
+    @Invalidating(.layout, .display) public var size: CheckboxSize = .large {
+        didSet {
+            setConfiguration()
+        }
+    }
 
     /**
      체크박스의 글귀를 설정할 때 사용합니다.
      */
-    @Invalidating(wrappedValue: nil, .layout) public var text: String?
+    @Invalidating(wrappedValue: nil, .layout) public var text: String? {
+        didSet {
+            setConfiguration()
+        }
+    }
 
     // MARK: - 외부에서 접근할 수 있는 enum
 
@@ -54,22 +66,15 @@ public class HandyCheckBox: UIButton {
                 return 24
             }
         }
-// TODO: - 디자인팀과 상의 후 사이즈에 따른 폰트 변경하기
+
         fileprivate var font: UIFont {
             switch self {
             case .small:
-                return HandyFont.B1Rg16
+                return HandyFont.B5Rg12
             case .medium:
-                return HandyFont.B1Rg16
+                return HandyFont.B3Rg14
             case .large:
                 return HandyFont.B1Rg16
-            }
-        }
-
-        fileprivate var spacing: CGFloat {
-            switch self {
-            case .small, .medium, .large:
-                return 8
             }
         }
     }
@@ -78,7 +83,7 @@ public class HandyCheckBox: UIButton {
 
     public init() {
         super.init(frame: .zero)
-        setupView()
+        setConfiguration()
         registerTapAction()
     }
 
@@ -86,88 +91,35 @@ public class HandyCheckBox: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupView() {
-        setColor()
-        setSize()
-    }
+    private func setConfiguration() {
+        var configuration = UIButton.Configuration.plain()
+        configuration.baseBackgroundColor = .clear
 
-    private func setColor() {
-        setTitleColor()
-        setTintColor()
-    }
-    // TODO: - 디자인팀과 상의 후 선택, 비선택에 따른 텍스트 색상 변경
-    private func setTitleColor() {
-        if isDisabled {
-            self.setTitleColor(HandySemantic.textBasicPrimary, for: .normal)
-            self.setTitleColor(HandySemantic.textBasicPrimary, for: .selected)
-            return
+        configuration.attributedTitle = AttributedString(text ?? "")
+        configuration.attributedTitle?.font = size.font
+
+        configuration.imagePadding = 8
+        configuration.imagePlacement = .leading
+
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+
+        switch (isDisabled, isSelected) {
+        case (true, _):
+            configuration.image = HandyIcon.checkBoxDisabled.resize(to: size.iconSize)
+            configuration.baseBackgroundColor = HandySemantic.textBasicPrimary
+
+        case (false, true):
+            configuration.image = HandyIcon.checkBoxSelected.resize(to: size.iconSize)
+            configuration.baseForegroundColor = HandySemantic.textBasicPrimary
+
+        case (false, false):
+            configuration.image = HandyIcon.checkBoxUnSelected.resize(to: size.iconSize)
+            configuration.baseForegroundColor = HandySemantic.textBasicPrimary
         }
 
-        self.setTitleColor(HandySemantic.textBasicPrimary, for: .normal)
-        self.setTitleColor(HandySemantic.textBasicPrimary, for: .selected)
-    }
+        self.isEnabled = !isDisabled
 
-    private func setTintColor() {
-        if isDisabled {
-            self.tintColor = HandySemantic.checkboxDisabled
-            return
-        }
-
-        self.tintColor = isSelected
-            ? HandySemantic.checkboxSelected
-            : HandySemantic.checkboxUnSelected
-    }
-
-    private func setSize() {
-        setFont()
-        setIconImage()
-        setLayoutAccordingToText()
-    }
-
-    private func setFont() {
-        self.titleLabel?.font = size.font
-    }
-
-    private func setIconImage() {
-        self.setImage(HandyIcon.checkBoxSelected
-                        .resize(to: size.iconSize)
-                        .withRenderingMode(.automatic),
-                      for: .selected)
-
-        self.setImage(HandyIcon.checkBoxDisabled
-                        .resize(to: size.iconSize)
-                        .withRenderingMode(.automatic),
-                      for: .disabled)
-
-        self.setImage(HandyIcon.checkBoxUnSelected
-                        .resize(to: size.iconSize)
-                        .withRenderingMode(.automatic),
-                      for: .normal)
-    }
-
-    /**
-     텍스트 설정에 따른 체크박스의 레이아웃을 결정합니다.
-     */
-    private func setLayoutAccordingToText() {
-        if text != nil {
-            self.imageEdgeInsets = UIEdgeInsets(top: 0,
-                                                left: -size.spacing/2,
-                                                bottom: 0,
-                                                right: size.spacing/2)
-            self.titleEdgeInsets = UIEdgeInsets(top: 0,
-                                                left: size.spacing/2,
-                                                bottom: 0,
-                                                right: -size.spacing/2)
-            self.contentEdgeInsets = UIEdgeInsets(top: 0,
-                                                  left: size.spacing/2,
-                                                  bottom: 0,
-                                                  right: size.spacing/2)
-            return
-        }
-
-        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.configuration = configuration
     }
 
     private func registerTapAction() {
@@ -180,22 +132,5 @@ public class HandyCheckBox: UIButton {
     @objc
     private func checkboxDidTap(_ sender: UIControl) {
         self.isSelected = !isSelected
-    }
-
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-
-        self.isEnabled = !isDisabled
-        setTitle(text, for: .normal)
-
-        setFont()
-        setLayoutAccordingToText()
-    }
-
-    public override func draw(_ rect: CGRect) {
-        super.draw(rect)
-
-        setColor()
-        setIconImage()
     }
 }
