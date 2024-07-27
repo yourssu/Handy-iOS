@@ -31,9 +31,9 @@ final class CheckBoxViewController: BaseViewController {
     }
 
     override func setViewHierarchies() {
-        self.view.addSubview(checkBox)
-        self.view.addSubview(textCheckBox)
-        self.view.addSubview(disabledCheckBox)
+        [checkBox, textCheckBox, disabledCheckBox].forEach {
+            view.addSubview($0)
+        }
     }
 
     override func setViewLayouts() {
