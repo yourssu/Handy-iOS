@@ -9,26 +9,45 @@ import Handy
 
 final class CheckBoxViewController: BaseViewController {
 
-    let checkBox = HandyCheckBox()
+    let checkBox: HandyCheckBox = {
+        let checkBox = HandyCheckBox()
+        return checkBox
+    }()
+
+    let textCheckBox: HandyCheckBox = {
+        let checkBox = HandyCheckBox()
+        checkBox.text = "HandyCheckBox"
+        return checkBox
+    }()
+
+    let disabledCheckBox: HandyCheckBox = {
+        let checkBox = HandyCheckBox()
+        checkBox.isDisabled = true
+        return checkBox
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        checkBox.isDisabled = true
-        checkBox.text = nil
-        checkBox.size = .large
-        checkBox.text = "ddd"
     }
 
     override func setViewHierarchies() {
         self.view.addSubview(checkBox)
+        self.view.addSubview(textCheckBox)
+        self.view.addSubview(disabledCheckBox)
     }
 
     override func setViewLayouts() {
         checkBox.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+        textCheckBox.snp.makeConstraints {
+            $0.top.equalTo(checkBox.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview()
+        }
+        disabledCheckBox.snp.makeConstraints {
+            $0.top.equalTo(textCheckBox.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview()
+        }
     }
 }
-
 
