@@ -62,7 +62,7 @@ public enum HandySemantic {
     }
 
     public static var textBasicWhite: UIColor {
-        return .black
+        return .white
     }
 
     public static var textBrandPrimary: UIColor {
