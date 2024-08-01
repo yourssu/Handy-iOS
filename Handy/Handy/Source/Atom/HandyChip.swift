@@ -12,13 +12,20 @@ import UIKit
 public class HandyChip: UIControl {
     
     // MARK: - 외부에서 지정가능한 속성
-    @Invalidating(wrappedValue: nil, .layout) public var text: String?
+    @Invalidating(wrappedValue: nil, .layout) public var text: String? {
+        didSet {
+            if let text = text, text.count > 10 {
+                self.text = String(text.prefix(10))
+            }
+            setNeedsLayout()
+        }
+    }
     
-    private var size: ChipSize = ChipSize()
+    public var size: ChipSize = ChipSize()
     
-    private struct ChipSize {
-        enum SizeType {
-            case medium
+    public struct ChipSize {
+        public enum SizeType {
+            case large
             case small
         }
         
@@ -26,7 +33,7 @@ public class HandyChip: UIControl {
         
         var height: CGFloat {
             switch type {
-            case .medium:
+            case .large:
                 return 32
             case .small:
                 return 24
@@ -41,13 +48,30 @@ public class HandyChip: UIControl {
             return 12
         }
         
-        init(type: SizeType = .medium) {
+        public init(type: SizeType = .large) {
+            self.type = type
+        }
+    }
+    
+    public var chipState: ChipState = ChipState() {
+        didSet { setNeedsLayout() }
+    }
+    
+    public struct ChipState {
+        public enum StateType {
+            case enabled
+            case disabled
+        }
+        
+        var type: StateType
+        
+        public init(type: StateType = .enabled) {
             self.type = type
         }
     }
     
     public override var isSelected: Bool {
-        didSet { setNeedsLayout() } // 선택되면 다시그려야 함
+        didSet { setNeedsLayout() }
     }
     
     // MARK: - 내부에서 사용되는 함수
@@ -95,20 +119,33 @@ public class HandyChip: UIControl {
         setCornerRadius()
         textLabel.text = text
         setChipSize()
-        setColorBasedOnIsSelected()
+        setColorBasedOnState()
     }
     
     /**
      isSelected 값의 맞추어 backgroundColor, textColor를 변경합니다.
      */
     private func setColorBasedOnIsSelected() {
-        self.backgroundColor = !isSelected
-        ? bgColor
-        : bgSelectedColor
+        self.backgroundColor = isSelected
+        ? bgSelectedColor
+        : bgColor
         
-        self.textLabel.textColor = !isSelected
-        ? fgColor
-        : fgSelectedColor
+        self.textLabel.textColor = isSelected
+        ? fgSelectedColor
+        : fgColor
+    }
+    
+    /**
+     Chip의 enabled disabled 상태에 맞추어 세팅합니다.
+     */
+    private func setColorBasedOnState() {
+        switch chipState.type {
+        case .enabled:
+            setColorBasedOnIsSelected()
+        case .disabled:
+            self.backgroundColor = bgDisabledColor
+            self.textLabel.textColor = fgDisabledColor
+        }
     }
     
     /**
@@ -137,4 +174,12 @@ public class HandyChip: UIControl {
         self.layer.cornerRadius = size.cornerRadius
     }
 }
-// TODO: Small 사이즈 구현, icon 어떻게 해야하나?, 글자수 제한?, 칩간 행열 간격
+
+// TODO: 리스트
+/*
+ - [x] Large, Small 사이즈 구현
+ - [x] Enabled, Disabled 상태 구현
+ - [x] 글자수 제한
+ - [ ] icon
+ - [?] 칩간 행열 간격
+ */
