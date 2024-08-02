@@ -26,6 +26,12 @@
 		029E48002C49FD4000D2F3B7 /* HandyTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E47FF2C49FD4000D2F3B7 /* HandyTypography.swift */; };
 		02BDB7F32C3E95580050FB67 /* Handy.h in Headers */ = {isa = PBXBuildFile; fileRef = 02BDB7F22C3E95580050FB67 /* Handy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02BDB7FC2C3E99920050FB67 /* HandyFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BDB7FB2C3E99920050FB67 /* HandyFont.swift */; };
+		A56B3DE22C4E51D300C3610A /* HandyChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B3DE12C4E51D300C3610A /* HandyChip.swift */; };
+		A5A12A7E2C57A6D900996916 /* ChipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A12A7C2C57A6C200996916 /* ChipViewController.swift */; };
+		A5A12A7F2C57A92000996916 /* HandySematicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D02AFC2C46C5A70056CE7B /* HandySematicColor.swift */; };
+		A5A12A802C57A93000996916 /* HandyBasicColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */; };
+		A5A12A812C57A93C00996916 /* HandyPrimitiveColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D02AFF2C480A180056CE7B /* HandyPrimitiveColor.swift */; };
+		A5A12A822C57A93F00996916 /* HandyBasicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */; };
 		E5669A3F2C443E7300DABC21 /* HandyBasicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */; };
 		E5D02AFD2C46C5A70056CE7B /* HandySematicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D02AFC2C46C5A70056CE7B /* HandySematicColor.swift */; };
 		E5D02AFE2C46C9980056CE7B /* HandyBasicColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */; };
@@ -77,6 +83,8 @@
 		02BDB7EF2C3E95580050FB67 /* Handy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Handy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02BDB7F22C3E95580050FB67 /* Handy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Handy.h; sourceTree = "<group>"; };
 		02BDB7FB2C3E99920050FB67 /* HandyFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyFont.swift; sourceTree = "<group>"; };
+		A56B3DE12C4E51D300C3610A /* HandyChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyChip.swift; sourceTree = "<group>"; };
+		A5A12A7C2C57A6C200996916 /* ChipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipViewController.swift; sourceTree = "<group>"; };
 		E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyBasicColor.swift; sourceTree = "<group>"; };
 		E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HandyBasicColor.xcassets; sourceTree = "<group>"; };
 		E5D02AFC2C46C5A70056CE7B /* HandySematicColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandySematicColor.swift; sourceTree = "<group>"; };
@@ -121,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				025776382C4EA98C00272EC6 /* LabelViewController.swift */,
+				A5A12A7C2C57A6C200996916 /* ChipViewController.swift */,
 			);
 			path = Atom;
 			sourceTree = "<group>";
@@ -173,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				029E47FC2C49FD1A00D2F3B7 /* HandyLabel.swift */,
+				A56B3DE12C4E51D300C3610A /* HandyChip.swift */,
 			);
 			path = Atom;
 			sourceTree = "<group>";
@@ -338,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				025776412C4EA98E00272EC6 /* LaunchScreen.storyboard in Resources */,
+				A5A12A802C57A93000996916 /* HandyBasicColor.xcassets in Resources */,
 				025776562C4EB7BB00272EC6 /* Pretendard-SemiBold.otf in Resources */,
 				025776542C4EB7BB00272EC6 /* Pretendard-Regular.otf in Resources */,
 				025776592C4EB8BC00272EC6 /* Pretendard-Light.otf in Resources */,
@@ -363,6 +374,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5A12A812C57A93C00996916 /* HandyPrimitiveColor.swift in Sources */,
+				A5A12A822C57A93F00996916 /* HandyBasicColor.swift in Sources */,
+				A5A12A7E2C57A6D900996916 /* ChipViewController.swift in Sources */,
+				A5A12A7F2C57A92000996916 /* HandySematicColor.swift in Sources */,
 				025776392C4EA98C00272EC6 /* LabelViewController.swift in Sources */,
 				0257765D2C4EB9EF00272EC6 /* BaseViewController.swift in Sources */,
 				025776352C4EA98C00272EC6 /* AppDelegate.swift in Sources */,
@@ -380,6 +395,7 @@
 				02BDB7FC2C3E99920050FB67 /* HandyFont.swift in Sources */,
 				029E48002C49FD4000D2F3B7 /* HandyTypography.swift in Sources */,
 				029E47FD2C49FD1A00D2F3B7 /* HandyLabel.swift in Sources */,
+				A56B3DE22C4E51D300C3610A /* HandyChip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
