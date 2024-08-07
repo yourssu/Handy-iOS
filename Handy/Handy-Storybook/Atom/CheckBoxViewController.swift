@@ -11,6 +11,7 @@ final class CheckBoxViewController: BaseViewController {
 
     let checkBox: HandyCheckBox = {
         let checkBox = HandyCheckBox()
+        checkBox.setTintColor = .red
         return checkBox
     }()
 
