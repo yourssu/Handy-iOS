@@ -45,6 +45,15 @@ public class HandyCheckBox: UIButton {
         }
     }
 
+    /**
+     체크박스의 tintColor를 설정할 때 사용합니다.
+     */
+    public var setTintColor: UIColor = HandySemantic.checkboxSelected {
+        didSet {
+            setConfiguration()
+        }
+    }
+
     // MARK: - 외부에서 접근할 수 있는 enum
 
     /**
@@ -94,33 +103,61 @@ public class HandyCheckBox: UIButton {
     private func setConfiguration() {
         var configuration = UIButton.Configuration.plain()
         configuration.baseBackgroundColor = .clear
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        self.configuration = configuration
 
+        setTitle()
+        setImage()
+        setColor()
+        updateState()
+    }
+
+    private func setTitle() {
+        guard var configuration = self.configuration else { return }
         configuration.attributedTitle = AttributedString(text ?? "")
         configuration.attributedTitle?.font = size.font
+        self.configuration = configuration
+    }
+
+    private func setImage() {
+        guard var configuration = self.configuration else { return }
 
         configuration.imagePadding = 8
         configuration.imagePlacement = .leading
 
-        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        let image: UIImage
+        if isDisabled || isSelected {
+            image = HandyIcon.checkBoxFilled
+        } else {
+            image = HandyIcon.checkBoxLine
+        }
+        configuration.image = image.resize(to: size.iconSize)
 
-        switch (isDisabled, isSelected) {
-        case (true, _):
-            configuration.image = HandyIcon.checkBoxDisabled.resize(to: size.iconSize)
-            configuration.baseBackgroundColor = HandySemantic.textBasicPrimary
+        self.configuration = configuration
+    }
 
-        case (false, true):
-            configuration.image = HandyIcon.checkBoxSelected.resize(to: size.iconSize)
-            configuration.baseForegroundColor = HandySemantic.textBasicPrimary
 
-        case (false, false):
-            configuration.image = HandyIcon.checkBoxUnSelected.resize(to: size.iconSize)
-            configuration.baseForegroundColor = HandySemantic.textBasicPrimary
+    private func setColor() {
+        guard var configuration = self.configuration else { return }
+
+        if isSelected {
+            configuration.image = configuration.image?.withTintColor(setTintColor)
         }
 
+
+        self.configuration = configuration
+    }
+
+
+    private func updateState() {
+        guard var configuration = self.configuration else { return }
+
+        configuration.baseForegroundColor = HandySemantic.textBasicPrimary
         self.isEnabled = !isDisabled
 
         self.configuration = configuration
     }
+
 
     private func registerTapAction() {
         self.addTarget(self,

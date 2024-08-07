@@ -11,6 +11,7 @@ final class RadioButtonViewController: BaseViewController {
 
     let radioButton: HandyRadioButton = {
         let checkBox = HandyRadioButton()
+        checkBox.isSelected = true
         return checkBox
     }()
 
@@ -23,6 +24,7 @@ final class RadioButtonViewController: BaseViewController {
     let disabledRadioButton: HandyRadioButton = {
         let checkBox = HandyRadioButton()
         checkBox.isDisabled = true
+        checkBox.text = "RadioButton"
         return checkBox
     }()
 

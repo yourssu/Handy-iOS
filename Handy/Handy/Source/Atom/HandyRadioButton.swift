@@ -45,6 +45,15 @@ public class HandyRadioButton: UIButton {
         }
     }
 
+    /**
+     라디오버튼의 tintColor를 설정할 때 사용합니다.
+     */
+    public var setTintColor: UIColor = HandySemantic.checkboxSelected {
+        didSet {
+            setConfiguration()
+        }
+    }
+
     // MARK: - 외부에서 접근할 수 있는 enum
 
     /**
@@ -94,44 +103,66 @@ public class HandyRadioButton: UIButton {
     private func setConfiguration() {
         var configuration = UIButton.Configuration.plain()
         configuration.baseBackgroundColor = .clear
-
-        configuration.attributedTitle = AttributedString(text ?? "")
-        configuration.attributedTitle?.font = size.font
-
         configuration.imagePadding = 8
         configuration.imagePlacement = .leading
-
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        self.configuration = configuration
 
-        switch (isDisabled, isSelected) {
-        case (true, _):
+        setTitle()
+        setImage()
+        setColor()
+        updateState()
+    }
+
+    private func setTitle() {
+        guard var configuration = self.configuration else { return }
+        configuration.attributedTitle = AttributedString(text ?? "")
+        configuration.attributedTitle?.font = size.font
+        self.configuration = configuration
+    }
+
+    private func setImage() {
+        guard var configuration = self.configuration else { return }
+
+        if isDisabled {
             configuration.image = HandyIcon.radioButtonDisabled.resize(to: size.iconSize)
-            configuration.baseBackgroundColor = HandySemantic.textBasicPrimary
-
-        case (false, true):
-            configuration.image = HandyIcon.radioButtonSelected.resize(to: size.iconSize)
-            configuration.baseForegroundColor = HandySemantic.textBasicPrimary
-
-        case (false, false):
-            configuration.image = HandyIcon.radioButtonUnselected.resize(to: size.iconSize)
-            configuration.baseForegroundColor = HandySemantic.textBasicPrimary
+        } else {
+            configuration.image = HandyIcon.radioButtonLine.resize(to: size.iconSize)
         }
 
+        self.configuration = configuration
+    }
+
+    private func setColor() {
+        guard var configuration = self.configuration else { return }
+
+        if isSelected {
+            configuration.image = configuration.image?.withTintColor(setTintColor)
+        }
+
+        self.configuration = configuration
+    }
+
+
+    private func updateState() {
+        guard var configuration = self.configuration else { return }
+
+        configuration.baseForegroundColor = HandySemantic.textBasicPrimary
         self.isEnabled = !isDisabled
 
         self.configuration = configuration
     }
 
+
     private func registerTapAction() {
         self.addTarget(self,
-                       action: #selector(checkboxDidTap(_:)),
+                       action: #selector(radioButtonDidtap(_:)),
                        for: .touchUpInside
         )
     }
 
     @objc
-    private func checkboxDidTap(_ sender: UIControl) {
+    private func radioButtonDidtap(_ sender: UIControl) {
         self.isSelected = !isSelected
     }
 }
-
