@@ -174,12 +174,3 @@ public class HandyChip: UIControl {
         self.layer.cornerRadius = size.cornerRadius
     }
 }
-
-// TODO: 리스트
-/*
- - [x] Large, Small 사이즈 구현
- - [x] Enabled, Disabled 상태 구현
- - [x] 글자수 제한
- - [ ] icon
- - [?] 칩간 행열 간격
- */
