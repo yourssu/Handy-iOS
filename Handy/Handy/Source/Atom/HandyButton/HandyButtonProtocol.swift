@@ -12,7 +12,7 @@ import UIKit
  */
 public protocol HandyButtonProtocol {
     var isDisabled: Bool { get set }
-    var text: String? { get set }
+    var text: String { get set }
     var leftIcon: UIImage? { get set }
     var rightIcon: UIImage? { get set }
 }

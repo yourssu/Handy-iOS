@@ -124,19 +124,19 @@ public enum HandyPrimitive {
     
     // MARK: - Spacing
     
-    public static var spacing8: Int {
+    public static var number8: Int {
         return 8
     }
-    public static var spacing10: Int {
+    public static var number10: Int {
         return 10
     }
-    public static var spacing12: Int {
+    public static var number12: Int {
         return 12
     }
-    public static var spacing14: Int {
+    public static var number14: Int {
         return 14
     }
-    public static var spacing16: Int {
+    public static var number16: Int {
         return 16
     }
 }

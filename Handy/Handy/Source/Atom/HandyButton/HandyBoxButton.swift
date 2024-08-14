@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-public class HandyBoxButton: UIButton, HandyButtonProtocol {
+public class HandyBoxButton: UIButton, HandyButtonProtocol {    
 
     // MARK: - 외부에서 지정할 수 있는 속성
 
@@ -18,13 +18,7 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
     @Invalidating(.layout, .display) public var isDisabled: Bool = false
 
     /**
-     삭제, 탈퇴 등 파괴적인 행위를 할 때
-     버튼을 빨간색으로 표시해 경고하기 위해 사용합니다.
-     */
-    @Invalidating(.display) public var isWarned: Bool = false
-
-    /**
-     버튼의 외관을 결정할 때 사용합니다.
+     버튼의 외관 타입을 결정할 때 사용합니다.
      */
     @Invalidating(.display) public var type: BoxButtonType = .primary
 
@@ -34,14 +28,9 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
     @Invalidating(.display) public var size: BoxButtonSize = .large
 
     /**
-     버튼의 라운딩을 결정할 때 사용합니다.
-     */
-    @Invalidating(.layout) public var rounding: BoxButtonRounding = .r12
-
-    /**
      버튼의 글귀를 설정할 때 사용합니다.
      */
-    @Invalidating(wrappedValue: nil, .layout, .display) public var text: String?
+    @Invalidating(wrappedValue: "", .layout, .display) public var text: String
 
     /**
      버튼의 좌측에 들어갈 아이콘을 설정할 때 사용합니다.
@@ -125,14 +114,30 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
             }
         }
 
-        fileprivate var font: UIFont {
+        fileprivate var rounding: Int {
+            switch self {
+            case .xLarge, .large:
+                return HandySemantic.radiusXL
+            case .medium:
+                return HandySemantic.radiusL
+            case .small:
+                return HandySemantic.radiusM
+            case .xSmall:
+                return HandySemantic.radiusS
+            case .xxSmall:
+                return HandySemantic.radiusXS
+            }
+        }
+
+
+        fileprivate var typo: String.HandyTypoStyle {
             switch self {
             case .xLarge, .large, .medium:
-                return HandyFont.B1Sb16
+                return .B1Sb16
             case .small:
-                return HandyFont.B3Sb14
+                return .B3Sb14
             case .xSmall, .xxSmall:
-                return HandyFont.B5Sb12
+                return .B5Sb12
             }
         }
 
@@ -160,29 +165,17 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
         }
     }
 
-    // MARK: - 추후 변경 필요 ⭐️
-    /**
-     버튼의 rounding 값 종류입니다.
-     */
-    public enum BoxButtonRounding: Int {
-        case r8 = 8
-        case r10 = 10
-        case r12 = 12
-        case r14 = 14
-        case r16 = 16
-    }
-
     // MARK: - 내부에서 사용되는 변수
+
+    /**
+     버튼의 스타일과 관련된 설정입니다.
+     */
+    private var buttonConfiguration = UIButton.Configuration.plain()
 
     /**
      버튼의 아이콘, 글자 컬러입니다.
      */
     private var fgColor: UIColor?
-
-    /**
-     버튼이 pressed 되었을 때 아이콘, 글자 컬러입니다.
-     */
-    private var fgPressedColor: UIColor?
 
     /**
      버튼의 배경 컬러입니다.
@@ -209,6 +202,15 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
      */
     private var borderWidth: CGFloat = 0
 
+    /**
+     레이블
+     */
+    private var handyLabel: HandyLabel =  HandyLabel()
+
+    private var leftImageView: UIImageView = UIImageView()
+
+    private var rightImageView: UIImageView = UIImageView()
+
     // MARK: - 메소드
 
     public init() {
@@ -226,12 +228,55 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
      */
     private func setupView() {
         self.clipsToBounds = true
-        self.adjustsImageWhenHighlighted = false
-        self.adjustsImageWhenDisabled = false
 
-        setBoxButtonSize()
-        setBoxButtonColor()
         setBoxButtonRounding()
+        setBoxButtonColor()
+        setButtonLabel()
+        setButtonIcon()
+        self.addSubview(handyLabel)
+
+        handyLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+    }
+
+    private func setButtonLabel() {
+        handyLabel.textColor = self.fgColor
+        handyLabel.style = size.typo
+        handyLabel.text = text
+    }
+
+    /**
+     아이콘 설정에 따른 버튼의 레이아웃을 결정합니다.
+     */
+    /**
+     버튼의 아이콘 위치와 그에 따른 패딩을 설정합니다.
+     우선순위는 leftIcon > rightIcon 입니다.
+     */
+    private func setButtonIcon() {
+        if leftIcon != nil {
+            leftImageView = UIImageView(image: self.leftIcon?.resize(to: size.iconSize).withRenderingMode(.alwaysTemplate))
+            leftImageView.tintColor = self.fgColor
+
+            self.addSubview(leftImageView)
+            leftImageView.snp.makeConstraints {
+                $0.trailing.equalTo(handyLabel.snp.leading).offset(-size.subviewSpacing)
+                $0.centerY.equalTo(handyLabel.snp.centerY)
+                $0.size.equalTo(size.iconSize)
+            }
+        }
+
+        if rightIcon != nil {
+            rightImageView = UIImageView(image: self.rightIcon?.resize(to: size.iconSize).withRenderingMode(.alwaysTemplate))
+            rightImageView.tintColor = self.fgColor
+
+            self.addSubview(rightImageView)
+            rightImageView.snp.makeConstraints {
+                $0.leading.equalTo(handyLabel.snp.trailing).offset(size.subviewSpacing)
+                $0.centerY.equalTo(handyLabel.snp.centerY)
+                $0.size.equalTo(size.iconSize)
+            }
+        }
     }
 
     /**
@@ -246,12 +291,10 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
 
             if isDisabled {
                 fgColor = HandySemantic.textBasicDisabled
-                fgPressedColor = HandySemantic.textBasicDisabled
                 bgColor = HandySemantic.buttonBoxPrimaryDisabled
                 bgPressedColor = HandySemantic.buttonBoxPrimaryDisabled
             } else {
                 fgColor = HandySemantic.textBasicWhite
-                fgPressedColor = HandySemantic.textBasicWhite
                 bgColor = HandySemantic.buttonBoxPrimaryEnabled
                 bgPressedColor = HandySemantic.buttonBoxPrimaryPressed
             }
@@ -263,12 +306,10 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
 
             if isDisabled {
                 fgColor = HandySemantic.textBasicDisabled
-                fgPressedColor = HandySemantic.textBasicDisabled
                 bgColor = HandySemantic.buttonBoxPrimaryDisabled
                 bgPressedColor = HandySemantic.buttonBoxPrimaryDisabled
             } else {
                 fgColor = HandySemantic.textBrandSecondary
-                fgPressedColor = HandySemantic.textBrandSecondary
                 bgColor = HandySemantic.buttonBoxSecondaryEnabled
                 bgPressedColor = HandySemantic.buttonBoxSecondaryPressed
             }
@@ -280,38 +321,32 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
 
             if isDisabled {
                 fgColor = HandySemantic.textBasicDisabled
-                fgPressedColor = HandySemantic.textBasicDisabled
                 bgColor = HandySemantic.buttonBoxPrimaryDisabled
                 bgPressedColor = HandySemantic.buttonBoxPrimaryDisabled
                 borderColor = HandySemantic.textBasicDisabled
+                borderPressedColor = HandySemantic.textBasicDisabled
             } else {
-                fgColor = HandySemantic.buttonBoxTertiaryDisabled
-                fgPressedColor = HandySemantic.buttonBoxTertiaryDisabled
+                fgColor = HandySemantic.textBasicPrimary
                 bgColor = HandySemantic.buttonBoxTertiaryEnabled
                 bgPressedColor = HandySemantic.buttonBoxTertiaryPressed
                 borderColor = HandySemantic.lineBasicMedium
+                borderPressedColor = HandySemantic.lineBasicMedium
             }
         }
 
-        setTitleColor(fgColor, for: .normal)
-        setTitleColor(fgPressedColor, for: .highlighted)
+        self.configurationUpdateHandler = { button in
+            switch button.state {
+            case .highlighted:
+                self.buttonConfiguration.background.backgroundColor = self.bgPressedColor
+            default:
+                self.buttonConfiguration.baseForegroundColor = self.fgColor
+                self.buttonConfiguration.background.backgroundColor = self.bgColor
+            }
+            button.configuration = self.buttonConfiguration
+        }
 
-        setTintColorBasedOnIsHighlighted()
-
-        setBackgroundColor(bgColor, for: .normal)
-        setBackgroundColor(bgPressedColor, for: .highlighted)
-
+        self.configuration = buttonConfiguration
         self.layer.borderWidth = borderWidth
-        setBorderColorBasedOnIsHighlighted()
-    }
-
-    /**
-     isHighlighted 값에 맞추어 tintColor를 변경합니다.
-     */
-    private func setTintColorBasedOnIsHighlighted() {
-        self.tintColor = !isHighlighted
-            ? fgColor
-            : fgPressedColor
     }
 
     /**
@@ -319,131 +354,49 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
      */
     private func setBorderColorBasedOnIsHighlighted() {
         self.layer.borderColor = !isHighlighted
-            ? borderColor?.cgColor
-            : borderPressedColor?.cgColor
+        ? borderColor?.cgColor
+        : borderPressedColor?.cgColor
     }
 
     /**
      버튼의 라운딩 값을 세팅합니다.
      */
     private func setBoxButtonRounding() {
-        self.layer.cornerRadius = CGFloat(rounding.rawValue)
+        self.layer.cornerRadius = CGFloat(size.rounding)
     }
 
     /**
      버튼의 높이, 패딩, 폰트, 아이콘 크기를 세팅합니다.
      */
     private func setBoxButtonSize() {
-        self.snp.updateConstraints {
+        self.snp.makeConstraints {
             $0.height.equalTo(size.height)
+            $0.width.equalTo(size.width)
         }
-
-        self.titleLabel?.font = size.font
-        setIcon()
-    }
-
-    /**
-     버튼의 아이콘 위치와 그에 따른 패딩을 설정합니다.
-     우선순위는 leftIcon > rightIcon 입니다.
-     */
-    private func setIcon() {
-        setIconImage()
-        setLayoutAccordingToIcon()
-    }
-
-    /**
-     버튼의 아이콘 이미지를 설정합니다.
-     leftIcon이 존재할 경우 leftIcon을
-     leftIcon이 존재하지 않으면서 rightIcon이 존재할 경우 rightIcon을
-     둘 다 존재하지 않을 경우 nil을 채택합니다.
-     */
-    private func setIconImage() {
-        if leftIcon != nil {
-            self.setImage(self.leftIcon?
-                            .resize(to: size.iconSize)
-                            .withRenderingMode(.alwaysTemplate),
-                          for: .normal)
-            return
-        }
-
-        if rightIcon != nil {
-            self.setImage(self.rightIcon?
-                            .resize(to: size.iconSize)
-                            .withRenderingMode(.alwaysTemplate),
-                          for: .normal)
-            return
-        }
-
-        self.setImage(nil, for: .normal)
-    }
-
-    /**
-     아이콘 설정에 따른 버튼의 레이아웃을 결정합니다.
-     */
-    private func setLayoutAccordingToIcon() {
-        if leftIcon != nil && text != nil {
-            //  leftIcon != nil 이면서 text != nil인
-            //  2가지 경우에 대응합니다.
-
-            self.semanticContentAttribute = .forceLeftToRight
-            self.imageEdgeInsets = UIEdgeInsets(top: 0,
-                                                left: -size.subviewSpacing/2,
-                                                bottom: 0,
-                                                right: size.subviewSpacing/2)
-            self.titleEdgeInsets = UIEdgeInsets(top: 0,
-                                                left: size.subviewSpacing/2,
-                                                bottom: 0,
-                                                right: -size.subviewSpacing/2)
-            self.contentEdgeInsets = UIEdgeInsets(top: 0,
-                                                  left: size.padding+size.subviewSpacing/2,
-                                                  bottom: 0,
-                                                  right: size.padding+size.subviewSpacing/2)
-            return
-        }
-
-        if rightIcon != nil && text != nil {
-            //  위에서 걸러지지 않은 6가지 경우 중
-            //  rightIcon != nil 이면서 text != nil 인
-            //  1가지 경우에 대응합니다.
-
-            self.semanticContentAttribute = .forceRightToLeft
-            self.imageEdgeInsets = UIEdgeInsets(top: 0,
-                                                left: size.subviewSpacing/2,
-                                                bottom: 0,
-                                                right: -size.subviewSpacing/2)
-            self.titleEdgeInsets = UIEdgeInsets(top: 0,
-                                                left: -size.subviewSpacing/2,
-                                                bottom: 0,
-                                                right: size.subviewSpacing/2)
-            self.contentEdgeInsets = UIEdgeInsets(top: 0,
-                                                  left: size.padding+size.subviewSpacing/2,
-                                                  bottom: 0,
-                                                  right: size.padding+size.subviewSpacing/2)
-            return
-        }
-
-        //  위에서 걸러지지 않은 5가지 경우
-        //  text == nil 인 경우 4가지
-        //  leftIcon == nil && rightIcon == nil 인 경우 2가지
-        //  둘의 합집합 5가지에 대응합니다.
-        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: size.padding, bottom: 0, right: size.padding)
     }
 
     public override func layoutSubviews() {
         super.layoutSubviews()
-
         isEnabled = !isDisabled
-        setTitle(text, for: .normal)
         setBoxButtonRounding()
     }
 
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
-
         setBoxButtonColor()
-        setBoxButtonSize()
+
+        if handyLabel.superview != nil {
+            setButtonLabel()
+            setBoxButtonSize()
+        }
+
+        if !self.subviews.contains(leftImageView) {
+            setButtonIcon()
+        }
+
+        if !self.subviews.contains(rightImageView)  {
+            setButtonIcon()
+        }
     }
 }
 
