@@ -11,31 +11,6 @@ import SnapKit
 
 class ChipViewController: BaseViewController {
     
-    /**
-    override func viewDidLoad() {
-            super.viewDidLoad()
-                        
-            // 에셋에서 이미지 로드
-            guard let testImage = UIImage(named: "icClose") else {
-                print("이미지를 찾을 수 없습니다.")
-                return
-            }
-            
-            // UIImageView 생성
-            let imageView = UIImageView(image: testImage)
-            
-            // 이미지뷰의 콘텐츠 모드 설정 (옵션)
-            imageView.contentMode = .scaleAspectFit
-            
-            // 이미지뷰의 크기와 위치 설정
-            imageView.frame = CGRect(x: 50, y: 100, width: 200, height: 200)
-            
-            // 이미지뷰를 뷰에 추가
-            view.addSubview(imageView)
-        }
-     */
-    
-    
     //MARK: 프로퍼티 선언
     let unTappedLargeChip: HandyChip = {
         let chip = HandyChip()
