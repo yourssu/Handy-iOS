@@ -6,8 +6,8 @@
 //
 
 import UIKit
+import SnapKit
 
-@available(iOS 15, *)
 
 public class HandyChip: UIControl {
     
@@ -20,6 +20,9 @@ public class HandyChip: UIControl {
             setNeedsLayout()
         }
     }
+    
+    @Invalidating(wrappedValue: nil, .layout) public var leftIcon: UIImage?
+    @Invalidating(wrappedValue: nil, .layout) public var rightIcon: UIImage?
     
     public var size: ChipSize = ChipSize()
     
@@ -104,7 +107,6 @@ public class HandyChip: UIControl {
     
     public init() {
         super.init(frame: .zero)
-        
         setChipSize()
         setColorBasedOnIsSelected()
     }
@@ -118,10 +120,10 @@ public class HandyChip: UIControl {
         
         setCornerRadius()
         textLabel.text = text
-        setChipSize()
         setColorBasedOnState()
+        setChipSize()
     }
-    
+      
     /**
      isSelected 값의 맞추어 backgroundColor, textColor를 변경합니다.
      */
@@ -149,26 +151,162 @@ public class HandyChip: UIControl {
     }
     
     /**
-     Chip의 높이, Label의 위치를 세팅합니다.
+     Chip의 높이, Icon, Label의 위치를 세팅합니다.
      */
+    /*
     private func setChipSize() {
-        self.addSubview(textLabel)
+        // 이전 서브뷰 제거
+        subviews.filter { $0 !== textLabel && !($0 is UIImageView) }.forEach { $0.removeFromSuperview() }
         
-        // 높이 제약 조건 설정
-        let heightConstraint = self.heightAnchor.constraint(equalToConstant: size.height)
-        heightConstraint.isActive = true
+        // UIImageView에 UIImgae를 넣어서 서브뷰로 추가
+        let leftIconView = leftIcon != nil ? UIImageView(image: leftIcon) : nil
+        let rightIconView = rightIcon != nil ? UIImageView(image: rightIcon) : nil
+        
+        // 컨테이너 뷰의 높이 설정
+        self.snp.updateConstraints {
+            $0.height
+                .equalTo(size.height)
+        }
+        
+        // 왼쪽 아이콘이 있는 경우
+        if let leftIconView = leftIconView {
+            if leftIconView.superview == nil {
+                self.addSubview(leftIconView)
+            }
+            leftIconView.snp.makeConstraints {
+                $0.leading.equalToSuperview().offset(size.padding)
+                $0.centerY.equalToSuperview()
+                $0.height.equalTo(textLabel.snp.height).offset(-4)
+                $0.width.equalTo(leftIconView.snp.height)
+            }
+        }
+        
+        // 오른쪽 아이콘이 있는 경우
+        if let rightIconView = rightIconView {
+            if rightIconView.superview == nil {
+                self.addSubview(rightIconView)
+            }
+            rightIconView.snp.makeConstraints {
+                $0.trailing.equalToSuperview().offset(-size.padding)
+                $0.centerY.equalToSuperview()
+                $0.height.equalTo(textLabel.snp.height).offset(-4)
+                $0.width.equalTo(rightIconView.snp.height)
+            }
+        }
+        
+        // 텍스트가 있는 경우
+        if let text = text, !text.isEmpty {
+            if textLabel.superview == nil {
+                self.addSubview(textLabel)
+            }
+            
+            textLabel.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                
+                if let leftIconView = leftIconView {
+                    $0.leading.equalTo(leftIconView.snp.trailing).offset(4)
+                } else {
+                    $0.leading.equalToSuperview().offset(size.padding)
+                }
+                
+                if let rightIconView = rightIconView {
+                    $0.trailing.equalTo(rightIconView.snp.leading).offset(-4)
+                } else {
+                    $0.trailing.equalToSuperview().offset(-size.padding)
+                }
+            }
+        } else {
+            // 텍스트 없고 아이콘만 있는 경우
+            if let leftIconView = leftIconView {
+                leftIconView.snp.makeConstraints{
+                    $0.trailing.equalToSuperview().offset(-size.padding)
+                }
+            } else if let rightIconView = rightIconView {
+                rightIconView.snp.makeConstraints {
+                    $0.leading.equalToSuperview().offset(size.padding)
+                }
+            }
+        }
+    }*/
+    
+    private func setChipSize() {
+        // 이전의 서브뷰 제거
+        subviews.filter { $0 !== textLabel && !($0 is UIImageView) }.forEach { $0.removeFromSuperview() }
 
-        // textLabel 제약 조건 설정
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-        let centerYConstraint = textLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-        let leadingConstraint = textLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: size.padding)
-        let trailingConstraint = textLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -size.padding)
-        
-        NSLayoutConstraint.activate([centerYConstraint, leadingConstraint, trailingConstraint])
+        // leftIconView 생성 및 추가
+        let leftIconView = leftIcon != nil ? UIImageView(image: leftIcon) : nil
+        if let leftIconView = leftIconView {
+            if leftIconView.superview == nil {
+                self.addSubview(leftIconView)
+            }
+        }
+
+        // rightIconView 생성 및 추가
+        let rightIconView = rightIcon != nil ? UIImageView(image: rightIcon) : nil
+        if let rightIconView = rightIconView {
+            if rightIconView.superview == nil {
+                self.addSubview(rightIconView)
+            }
+        }
+
+        // textLabel이 아직 추가되지 않았다면 추가
+        if textLabel.superview == nil {
+            self.addSubview(textLabel)
+        }
+
+        // 제약 조건 설정
+        self.snp.updateConstraints {
+            $0.height.equalTo(size.height)
+        }
+
+        if let leftIconView = leftIconView {
+            leftIconView.snp.makeConstraints {
+                $0.leading.equalToSuperview().offset(size.padding)
+                $0.centerY.equalToSuperview()
+                $0.height.equalTo(textLabel.snp.height).offset(-4)
+                $0.width.equalTo(leftIconView.snp.height)
+            }
+        }
+
+        if let rightIconView = rightIconView {
+            rightIconView.snp.makeConstraints {
+                $0.trailing.equalToSuperview().offset(-size.padding)
+                $0.centerY.equalToSuperview()
+                $0.height.equalTo(textLabel.snp.height).offset(-4)
+                $0.width.equalTo(rightIconView.snp.height)
+            }
+        }
+
+        if let text = text, !text.isEmpty {
+            textLabel.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                if let leftIconView = leftIconView {
+                    $0.leading.equalTo(leftIconView.snp.trailing).offset(4)
+                } else {
+                    $0.leading.equalToSuperview().offset(size.padding)
+                }
+                if let rightIconView = rightIconView {
+                    $0.trailing.equalTo(rightIconView.snp.leading).offset(-4)
+                } else {
+                    $0.trailing.equalToSuperview().offset(-size.padding)
+                }
+            }
+        } else {
+            if let leftIconView = leftIconView {
+                leftIconView.snp.makeConstraints {
+                    $0.trailing.equalToSuperview().offset(-size.padding)
+                }
+            } else if let rightIconView = rightIconView {
+                rightIconView.snp.makeConstraints {
+                    $0.leading.equalToSuperview().offset(size.padding)
+                }
+            }
+        }
     }
+
     
     /**
-     칩의 cornerRadius를 세팅합니다.
+     Chip의 cornerRadius를 세팅합니다.
      */
     private func setCornerRadius() {
         self.layer.cornerRadius = size.cornerRadius
