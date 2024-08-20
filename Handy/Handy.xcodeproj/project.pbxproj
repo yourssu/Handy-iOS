@@ -16,7 +16,6 @@
 		025776412C4EA98E00272EC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0257763F2C4EA98E00272EC6 /* LaunchScreen.storyboard */; };
 		0257764A2C4EB68D00272EC6 /* Handy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02BDB7EF2C3E95580050FB67 /* Handy.framework */; };
 		0257764B2C4EB68D00272EC6 /* Handy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 02BDB7EF2C3E95580050FB67 /* Handy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		025776502C4EB6C000272EC6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0257764F2C4EB6C000272EC6 /* SnapKit */; };
 		025776542C4EB7BB00272EC6 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025776512C4EB7BB00272EC6 /* Pretendard-Regular.otf */; };
 		025776562C4EB7BB00272EC6 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025776532C4EB7BB00272EC6 /* Pretendard-SemiBold.otf */; };
 		025776592C4EB8BC00272EC6 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025776582C4EB8BC00272EC6 /* Pretendard-Light.otf */; };
@@ -41,6 +40,7 @@
 		A5A12A802C57A93000996916 /* HandyBasicColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */; };
 		A5A12A812C57A93C00996916 /* HandyPrimitiveColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D02AFF2C480A180056CE7B /* HandyPrimitiveColor.swift */; };
 		A5A12A822C57A93F00996916 /* HandyBasicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */; };
+		A5AB585E2C7343A300A3AC5C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A5AB585D2C7343A300A3AC5C /* SnapKit */; };
 		E5669A3F2C443E7300DABC21 /* HandyBasicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */; };
 		E5D02AFD2C46C5A70056CE7B /* HandySematic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D02AFC2C46C5A70056CE7B /* HandySematic.swift */; };
 		E5D02AFE2C46C9980056CE7B /* HandyBasicColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */; };
@@ -113,7 +113,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0257764A2C4EB68D00272EC6 /* Handy.framework in Frameworks */,
-				025776502C4EB6C000272EC6 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0202B2552C58CD180017EAD8 /* SnapKit in Frameworks */,
+				A5AB585E2C7343A300A3AC5C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +316,6 @@
 			);
 			name = "Handy-Storybook";
 			packageProductDependencies = (
-				0257764F2C4EB6C000272EC6 /* SnapKit */,
 			);
 			productName = "Handy-Storybook";
 			productReference = 025776322C4EA98C00272EC6 /* Handy-Storybook.app */;
@@ -338,7 +336,7 @@
 			);
 			name = Handy;
 			packageProductDependencies = (
-				0202B2542C58CD180017EAD8 /* SnapKit */,
+				A5AB585D2C7343A300A3AC5C /* SnapKit */,
 			);
 			productName = Handy;
 			productReference = 02BDB7EF2C3E95580050FB67 /* Handy.framework */;
@@ -373,7 +371,7 @@
 			);
 			mainGroup = 02BDB7E52C3E95580050FB67;
 			packageReferences = (
-				025776462C4EB08D00272EC6 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A5AB585C2C7343A300A3AC5C /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 02BDB7F02C3E95580050FB67 /* Products */;
 			projectDirPath = "";
@@ -765,9 +763,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		025776462C4EB08D00272EC6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		A5AB585C2C7343A300A3AC5C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.7.1;
@@ -776,14 +774,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0202B2542C58CD180017EAD8 /* SnapKit */ = {
+		A5AB585D2C7343A300A3AC5C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 025776462C4EB08D00272EC6 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		0257764F2C4EB6C000272EC6 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 025776462C4EB08D00272EC6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = A5AB585C2C7343A300A3AC5C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
