@@ -208,7 +208,7 @@ public enum HandySemantic {
     }
 
     public static var iconBasicSecondary: UIColor {
-        return .gray700
+        return .gray700 
     }
 
     public static var iconBasicTertiary: UIColor {
