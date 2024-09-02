@@ -272,6 +272,10 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
      버튼의  아이콘 크기와 위치를 세팅합니다.
      */
     private func setButtonIcon() {
+        if size == .xxSmall {
+            uiStackView.spacing = size.subviewSpacing
+        }
+
         if leftIcon != nil && rightIcon != nil {
             leftImageView = UIImageView(image: self.leftIcon?.resize(to: size.iconSize).withRenderingMode(.alwaysTemplate))
             leftImageView.tintColor = self.fgColor
@@ -294,8 +298,6 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
             uiStackView.snp.makeConstraints {
                 $0.center.equalToSuperview()
             }
-
-            return
         } else if leftIcon != nil {
             leftImageView = UIImageView(image: self.leftIcon?.resize(to: size.iconSize).withRenderingMode(.alwaysTemplate))
             leftImageView.tintColor = self.fgColor
@@ -310,8 +312,6 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
             uiStackView.snp.makeConstraints {
                 $0.center.equalToSuperview()
             }
-
-            return
         } else if rightIcon != nil {
             rightImageView = UIImageView(image: self.rightIcon?.resize(to: size.iconSize).withRenderingMode(.alwaysTemplate))
             rightImageView.tintColor = self.fgColor
@@ -326,7 +326,6 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
             uiStackView.snp.makeConstraints {
                 $0.center.equalToSuperview()
             }
-            return
         } else {
             uiStackView.addArrangedSubview(label)
 

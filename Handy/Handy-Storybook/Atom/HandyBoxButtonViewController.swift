@@ -57,6 +57,15 @@ final class HandyBoxButtonViewController: BaseViewController {
         return button
     }()
 
+    let boxButton7: HandyBoxButton = {
+        let button = HandyBoxButton()
+        button.text = "Button"
+        button.type = .primary
+        button.size = .xxSmall
+        button.leftIcon = UIImage(named:"testIcon")
+        return button
+    }()
+
     let boxButton5: HandyBoxButton = {
         let button = HandyBoxButton()
         button.text = "Next"
@@ -79,6 +88,7 @@ final class HandyBoxButtonViewController: BaseViewController {
         self.view.addSubview(boxButton4)
         self.view.addSubview(boxButton5)
         self.view.addSubview(boxButton6)
+        self.view.addSubview(boxButton7)
     }
 
     override func setViewLayouts() {
@@ -100,6 +110,10 @@ final class HandyBoxButtonViewController: BaseViewController {
         }
         boxButton6.snp.makeConstraints {
             $0.top.equalTo(boxButton4.snp.bottom).offset(50)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        boxButton7.snp.makeConstraints {
+            $0.top.equalTo(boxButton6.snp.bottom).offset(50)
             $0.leading.equalToSuperview().inset(20)
         }
         boxButton5.snp.makeConstraints {
