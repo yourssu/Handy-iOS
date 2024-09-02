@@ -65,6 +65,34 @@ final class HandyBoxButtonViewController: BaseViewController {
         button.leftIcon = UIImage(named:"testIcon")
         return button
     }()
+    
+    let boxButton8: HandyTextButton = {
+        let button = HandyTextButton()
+        button.text = "Button"
+        button.type = .primary
+        button.size = .medium
+        button.leftIcon = UIImage(named:"testIcon")
+        button.rightIcon = UIImage(named:"testIcon")
+        return button
+    }()
+
+    let boxButton9: HandyTextButton = {
+        let button = HandyTextButton()
+        button.text = "Button"
+        button.type = .secondary
+        button.size = .small
+        button.leftIcon = UIImage(named:"testIcon")
+        return button
+    }()
+
+    let boxButton10: HandyTextButton = {
+        let button = HandyTextButton()
+        button.text = "Button"
+        button.type = .secondary
+        button.size = .xSmall
+        button.isDisabled = true
+        return button
+    }()
 
     let boxButton5: HandyBoxButton = {
         let button = HandyBoxButton()
@@ -89,6 +117,9 @@ final class HandyBoxButtonViewController: BaseViewController {
         self.view.addSubview(boxButton5)
         self.view.addSubview(boxButton6)
         self.view.addSubview(boxButton7)
+        self.view.addSubview(boxButton8)
+        self.view.addSubview(boxButton9)
+        self.view.addSubview(boxButton10)
     }
 
     override func setViewLayouts() {
@@ -97,23 +128,35 @@ final class HandyBoxButtonViewController: BaseViewController {
             $0.leading.equalToSuperview().inset(20)
         }
         boxButton2.snp.makeConstraints {
-            $0.top.equalTo(boxButton1.snp.bottom).offset(50)
+            $0.top.equalTo(boxButton1.snp.bottom).offset(25)
             $0.leading.equalToSuperview().inset(20)
         }
         boxButton3.snp.makeConstraints {
-            $0.top.equalTo(boxButton2.snp.bottom).offset(50)
+            $0.top.equalTo(boxButton2.snp.bottom).offset(25)
             $0.leading.equalToSuperview().inset(20)
         }
         boxButton4.snp.makeConstraints {
-            $0.top.equalTo(boxButton3.snp.bottom).offset(50)
+            $0.top.equalTo(boxButton3.snp.bottom).offset(25)
             $0.leading.equalToSuperview().inset(20)
         }
         boxButton6.snp.makeConstraints {
-            $0.top.equalTo(boxButton4.snp.bottom).offset(50)
+            $0.top.equalTo(boxButton4.snp.bottom).offset(25)
             $0.leading.equalToSuperview().inset(20)
         }
         boxButton7.snp.makeConstraints {
-            $0.top.equalTo(boxButton6.snp.bottom).offset(50)
+            $0.top.equalTo(boxButton6.snp.bottom).offset(25)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        boxButton8.snp.makeConstraints {
+            $0.top.equalTo(boxButton7.snp.bottom).offset(25)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        boxButton9.snp.makeConstraints {
+            $0.top.equalTo(boxButton8.snp.bottom).offset(25)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        boxButton10.snp.makeConstraints {
+            $0.top.equalTo(boxButton9.snp.bottom).offset(25)
             $0.leading.equalToSuperview().inset(20)
         }
         boxButton5.snp.makeConstraints {
