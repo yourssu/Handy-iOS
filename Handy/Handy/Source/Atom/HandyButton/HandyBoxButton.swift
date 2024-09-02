@@ -28,6 +28,11 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
     @Invalidating(.display) public var size: BoxButtonSize = .large
 
     /**
+     Width 버튼의 외관 타입과 상관없이 결정할 때 사용합니다.
+     */
+    @Invalidating(wrappedValue: nil, .display) public var width: CGFloat?
+
+    /**
      버튼의 글귀를 설정할 때 사용합니다.
      */
     @Invalidating(wrappedValue: "", .layout, .display) public var text: String
@@ -63,7 +68,7 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
 
     /**
      버튼의 size 종류입니다.
-     각 size에 맞는 height, padding, font, iconSize를 computed property로 가지고 있습니다.
+     각 size에 맞는 height, width, padding, rounding, typo, iconSize를 computed property로 가지고 있습니다.
      */
     public enum BoxButtonSize {
         case xLarge
@@ -93,21 +98,21 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
         fileprivate var width: CGFloat {
             switch self {
             case .xLarge, .large:
-                return 136
+                return 48
             case .medium:
-                return 128
+                return 48
             case .small:
-                return 114
-            case .xSmall:
-                return 84
-            case .xxSmall:
-                return 80
+                return 42
+            case .xSmall, .xxSmall:
+                return 36
             }
         }
 
         fileprivate var padding: CGFloat {
             switch self {
-            case .xLarge, .large, .medium, .small:
+            case .xLarge, .large:
+                return 20
+            case .medium, .small:
                 return 16
             case .xSmall, .xxSmall:
                 return 8
@@ -205,11 +210,23 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
     /**
      레이블
      */
-    private var handyLabel: HandyLabel =  HandyLabel()
+    private let uiStackView : UIStackView = {
+        let stackView = UIStackView()
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.axis = .horizontal
+        stackView.alignment = .firstBaseline
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 4
+        return stackView
+    }()
+
+    private var label: HandyLabel =  HandyLabel()
 
     private var leftImageView: UIImageView = UIImageView()
 
     private var rightImageView: UIImageView = UIImageView()
+
+    private var isIconSetup = false
 
     // MARK: - 메소드
 
@@ -229,52 +246,120 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
     private func setupView() {
         self.clipsToBounds = true
 
+        setViewHierarchy()
+        setButtonLabel()
         setBoxButtonRounding()
         setBoxButtonColor()
-        setButtonLabel()
-        setButtonIcon()
-        self.addSubview(handyLabel)
-
-        handyLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
     }
 
+    private func setViewHierarchy() {
+        self.addSubview(uiStackView)
+    }
+
+    /**
+     레이블의  색상, 타이포, 텍스트를 설정합니다.
+     */
     private func setButtonLabel() {
-        handyLabel.textColor = self.fgColor
-        handyLabel.style = size.typo
-        handyLabel.text = text
+        label.textColor = self.fgColor
+        label.style = size.typo
+        label.text = text
     }
 
     /**
      아이콘 설정에 따른 버튼의 레이아웃을 결정합니다.
      */
     /**
-     버튼의 아이콘 위치와 그에 따른 패딩을 설정합니다.
-     우선순위는 leftIcon > rightIcon 입니다.
+     버튼의  아이콘 크기와 위치를 세팅합니다.
      */
     private func setButtonIcon() {
-        if leftIcon != nil {
+        if leftIcon != nil && rightIcon != nil {
             leftImageView = UIImageView(image: self.leftIcon?.resize(to: size.iconSize).withRenderingMode(.alwaysTemplate))
             leftImageView.tintColor = self.fgColor
 
-            self.addSubview(leftImageView)
-            leftImageView.snp.makeConstraints {
-                $0.trailing.equalTo(handyLabel.snp.leading).offset(-size.subviewSpacing)
-                $0.centerY.equalTo(handyLabel.snp.centerY)
-                $0.size.equalTo(size.iconSize)
-            }
-        }
-
-        if rightIcon != nil {
             rightImageView = UIImageView(image: self.rightIcon?.resize(to: size.iconSize).withRenderingMode(.alwaysTemplate))
             rightImageView.tintColor = self.fgColor
 
-            self.addSubview(rightImageView)
-            rightImageView.snp.makeConstraints {
-                $0.leading.equalTo(handyLabel.snp.trailing).offset(size.subviewSpacing)
-                $0.centerY.equalTo(handyLabel.snp.centerY)
+            leftImageView.snp.makeConstraints {
                 $0.size.equalTo(size.iconSize)
+            }
+
+            rightImageView.snp.makeConstraints {
+                $0.size.equalTo(size.iconSize)
+            }
+
+            uiStackView.addArrangedSubview(leftImageView)
+            uiStackView.addArrangedSubview(label)
+            uiStackView.addArrangedSubview(rightImageView)
+
+            uiStackView.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
+
+            return
+        } else if leftIcon != nil {
+            leftImageView = UIImageView(image: self.leftIcon?.resize(to: size.iconSize).withRenderingMode(.alwaysTemplate))
+            leftImageView.tintColor = self.fgColor
+
+            leftImageView.snp.makeConstraints {
+                $0.size.equalTo(size.iconSize)
+            }
+
+            uiStackView.addArrangedSubview(leftImageView)
+            uiStackView.addArrangedSubview(label)
+
+            uiStackView.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
+
+            return
+        } else if rightIcon != nil {
+            rightImageView = UIImageView(image: self.rightIcon?.resize(to: size.iconSize).withRenderingMode(.alwaysTemplate))
+            rightImageView.tintColor = self.fgColor
+
+            rightImageView.snp.makeConstraints {
+                $0.size.equalTo(size.iconSize)
+            }
+
+            uiStackView.addArrangedSubview(label)
+            uiStackView.addArrangedSubview(rightImageView)
+
+            uiStackView.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
+            return
+        } else {
+            uiStackView.addArrangedSubview(label)
+
+            uiStackView.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
+        }
+    }
+
+
+    /**
+     버튼의 높이와 너비를 세팅합니다.
+     */
+    private func setBoxButtonSize() {
+        if width == nil { // 정해진 Width
+            if leftIcon != nil && rightIcon != nil {
+                width = ((size.width )+(size.iconSize+size.subviewSpacing+size.padding)*2) // 88+
+            } else if leftIcon != nil {
+                width = ((size.width )+size.iconSize+size.subviewSpacing+size.padding*2)
+            } else if rightIcon != nil {
+                width = ((size.width)+size.iconSize+size.subviewSpacing+size.padding*2)
+            } else {
+                width = size.width+(size.padding*2)
+            }
+
+            self.snp.makeConstraints {
+                $0.height.equalTo(size.height)
+                $0.width.equalTo(width ?? 0)
+            }
+        } else { // 사용자 정의 Width
+            self.snp.makeConstraints {
+                $0.height.equalTo(size.height)
+                $0.width.equalTo(width ?? 0)
             }
         }
     }
@@ -347,6 +432,8 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
 
         self.configuration = buttonConfiguration
         self.layer.borderWidth = borderWidth
+
+        setBorderColorBasedOnIsHighlighted()
     }
 
     /**
@@ -365,55 +452,21 @@ public class HandyBoxButton: UIButton, HandyButtonProtocol {
         self.layer.cornerRadius = CGFloat(size.rounding)
     }
 
-    /**
-     버튼의 높이, 패딩, 폰트, 아이콘 크기를 세팅합니다.
-     */
-    private func setBoxButtonSize() {
-        self.snp.makeConstraints {
-            $0.height.equalTo(size.height)
-            $0.width.equalTo(size.width)
-        }
-    }
-
     public override func layoutSubviews() {
         super.layoutSubviews()
         isEnabled = !isDisabled
-        setBoxButtonRounding()
     }
 
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
         setBoxButtonColor()
 
-        if handyLabel.superview != nil {
+        if !isIconSetup {
             setButtonLabel()
+            setBoxButtonRounding()
+            setButtonIcon()
             setBoxButtonSize()
-        }
-
-        if !self.subviews.contains(leftImageView) {
-            setButtonIcon()
-        }
-
-        if !self.subviews.contains(rightImageView)  {
-            setButtonIcon()
+            isIconSetup = true
         }
     }
 }
-
-extension UIButton {
-    internal func setBackgroundColor(_ color: UIColor?, for state: UIControl.State) {
-        let render = UIGraphicsImageRenderer(size: CGSize(width: 1.0, height: 1.0))
-
-        let image = render.image { context in
-            if let color = color {
-                color.setFill()
-            } else {
-                UIColor.clear.setFill()
-            }
-            context.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
-        }
-
-        self.setBackgroundImage(image, for: state)
-    }
-}
-
