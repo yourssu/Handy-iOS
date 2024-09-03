@@ -120,8 +120,8 @@ public class HandyChip: UIControl {
         
         setCornerRadius()
         textLabel.text = text
-        setColorBasedOnState()
         setChipSize()
+        setColorBasedOnState()
     }
       
     /**
@@ -135,6 +135,16 @@ public class HandyChip: UIControl {
         self.textLabel.textColor = isSelected
         ? fgSelectedColor
         : fgColor
+        
+        // 아이콘 색상 변경
+        subviews.forEach { subview in
+            if let imageView = subview as? UIImageView {
+                imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
+                imageView.tintColor = isSelected
+                ? icSelectedColor
+                : icColor
+            }
+        }
     }
     
     /**
@@ -147,6 +157,14 @@ public class HandyChip: UIControl {
         case .disabled:
             self.backgroundColor = bgDisabledColor
             self.textLabel.textColor = fgDisabledColor
+            
+            // 아이콘 색상 변경
+            subviews.forEach { subview in
+                if let imageView = subview as? UIImageView {
+                    imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
+                    imageView.tintColor = icDisabledColor
+                }
+            }
         }
     }
     
