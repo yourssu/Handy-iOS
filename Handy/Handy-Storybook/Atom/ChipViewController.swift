@@ -100,29 +100,29 @@ class ChipViewController: BaseViewController {
     
     //MARK: 레이아웃 배치
     override func setViewLayouts() {
-        unTappedLargeChip.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
+        unTappedLargeChip.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
         }
-        unTappedSmallChip.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(unTappedLargeChip.snp.bottom).offset(24)
+        unTappedSmallChip.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(unTappedLargeChip.snp.bottom).offset(24)
         }
-        tappedLargeChip.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(unTappedSmallChip.snp.bottom).offset(51)
+        tappedLargeChip.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(unTappedSmallChip.snp.bottom).offset(51)
         }
-        tappedSmallChip.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(tappedLargeChip.snp.bottom).offset(24)
+        tappedSmallChip.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(tappedLargeChip.snp.bottom).offset(24)
         }
-        disabledLargeChip.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(tappedSmallChip.snp.bottom).offset(51)
+        disabledLargeChip.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(tappedSmallChip.snp.bottom).offset(51)
         }
-        disabledSmallChip.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(disabledLargeChip.snp.bottom).offset(24)
+        disabledSmallChip.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(disabledLargeChip.snp.bottom).offset(24)
         }
     }
     
