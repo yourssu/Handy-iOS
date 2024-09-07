@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Handy
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = LabelViewController()
+        window?.rootViewController = HandyTabBar()
         window?.makeKeyAndVisible()
     }
 
