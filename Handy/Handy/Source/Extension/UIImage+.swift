@@ -10,7 +10,7 @@ import UIKit
 extension UIImage {
     fileprivate static func load(name: String) -> UIImage {
         guard let image = UIImage(named: name, in: nil, compatibleWith: nil) else {
-            assert(false, "\(name) 이미지 로드 실패")
+            assertionFailure("\(name) 이미지 로드 실패")
             return UIImage()
         }
         image.accessibilityIdentifier = name
