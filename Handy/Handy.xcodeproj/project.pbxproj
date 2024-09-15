@@ -33,6 +33,8 @@
 		02ED76352C5284F3001569F1 /* HandyTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED76342C5284F3001569F1 /* HandyTextButton.swift */; };
 		02ED764A2C5779C3001569F1 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED76492C5779C3001569F1 /* UIImage+.swift */; };
 		02ED764C2C57BD09001569F1 /* HandyBoxButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED764B2C57BD09001569F1 /* HandyBoxButtonViewController.swift */; };
+		A5F6D36B2C96F32D00FB961F /* HandyDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F6D36A2C96F32D00FB961F /* HandyDivider.swift */; };
+		A5F6D36D2C97099C00FB961F /* DividerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F6D36C2C97099C00FB961F /* DividerViewController.swift */; };
 		E5669A3F2C443E7300DABC21 /* HandyBasicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */; };
 		E5D02AFD2C46C5A70056CE7B /* HandySematic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D02AFC2C46C5A70056CE7B /* HandySematic.swift */; };
 		E5D02AFE2C46C9980056CE7B /* HandyBasicColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */; };
@@ -89,6 +91,8 @@
 		02ED76342C5284F3001569F1 /* HandyTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyTextButton.swift; sourceTree = "<group>"; };
 		02ED76492C5779C3001569F1 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		02ED764B2C57BD09001569F1 /* HandyBoxButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyBoxButtonViewController.swift; sourceTree = "<group>"; };
+		A5F6D36A2C96F32D00FB961F /* HandyDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyDivider.swift; sourceTree = "<group>"; };
+		A5F6D36C2C97099C00FB961F /* DividerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerViewController.swift; sourceTree = "<group>"; };
 		E5669A3E2C443E7300DABC21 /* HandyBasicColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyBasicColor.swift; sourceTree = "<group>"; };
 		E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HandyBasicColor.xcassets; sourceTree = "<group>"; };
 		E5D02AFC2C46C5A70056CE7B /* HandySematic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandySematic.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 			children = (
 				025776382C4EA98C00272EC6 /* LabelViewController.swift */,
 				02ED764B2C57BD09001569F1 /* HandyBoxButtonViewController.swift */,
+				A5F6D36C2C97099C00FB961F /* DividerViewController.swift */,
 			);
 			path = Atom;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 			children = (
 				02ED762F2C52849A001569F1 /* HandyButton */,
 				029E47FC2C49FD1A00D2F3B7 /* HandyLabel.swift */,
+				A5F6D36A2C96F32D00FB961F /* HandyDivider.swift */,
 			);
 			path = Atom;
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F6D36D2C97099C00FB961F /* DividerViewController.swift in Sources */,
 				025776392C4EA98C00272EC6 /* LabelViewController.swift in Sources */,
 				0257765D2C4EB9EF00272EC6 /* BaseViewController.swift in Sources */,
 				02ED764C2C57BD09001569F1 /* HandyBoxButtonViewController.swift in Sources */,
@@ -419,6 +426,7 @@
 				E5669A3F2C443E7300DABC21 /* HandyBasicColor.swift in Sources */,
 				02ED76312C5284BB001569F1 /* HandyButtonProtocol.swift in Sources */,
 				02ED76352C5284F3001569F1 /* HandyTextButton.swift in Sources */,
+				A5F6D36B2C96F32D00FB961F /* HandyDivider.swift in Sources */,
 				02BDB7FC2C3E99920050FB67 /* HandyFont.swift in Sources */,
 				02ED764A2C5779C3001569F1 /* UIImage+.swift in Sources */,
 				029E48002C49FD4000D2F3B7 /* HandyTypography.swift in Sources */,
