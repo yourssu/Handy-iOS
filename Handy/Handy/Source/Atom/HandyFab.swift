@@ -179,7 +179,7 @@ public class HandyFab: UIButton {
 //        iconConfig = iconConfig?.resize(to: 24)
         
 
-        var iconColor: UIColor = type == .secondary ? HandySemantic.iconBasicSecondary : HandySemantic.iconBasicWhite
+        var iconColor: UIColor = type == .secondary ? HandySemantic.iconBasicTertiary : HandySemantic.iconBasicWhite
         switch (isDisabled, isHighlighted) {
         case (true, _):
             self.backgroundColor = type.disabledColor
