@@ -30,21 +30,14 @@ public class HandyDivider: UIView {
         }
     }
     
-    public enum DividerDirection {
-        case horizontal
-        case vertical
-    }
-    
     @Invalidating(.layout) public var thickness: DividerThickness = .thickness1 {
         didSet {
             setNeedsUpdateConstraints()
         }
     }
-    @Invalidating(.layout) private var direction: DividerDirection = .horizontal
     
-    public init(_ direction: DividerDirection) {
-        self.direction = direction
-        super.init(frame: .zero)
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         setupView()
     }
     
@@ -54,6 +47,7 @@ public class HandyDivider: UIView {
     
     private func setupView() {
         setColor()
+        setThickness()
     }
     
     private func setColor() {
@@ -66,15 +60,8 @@ public class HandyDivider: UIView {
     }
     
     private func setThickness() {
-        switch direction {
-        case .horizontal:
-            self.snp.updateConstraints {
-                $0.height.equalTo(thickness.rawValue)
-            }
-        case .vertical:
-            self.snp.updateConstraints {
-                $0.width.equalTo(thickness.rawValue)
-            }
+        self.snp.updateConstraints {
+            $0.height.equalTo(thickness.rawValue)
         }
     }
 }
