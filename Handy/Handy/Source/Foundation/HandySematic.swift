@@ -62,7 +62,7 @@ public enum HandySemantic {
     }
 
     public static var textBasicWhite: UIColor {
-        return .black
+        return .white
     }
 
     public static var textBrandPrimary: UIColor {
@@ -208,7 +208,7 @@ public enum HandySemantic {
     }
 
     public static var iconBasicSecondary: UIColor {
-        return .gray700
+        return .gray700 
     }
 
     public static var iconBasicTertiary: UIColor {
@@ -245,26 +245,26 @@ public enum HandySemantic {
         return .gray200
     }
 
-    // MARK: - Spacing
+    // MARK: - Radius
 
-    public static var spacingRadiusXS: Int {
-        return HandyPrimitive.spacing8
+    public static var radiusXS: Int {
+        return HandyPrimitive.number8
     }
 
-    public static var spacingRadiusS: Int {
-        return HandyPrimitive.spacing10
+    public static var radiusS: Int {
+        return HandyPrimitive.number10
     }
 
-    public static var spacingRadiusM: Int {
-        return HandyPrimitive.spacing12
+    public static var radiusM: Int {
+        return HandyPrimitive.number12
     }
 
-    public static var spacingRadiusL: Int {
-        return HandyPrimitive.spacing14
+    public static var radiusL: Int {
+        return HandyPrimitive.number14
     }
 
-    public static var spacingRadiusXL: Int {
-        return HandyPrimitive.spacing16
+    public static var radiusXL: Int {
+        return HandyPrimitive.number16
     }
 
     // MARK: - Chip
