@@ -294,4 +294,19 @@ public enum HandySemantic {
     public static var paginationBasicUnSelected: UIColor {
         return .gray500
     }
+
+    // MARK: - Switch
+
+    public static var switchUnselected: UIColor {
+        return .gray300
+    }
+
+    public static var switchSelected: UIColor {
+        return .violet500
+    }
+
+    public static var switchDisabled: UIColor {
+        return .gray200
+    }
+
 }
