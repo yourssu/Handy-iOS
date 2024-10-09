@@ -20,6 +20,8 @@
 		025776562C4EB7BB00272EC6 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025776532C4EB7BB00272EC6 /* Pretendard-SemiBold.otf */; };
 		025776592C4EB8BC00272EC6 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025776582C4EB8BC00272EC6 /* Pretendard-Light.otf */; };
 		0257765D2C4EB9EF00272EC6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0257765C2C4EB9EF00272EC6 /* BaseViewController.swift */; };
+		02697A242C99D7230027A362 /* HandySwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02697A232C99D7230027A362 /* HandySwitch.swift */; };
+		02697A262C99DDA30027A362 /* HansySwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02697A252C99DDA30027A362 /* HansySwitchViewController.swift */; };
 		029C44682C468F8300331F61 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 029C44652C468F8300331F61 /* Pretendard-Light.otf */; };
 		029C44692C468F8300331F61 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 029C44662C468F8300331F61 /* Pretendard-Regular.otf */; };
 		029C446A2C468F8300331F61 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 029C44672C468F8300331F61 /* Pretendard-SemiBold.otf */; };
@@ -94,6 +96,8 @@
 		025776532C4EB7BB00272EC6 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "Handy-Storybook/Font/Pretendard-SemiBold.otf"; sourceTree = SOURCE_ROOT; };
 		025776582C4EB8BC00272EC6 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		0257765C2C4EB9EF00272EC6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		02697A232C99D7230027A362 /* HandySwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandySwitch.swift; sourceTree = "<group>"; };
+		02697A252C99DDA30027A362 /* HansySwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HansySwitchViewController.swift; sourceTree = "<group>"; };
 		029C44652C468F8300331F61 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		029C44662C468F8300331F61 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		029C44672C468F8300331F61 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				A5F6D36C2C97099C00FB961F /* DividerViewController.swift */,
 				E51FBF9A2C5399A00097B0DA /* CheckBoxViewController.swift */,
 				E51FBFA12C54CD350097B0DA /* RadioButtonViewController.swift */,
+				02697A252C99DDA30027A362 /* HansySwitchViewController.swift */,
 			);
 			path = Atom;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 				E5650D422C4D326D002790CC /* HandyCheckBox.swift */,
 				E51FBF9F2C54CB260097B0DA /* HandyRadioButton.swift */,
 				E5650D422C4D326D002790CC /* HandyCheckBox.swift */,
+				02697A232C99D7230027A362 /* HandySwitch.swift */,
 			);
 			path = Atom;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				E51FBFA22C54CD350097B0DA /* RadioButtonViewController.swift in Sources */,
 				E51FBF9B2C5399A00097B0DA /* CheckBoxViewController.swift in Sources */,
 				025776352C4EA98C00272EC6 /* AppDelegate.swift in Sources */,
+				02697A262C99DDA30027A362 /* HansySwitchViewController.swift in Sources */,
 				025776372C4EA98C00272EC6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +482,7 @@
 				2D41E8162C5A21B50043161D /* HandyFab.swift in Sources */,
 				02ED76332C5284E6001569F1 /* HandyBoxButton.swift in Sources */,
 				E5D02AFD2C46C5A70056CE7B /* HandySematic.swift in Sources */,
+				02697A242C99D7230027A362 /* HandySwitch.swift in Sources */,
 				E5D02B002C480A180056CE7B /* HandyPrimitive.swift in Sources */,
 				E5D02AFD2C46C5A70056CE7B /* HandySematicColor.swift in Sources */,
 				E5D02B002C480A180056CE7B /* HandyPrimitiveColor.swift in Sources */,
