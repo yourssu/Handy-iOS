@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class HandySwitch: UISwitch {
+final public class HandySwitch: UISwitch {
 
     // MARK: - 외부에서 지정할 수 있는 속성
     @Invalidating(.layout, .display) public var isDisabled: Bool = false

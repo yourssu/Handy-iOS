@@ -10,20 +10,20 @@ import UIKit
 
 final class HansySwitchViewController: BaseViewController {
 
-    let switch1: HandySwitch = {
+    private let switch1: HandySwitch = {
         let uiSwitch = HandySwitch()
         uiSwitch.size = .large
         return uiSwitch
     }()
 
-    let switch2: HandySwitch = {
+    private let switch2: HandySwitch = {
         let uiSwitch = HandySwitch()
         uiSwitch.size = .medium
         uiSwitch.isOn = true
         return uiSwitch
     }()
 
-    let switch3: HandySwitch = {
+    private let switch3: HandySwitch = {
         let uiSwitch = HandySwitch()
         uiSwitch.size = .small
         uiSwitch.isDisabled = true
