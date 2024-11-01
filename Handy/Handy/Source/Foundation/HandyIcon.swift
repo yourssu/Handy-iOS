@@ -8,8 +8,30 @@
 import UIKit
 
 public enum HandyIcon {
-    public static var icCancelFilled: UIImage { .load(name: "icCancelFilled") }
-    public static var icCancelLine: UIImage { .load(name: "icCancelLine") }
+    public static var alertTriangleFilled: UIImage { .load(name: "ic_alertTriangle_filled") }
+    public static var alertTriangleLine: UIImage { .load(name: "ic_alertTriangle_line") }
+    public static var bookmarkFilled: UIImage { .load(name: "ic_bookmark_filled") }
+    public static var bookmarkLine: UIImage { .load(name: "ic_bookmark_line") }
+    public static var cancelFilled: UIImage { .load(name: "ic_cancel_filled") }
+    public static var cancelLine: UIImage { .load(name: "ic_cancel_line") }
+    public static var chatFilled: UIImage { .load(name: "ic_chat_filled") }
+    public static var chatLine: UIImage { .load(name: "ic_chat_line") }
+    public static var downloadFilled: UIImage { .load(name: "ic_download_filled") }
+    public static var downloadLine: UIImage { .load(name: "ic_download_line") }
+    public static var eyeFilled: UIImage { .load(name: "ic_eye_filled") }
+    public static var eyeLine: UIImage { .load(name: "ic_eye_line") }
+    public static var homeFilled: UIImage { .load(name: "ic_home_filled") }
+    public static var homeLine: UIImage { .load(name: "ic_home_line") }
+    public static var notificationFilled: UIImage { .load(name: "ic_notification_filled") }
+    public static var notificationLine: UIImage { .load(name: "ic_notification_line") }
+    public static var notificationOffFilled: UIImage { .load(name: "ic_notificationOff_filled") }
+    public static var notificationOffLine: UIImage { .load(name: "ic_notificationOff_line") }
+    public static var retryRefreshFilled: UIImage { .load(name: "ic_retryRefresh_filled") }
+    public static var retryRefreshLine: UIImage { .load(name: "ic_retryRefresh_line") }
+    public static var volumeFilled: UIImage { .load(name: "ic_volume_filled") }
+    public static var volumeLine: UIImage { .load(name: "ic_volume_line") }
+    public static var wifiFilled: UIImage { .load(name: "ic_wifi_filled") }
+    public static var wifiLine: UIImage { .load(name: "ic_wifi_line") }
 
     public static var checkBoxFilled: UIImage { .load(name: "checkBoxFilled") }
     public static var checkBoxLine: UIImage { .load(name: "checkBoxLine") }
