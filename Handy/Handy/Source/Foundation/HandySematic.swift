@@ -247,23 +247,23 @@ public enum HandySemantic {
 
     // MARK: - Radius
 
-    public static var radiusXS: Int {
+    public static var radiusXS: CGFloat {
         return HandyPrimitive.number8
     }
 
-    public static var radiusS: Int {
+    public static var radiusS: CGFloat {
         return HandyPrimitive.number10
     }
 
-    public static var radiusM: Int {
+    public static var radiusM: CGFloat {
         return HandyPrimitive.number12
     }
 
-    public static var radiusL: Int {
+    public static var radiusL: CGFloat {
         return HandyPrimitive.number14
     }
 
-    public static var radiusXL: Int {
+    public static var radiusXL: CGFloat {
         return HandyPrimitive.number16
     }
 

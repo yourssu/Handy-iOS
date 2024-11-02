@@ -124,19 +124,19 @@ public enum HandyPrimitive {
     
     // MARK: - Spacing
     
-    public static var number8: Int {
+    public static var number8: CGFloat {
         return 8
     }
-    public static var number10: Int {
+    public static var number10: CGFloat {
         return 10
     }
-    public static var number12: Int {
+    public static var number12: CGFloat {
         return 12
     }
-    public static var number14: Int {
+    public static var number14: CGFloat {
         return 14
     }
-    public static var number16: Int {
+    public static var number16: CGFloat {
         return 16
     }
 }
