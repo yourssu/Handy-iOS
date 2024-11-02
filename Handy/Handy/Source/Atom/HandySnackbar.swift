@@ -61,6 +61,7 @@ final public class HandySnackbar: UIView {
         let label = HandyLabel()
         label.alignment = .left
         label.numberOfLines = 2
+        label.lineBreakMode = .byCharWrapping
         return label
     }()
 
@@ -73,8 +74,9 @@ final public class HandySnackbar: UIView {
 
     private let cancelButton: UIButton = {
         let button = UIButton()
-        button.setImage(HandyIcon.closeLine, for: .normal)
-        button.setTitleColor(HandySemantic.iconBasicTertiary, for: .normal)
+        button.setImage(HandyIcon.closeLine.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = HandySemantic.iconBasicTertiary
+        button.addTarget(self, action: #selector(nowHideSnackbar), for: .touchUpInside)
         return button
     }()
 
@@ -109,85 +111,99 @@ final public class HandySnackbar: UIView {
 
     private func setAutoLayout() {
         self.snp.makeConstraints {
-            $0.width.equalTo(343)
+            $0.width.equalTo(328)
         }
         label.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(16)
-            $0.width.equalTo(311)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.top.bottom.equalToSuperview().inset(16)
+            $0.width.equalTo(296)
+            $0.height.greaterThanOrEqualTo(20)
         }
         errorIcon.snp.makeConstraints {
             $0.size.equalTo(20)
-            $0.leading.equalToSuperview().inset(16)
-            $0.centerY.equalToSuperview()
+            $0.top.leading.equalToSuperview().inset(16)
         }
         cancelButton.snp.makeConstraints {
             $0.size.equalTo(20)
-            $0.trailing.equalToSuperview().inset(16)
-            $0.centerY.equalToSuperview()
+            $0.top.trailing.equalToSuperview().inset(16)
         }
+    }
+
+    private func setBGView() {
+        self.backgroundColor = snackbarType.bgColor
+        self.layer.cornerRadius = HandySemantic.radiusM
     }
 
     private func setLabel() {
         label.textColor = snackbarType.textColor
         label.text = text
         label.style = snackbarType.font
+    }
 
+    private func setIcon() {
         if snackbarType == .error {
-            // 경고 아이콘
-            print(" === error === ")
+
             errorIcon.isHidden = false
             cancelButton.isHidden = false
 
-//            label.snp.makeConstraints {
-//                $0.width.equalTo(255)
-//                $0.leading.equalTo(errorIcon).offset(28)
-//                $0.trailing.equalToSuperview().inset(44)
-//                $0.bottom.top.equalToSuperview().inset(16)
-//            }
+            label.snp.updateConstraints {
+                $0.leading.trailing.equalToSuperview().inset(44)
+                $0.width.equalTo(240)
+            }
 
         } else {
             errorIcon.isHidden = true
             cancelButton.isHidden = true
 
-//            label.snp.makeConstraints {
-//                $0.width.equalTo(311)
-//                $0.edges.equalToSuperview().inset(16)
-//            }
+            label.snp.updateConstraints {
+                $0.leading.trailing.equalToSuperview().inset(16)
+                $0.width.equalTo(296)
+            }
         }
     }
 
-    private func setBGView() {
-        self.backgroundColor = snackbarType.bgColor
-        self.layer.cornerRadius = 8
-    }
-
     private func showSnackbar() {
-        print("== showSnackbar ==")
         UIView.animate(
-            withDuration: 1.5,
+            withDuration: 0.5,
             delay: 0.0,
             options: .curveEaseInOut,
             animations: {
                 self.alpha = 1.0
             }, completion: { _ in
-                self.hideSnackbar()
+                if self.snackbarType == .info {
+                    self.hideSnackbar()
+                }
             })
     }
 
     private func hideSnackbar() {
-//        UIView.animate(
-//            withDuration: 2.0,
-//            delay: 5.0,
-//            options: .curveEaseOut,
-//            animations: {
-//                self.alpha = 0.0
-//            }, completion: { _ in
-//                self.removeFromSuperview()
-//            })
+        UIView.animate(
+            withDuration: 0.3,
+            delay: 5.0,
+            options: .curveEaseOut,
+            animations: {
+                self.alpha = 0.0
+            }, completion: { _ in
+                self.removeFromSuperview()
+            })
+    }
+
+    @objc
+    private func nowHideSnackbar() {
+        UIView.animate(
+            withDuration: 0.3,
+            delay: 0.0,
+            options: .curveEaseOut,
+            animations: {
+                self.alpha = 0.0
+            }, completion: { _ in
+                self.removeFromSuperview()
+            })
     }
 
     override public func setNeedsLayout() {
-        setLabel()
         setBGView()
+        setLabel()
+        setIcon()
     }
 }

@@ -41,8 +41,8 @@ final class SnackbarViewController: BaseViewController {
 
     override func setViewHierarchies() {
         self.view.addSubview(snackbar1)
-//        self.view.addSubview(snackbar2)
-//        self.view.addSubview(snackbar3)
+        self.view.addSubview(snackbar2)
+        self.view.addSubview(snackbar3)
         self.view.addSubview(snackbar4)
     }
 
@@ -51,14 +51,14 @@ final class SnackbarViewController: BaseViewController {
             $0.bottom.equalToSuperview().inset(56)
             $0.centerX.equalToSuperview()
         }
-//        snackbar2.snp.makeConstraints {
-//            $0.bottom.equalToSuperview().inset(156)
-//            $0.centerX.equalToSuperview()
-//        }
-//        snackbar3.snp.makeConstraints {
-//            $0.bottom.equalToSuperview().inset(256)
-//            $0.centerX.equalToSuperview()
-//        }
+        snackbar2.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(156)
+            $0.centerX.equalToSuperview()
+        }
+        snackbar3.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(256)
+            $0.centerX.equalToSuperview()
+        }
         snackbar4.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(356)
             $0.centerX.equalToSuperview()
