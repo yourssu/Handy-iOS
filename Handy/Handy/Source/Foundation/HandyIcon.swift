@@ -32,6 +32,8 @@ public enum HandyIcon {
     public static var volumeLine: UIImage { .load(name: "ic_volume_line") }
     public static var wifiFilled: UIImage { .load(name: "ic_wifi_filled") }
     public static var wifiLine: UIImage { .load(name: "ic_wifi_line") }
+    public static var closeFilled: UIImage { .load(name: "ic_close_filled") }
+    public static var closeLine: UIImage { .load(name: "ic_close_line") }
 
     public static var checkBoxFilled: UIImage { .load(name: "checkBoxFilled") }
     public static var checkBoxLine: UIImage { .load(name: "checkBoxLine") }
