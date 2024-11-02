@@ -104,7 +104,7 @@ public class HandyTextButton: UIButton, HandyButtonProtocol {
             }
         }
 
-        fileprivate var rounding: Int {
+        fileprivate var rounding: CGFloat {
             switch self {
             case .medium, .small, .xSmall:
                 return HandySemantic.radiusXS
@@ -400,7 +400,7 @@ public class HandyTextButton: UIButton, HandyButtonProtocol {
      버튼의 라운딩 값을 세팅합니다.
      */
     private func setBoxButtonRounding() {
-        self.layer.cornerRadius = CGFloat(size.rounding)
+        self.layer.cornerRadius = size.rounding
     }
 
     public override func layoutSubviews() {
