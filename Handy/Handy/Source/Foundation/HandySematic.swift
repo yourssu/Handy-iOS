@@ -294,4 +294,15 @@ public enum HandySemantic {
     public static var paginationBasicUnSelected: UIColor {
         return .gray500
     }
+
+    // MARK: - Snackbar
+
+    public static var snackbarInfo: UIColor {
+        return .gray800
+    }
+
+    public static var snackbarError: UIColor {
+        return .redSub
+    }
+
 }

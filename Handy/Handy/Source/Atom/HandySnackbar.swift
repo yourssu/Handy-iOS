@@ -66,9 +66,16 @@ final public class HandySnackbar: UIView {
 
     private let errorIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "exclamationmark.circle.fill")
+        imageView.image = HandyIcon.alertTriangleFilled.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = HandySemantic.bgStatusNegative
         return imageView
+    }()
+
+    private let cancelButton: UIButton = {
+        let button = UIButton()
+        button.setImage(HandyIcon.closeLine, for: .normal)
+        button.setTitleColor(HandySemantic.iconBasicTertiary, for: .normal)
+        return button
     }()
 
 
@@ -96,12 +103,27 @@ final public class HandySnackbar: UIView {
 
     private func setViewHierarchy() {
         self.addSubview(label)
+        self.addSubview(errorIcon)
+        self.addSubview(cancelButton)
     }
 
     private func setAutoLayout() {
+        self.snp.makeConstraints {
+            $0.width.equalTo(343)
+        }
         label.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(16)
             $0.width.equalTo(311)
+        }
+        errorIcon.snp.makeConstraints {
+            $0.size.equalTo(20)
+            $0.leading.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
+        }
+        cancelButton.snp.makeConstraints {
+            $0.size.equalTo(20)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
         }
     }
 
@@ -113,6 +135,24 @@ final public class HandySnackbar: UIView {
         if snackbarType == .error {
             // 경고 아이콘
             print(" === error === ")
+            errorIcon.isHidden = false
+            cancelButton.isHidden = false
+
+//            label.snp.makeConstraints {
+//                $0.width.equalTo(255)
+//                $0.leading.equalTo(errorIcon).offset(28)
+//                $0.trailing.equalToSuperview().inset(44)
+//                $0.bottom.top.equalToSuperview().inset(16)
+//            }
+
+        } else {
+            errorIcon.isHidden = true
+            cancelButton.isHidden = true
+
+//            label.snp.makeConstraints {
+//                $0.width.equalTo(311)
+//                $0.edges.equalToSuperview().inset(16)
+//            }
         }
     }
 
@@ -124,7 +164,7 @@ final public class HandySnackbar: UIView {
     private func showSnackbar() {
         print("== showSnackbar ==")
         UIView.animate(
-            withDuration: 0.5,
+            withDuration: 1.5,
             delay: 0.0,
             options: .curveEaseInOut,
             animations: {
@@ -135,15 +175,15 @@ final public class HandySnackbar: UIView {
     }
 
     private func hideSnackbar() {
-        UIView.animate(
-            withDuration: 2.0,
-            delay: 5.0,
-            options: .curveEaseOut,
-            animations: {
-                self.alpha = 0.0
-            }, completion: { _ in
-                self.removeFromSuperview()
-            })
+//        UIView.animate(
+//            withDuration: 2.0,
+//            delay: 5.0,
+//            options: .curveEaseOut,
+//            animations: {
+//                self.alpha = 0.0
+//            }, completion: { _ in
+//                self.removeFromSuperview()
+//            })
     }
 
     override public func setNeedsLayout() {
