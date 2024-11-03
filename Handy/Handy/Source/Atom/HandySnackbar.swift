@@ -80,7 +80,6 @@ final public class HandySnackbar: UIView {
         return button
     }()
 
-
     public init() {
         super.init(frame: .zero)
 
@@ -101,6 +100,7 @@ final public class HandySnackbar: UIView {
         setBGView()
 
         showSnackbar()
+        setSwipeGesture()
     }
 
     private func setViewHierarchy() {
@@ -162,6 +162,13 @@ final public class HandySnackbar: UIView {
         }
     }
 
+    private func setSwipeGesture() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        swipeGesture.direction = .down
+
+        self.addGestureRecognizer(swipeGesture)
+    }
+
     private func showSnackbar() {
         UIView.animate(
             withDuration: 0.5,
@@ -171,15 +178,19 @@ final public class HandySnackbar: UIView {
                 self.alpha = 1.0
             }, completion: { _ in
                 if self.snackbarType == .info {
-                    self.hideSnackbar()
-                }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                        if self.alpha != 0.0 {
+                            self.hideSnackbar()
+                        }
+                    }
+               }
             })
     }
 
     private func hideSnackbar() {
         UIView.animate(
             withDuration: 0.3,
-            delay: 5.0,
+            delay: 0.0,
             options: .curveEaseOut,
             animations: {
                 self.alpha = 0.0
@@ -190,15 +201,14 @@ final public class HandySnackbar: UIView {
 
     @objc
     private func nowHideSnackbar() {
-        UIView.animate(
-            withDuration: 0.3,
-            delay: 0.0,
-            options: .curveEaseOut,
-            animations: {
-                self.alpha = 0.0
-            }, completion: { _ in
-                self.removeFromSuperview()
-            })
+        hideSnackbar()
+    }
+
+    @objc
+    private func handleSwipeGesture(_ gestureRecognizer: UISwipeGestureRecognizer) {
+        if gestureRecognizer.state == .ended {
+            hideSnackbar()
+        }
     }
 
     override public func setNeedsLayout() {
