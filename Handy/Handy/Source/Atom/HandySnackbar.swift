@@ -61,7 +61,6 @@ final public class HandySnackbar: UIView {
         let label = HandyLabel()
         label.alignment = .left
         label.numberOfLines = 2
-        label.lineBreakMode = .byCharWrapping
         return label
     }()
 
@@ -124,8 +123,9 @@ final public class HandySnackbar: UIView {
             $0.top.leading.equalToSuperview().inset(16)
         }
         cancelButton.snp.makeConstraints {
-            $0.size.equalTo(20)
-            $0.top.trailing.equalToSuperview().inset(16)
+            $0.size.equalTo(18)
+            $0.top.equalToSuperview().inset(17)
+            $0.trailing.equalToSuperview().inset(16)
         }
     }
 
