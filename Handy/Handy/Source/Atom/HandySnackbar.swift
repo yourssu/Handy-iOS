@@ -71,7 +71,7 @@ final public class HandySnackbar: UIView {
         return imageView
     }()
 
-    private let cancelButton: UIButton = {
+    private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setImage(HandyIcon.closeLine.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = HandySemantic.iconBasicTertiary
