@@ -295,6 +295,21 @@ public enum HandySemantic {
         return .gray500
     }
 
+    // MARK: - Switch
+
+    public static var switchUnselected: UIColor {
+        return .gray300
+    }
+
+    public static var switchSelected: UIColor {
+        return .violet500
+    }
+
+    public static var switchDisabled: UIColor {
+        return .gray200
+    }
+
+
     // MARK: - Snackbar
 
     public static var snackbarInfo: UIColor {
