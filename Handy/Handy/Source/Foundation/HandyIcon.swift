@@ -15,6 +15,8 @@ public enum HandyIcon {
     public static var checkBoxLine: UIImage { .load(name: "checkBoxLine") }
     public static var radioButtonLine: UIImage { .load(name: "radioButtonLine") }
     public static var radioButtonDisabled: UIImage { .load(name: "radioButtonDisabled") }
+    
+    public static var icHomeFilled: UIImage { .load(name: "icHomeFilled")}
 }
 
 extension UIImage {
