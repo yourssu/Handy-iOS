@@ -43,6 +43,7 @@ final public class HandyList: UIView {
     private func setAutolayout() {
         stackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.width.equalTo(375)
         }
     }
 
