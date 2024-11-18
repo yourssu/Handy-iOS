@@ -37,6 +37,10 @@ final public class HandyListItem: UIView {
      */
     @Invalidating(.display) public var listState: ListState = .enabled
 
+    private var isPressed: Bool = false
+
+    private var tapGesture: UILongPressGestureRecognizer?
+
     public enum ListState {
         case enabled
         case disabled
@@ -49,13 +53,22 @@ final public class HandyListItem: UIView {
                 return HandySemantic.listDisabled
             }
         }
+
+        fileprivate var fgColor: UIColor {
+            switch self {
+            case .enabled:
+                return HandySemantic.textBasicPrimary
+            case .disabled:
+                return HandySemantic.textBasicDisabled
+            }
+        }
     }
 
     private var titleLabel: HandyLabel = {
         let label = HandyLabel()
         label.style = .B1Rg16
         label.textColor = HandySemantic.textBasicPrimary
-        // label.alignment = .left
+        label.textAlignment = .left
         label.numberOfLines = 1
         return label
     }()
@@ -108,57 +121,93 @@ final public class HandyListItem: UIView {
             $0.height.equalTo(64)
         }
 
-        leftIcon.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(16)
-            $0.size.equalTo(24)
-            $0.centerY.equalToSuperview()
+        if leadingIcon == nil {
+            leftIcon.isHidden = true
+
+            titleLabel.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(16)
+                $0.centerY.equalToSuperview()
+            }
+        } else {
+            leftIcon.isHidden = false
+
+            leftIcon.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(16)
+                $0.size.equalTo(24)
+                $0.centerY.equalToSuperview()
+            }
+
+            titleLabel.snp.remakeConstraints {
+                $0.leading.equalTo(leftIcon.snp.trailing).offset(16)
+                $0.centerY.equalToSuperview()
+            }
         }
 
-        rightIcon.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(16)
-            $0.size.equalTo(24)
-            $0.centerY.equalToSuperview()
-        }
+        if trailingIcon == nil {
+            rightIcon.isHidden = true
+        } else {
+            rightIcon.isHidden = false
 
-        titleLabel.snp.makeConstraints {
-            $0.leading.equalTo(leftIcon.snp.trailing).offset(16)
-            $0.leading.equalToSuperview().inset(56)
-            $0.centerY.equalToSuperview()
+            rightIcon.snp.makeConstraints {
+                $0.trailing.equalToSuperview().inset(16)
+                $0.size.equalTo(24)
+                $0.centerY.equalToSuperview()
+            }
         }
-        print("=== setAutoLayout")
     }
 
     private func setIcon() {
         leftIcon.image = leadingIcon?.withRenderingMode(.alwaysTemplate)
+        leftIcon.tintColor = listState.fgColor
         rightIcon.image = trailingIcon?.withRenderingMode(.alwaysTemplate)
-
-        if trailingIcon == nil {
-            rightIcon.isHidden = true
-        }
-        if leadingIcon != nil && trailingIcon != nil {
-            leftIcon.isHidden = false
-            rightIcon.isHidden = false
-        }
-        print("=== setIcon")
+        rightIcon.tintColor = listState.fgColor
     }
 
     private func setLabel() {
         titleLabel.text = title
+        titleLabel.textColor = listState.fgColor
 
-        if leadingIcon == nil {
-            leftIcon.isHidden = true
-
-            titleLabel.snp.updateConstraints {
-                $0.leading.equalToSuperview().inset(16)
-            }
-        }
-        print("=== setLabel")
+        self.backgroundColor = listState.bgColor
     }
+
+    private func setupGestureRecognizer() {
+        if listState == ListState.enabled {
+            let gesture = UILongPressGestureRecognizer(target: self, action: #selector(pressedAction(_:)))
+            self.tapGesture = gesture
+            self.tapGesture?.minimumPressDuration = 0
+            if let tapGesture = self.tapGesture {
+                self.addGestureRecognizer(tapGesture)
+            }
+            self.isUserInteractionEnabled = true
+        }
+    }
+
+    @objc public func pressedAction(_ gesture: UILongPressGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            self.backgroundColor = HandySemantic.listPressed
+        case .ended, .cancelled, .failed:
+            self.backgroundColor = listState.bgColor
+        default:
+            break
+        }
+    }
+
 
     public override func setNeedsLayout() {
         setAutoLayout()
+
         setIcon()
         setLabel()
+    }
+
+    public override func setNeedsDisplay() {
+        if let gesture = tapGesture {
+            self.removeGestureRecognizer(gesture)
+        }
+        tapGesture = nil
+
+        setupGestureRecognizer()
     }
 
 }
