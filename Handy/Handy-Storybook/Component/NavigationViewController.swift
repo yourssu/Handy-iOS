@@ -10,16 +10,17 @@ import Handy
 import SnapKit
 
 class NavigationViewController: HandyNavigation {
+    
     let page1: UIViewController = {
         let viewController = UIViewController()
-        viewController.view.backgroundColor = HandySemantic.bgBasicStrong
+        viewController.view.backgroundColor = HandySemantic.bgStatusPositive
         viewController.tabBarItem = UITabBarItem(title: "Label", image: HandyIcon.icHomeFilled, selectedImage: HandyIcon.icHomeFilled)
         return viewController
     }()
     
     let page2: UIViewController = {
         let viewController = UIViewController()
-        viewController.view.backgroundColor = HandySemantic.bgStatusPositive
+        viewController.view.backgroundColor = HandySemantic.bgBasicBlack
         viewController.tabBarItem = UITabBarItem(title: "Label", image: HandyIcon.icHomeFilled, selectedImage: HandyIcon.icHomeFilled)
         return viewController
     }()
@@ -40,22 +41,13 @@ class NavigationViewController: HandyNavigation {
     
     let page5: UIViewController = {
         let viewController = UIViewController()
-        viewController.view.backgroundColor = HandySemantic.bgBasicLight
+        viewController.view.backgroundColor = HandySemantic.iconBasicSecondary
         viewController.tabBarItem = UITabBarItem(title: "Label", image: HandyIcon.icHomeFilled, selectedImage: HandyIcon.icHomeFilled)
         return viewController
     }()
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-
-        self.setViewControllers([page1, page2, page3, page4, page5], animated: true)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        setViewControllers([page1, page2, page3, page4, page5], animated: false)
     }
 }

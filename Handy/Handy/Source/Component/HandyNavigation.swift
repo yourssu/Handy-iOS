@@ -15,6 +15,8 @@ open class HandyNavigation: UITabBarController {
     /// 상단 탭바에 사용되는 디바이더입니다.
     let divider = HandyDivider()
     
+    private let customTabBar = CustomTabBar()
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -22,6 +24,7 @@ open class HandyNavigation: UITabBarController {
     
     /// 뷰 세팅
     private func setupView() {
+        setValue(customTabBar, forKey: "tabBar")
         setProperties()
         setLayouts()
     }
@@ -81,13 +84,8 @@ extension HandyNavigation {
         viewControllers?.forEach {
             if $0.tabBarItem.title == nil {
                 // title이 없는 경우
-                $0.tabBarItem.imageInsets = UIEdgeInsets(top: itemImageVerticalInset,
-                                                         left: 0,
-                                                         bottom: -itemImageVerticalInset,
-                                                         right: 0)
+                $0.tabBarItem.imageInsets = UIEdgeInsets(top: itemImageVerticalInset, left: 0, bottom: -itemImageVerticalInset, right: 0)
             } else {
-                // FIXME: 레이아웃 적용 안됨
-                // title이 있는 경우: 이미지와 텍스트 위치 조정
                 tabBarItem.imageInsets = UIEdgeInsets(
                     top: itemImageVerticalInset,
                     left: 0,
@@ -99,16 +97,24 @@ extension HandyNavigation {
     }
 }
 
-/**
- TODO: 레이아웃 간격
- - UITabBar의 높이 설정 불가
- - UITabBar의 아이콘 크기 설정 불가
- */
+//MARK: - 네비게이션 바 레이아웃 설정 (Safe Area 처리)
+class CustomTabBar: UITabBar {
+    let fixedHeight: CGFloat = 56
 
-/**
- 파일 변경점
- 1. Component폴더 생성
- 2. HandyNavigation.swift 생성
- 3. HandyIcon.swift 파일에 icHomeFilled 추가
- 4. Asset/HandyIcon에 이미지 추가
- */
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Safe Area를 고려한 높이 설정
+        var newFrame = self.frame
+        let safeAreaInsets: CGFloat = {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                return window.safeAreaInsets.bottom
+            }
+            return 0
+        }()
+        newFrame.size.height = fixedHeight + safeAreaInsets
+        newFrame.origin.y = UIScreen.main.bounds.height - newFrame.size.height
+        self.frame = newFrame
+    }
+}
