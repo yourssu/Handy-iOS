@@ -16,11 +16,7 @@ final public class HandyListItem: UIView {
     /**
      Title의 text를 설정할 때 사용합니다.
      */
-    @Invalidating(wrappedValue: "", .layout) public var title: String {
-        didSet {
-            titleLabel.text = title
-        }
-    }
+    @Invalidating(wrappedValue: "", .layout) public var title: String
 
     /**
      Leading icon 설정할 때 사용합니다.
