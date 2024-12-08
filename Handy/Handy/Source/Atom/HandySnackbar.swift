@@ -13,11 +13,7 @@ final public class HandySnackbar: UIView {
     /**
      스낵바에 들어갈 글을 설정할 때 사용합니다.
      */
-    @Invalidating(wrappedValue: "", .layout) public var text: String {
-        didSet {
-            label.text = text
-        }
-    }
+    @Invalidating(wrappedValue: "", .layout) public var text: String
 
     /**
      스낵바의 외관 타입을 결정할 때 사용합니다.

@@ -10,6 +10,8 @@
 		0202B2562C58D8AF0017EAD8 /* HandyBasicColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5669A422C443FE500DABC21 /* HandyBasicColor.xcassets */; };
 		02150E4A2CC8D7AB00EE690E /* HandySnackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02150E492CC8D7AB00EE690E /* HandySnackbar.swift */; };
 		02150E4C2CCABAEB00EE690E /* SnackbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02150E4B2CCABAE500EE690E /* SnackbarViewController.swift */; };
+		021C77022CEA49A300AC7D7D /* HandyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C77012CEA49A300AC7D7D /* HandyList.swift */; };
+		021C77042CEA504B00AC7D7D /* HandyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C77032CEA504B00AC7D7D /* HandyListViewController.swift */; };
 		022E22342CB60F8B004E57EA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 022E22332CB60F8B004E57EA /* SnapKit */; };
 		025776352C4EA98C00272EC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025776342C4EA98C00272EC6 /* AppDelegate.swift */; };
 		025776372C4EA98C00272EC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025776362C4EA98C00272EC6 /* SceneDelegate.swift */; };
@@ -29,6 +31,7 @@
 		029C446A2C468F8300331F61 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 029C44672C468F8300331F61 /* Pretendard-SemiBold.otf */; };
 		029E47FD2C49FD1A00D2F3B7 /* HandyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E47FC2C49FD1A00D2F3B7 /* HandyLabel.swift */; };
 		029E48002C49FD4000D2F3B7 /* HandyTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E47FF2C49FD4000D2F3B7 /* HandyTypography.swift */; };
+		02BCB2302CDF417500D0C796 /* HandyListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCB22F2CDF417500D0C796 /* HandyListItem.swift */; };
 		02BDB7F32C3E95580050FB67 /* Handy.h in Headers */ = {isa = PBXBuildFile; fileRef = 02BDB7F22C3E95580050FB67 /* Handy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02BDB7FC2C3E99920050FB67 /* HandyFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BDB7FB2C3E99920050FB67 /* HandyFont.swift */; };
 		02ED76312C5284BB001569F1 /* HandyButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED76302C5284BB001569F1 /* HandyButtonProtocol.swift */; };
@@ -86,6 +89,8 @@
 /* Begin PBXFileReference section */
 		02150E492CC8D7AB00EE690E /* HandySnackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandySnackbar.swift; sourceTree = "<group>"; };
 		02150E4B2CCABAE500EE690E /* SnackbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarViewController.swift; sourceTree = "<group>"; };
+		021C77012CEA49A300AC7D7D /* HandyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyList.swift; sourceTree = "<group>"; };
+		021C77032CEA504B00AC7D7D /* HandyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyListViewController.swift; sourceTree = "<group>"; };
 		025776322C4EA98C00272EC6 /* Handy-Storybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Handy-Storybook.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		025776342C4EA98C00272EC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		025776362C4EA98C00272EC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +110,7 @@
 		029C44732C468FEA00331F61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		029E47FC2C49FD1A00D2F3B7 /* HandyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyLabel.swift; sourceTree = "<group>"; };
 		029E47FF2C49FD4000D2F3B7 /* HandyTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyTypography.swift; sourceTree = "<group>"; };
+		02BCB22F2CDF417500D0C796 /* HandyListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyListItem.swift; sourceTree = "<group>"; };
 		02BDB7EF2C3E95580050FB67 /* Handy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Handy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02BDB7F22C3E95580050FB67 /* Handy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Handy.h; sourceTree = "<group>"; };
 		02BDB7FB2C3E99920050FB67 /* HandyFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyFont.swift; sourceTree = "<group>"; };
@@ -151,6 +157,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021C76FF2CEA496D00AC7D7D /* List */ = {
+			isa = PBXGroup;
+			children = (
+				02BCB22F2CDF417500D0C796 /* HandyListItem.swift */,
+				021C77012CEA49A300AC7D7D /* HandyList.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		025776332C4EA98C00272EC6 /* Handy-Storybook */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +192,7 @@
 				E51FBF9A2C5399A00097B0DA /* CheckBoxViewController.swift */,
 				E51FBFA12C54CD350097B0DA /* RadioButtonViewController.swift */,
 				02697A252C99DDA30027A362 /* HansySwitchViewController.swift */,
+				021C77032CEA504B00AC7D7D /* HandyListViewController.swift */,
 			);
 			path = Atom;
 			sourceTree = "<group>";
@@ -228,7 +244,7 @@
 		029E47FE2C49FD2E00D2F3B7 /* Atom */ = {
 			isa = PBXGroup;
 			children = (
-				02ED762F2C52849A001569F1 /* HandyButton */,
+				02ED762F2C52849A001569F1 /* Button */,
 				029E47FC2C49FD1A00D2F3B7 /* HandyLabel.swift */,
 				2D41E8152C5A21B50043161D /* HandyFab.swift */,
 				A56B3DE12C4E51D300C3610A /* HandyChip.swift */,
@@ -237,6 +253,7 @@
 				E5650D422C4D326D002790CC /* HandyCheckBox.swift */,
 				02697A232C99D7230027A362 /* HandySwitch.swift */,
 				02150E492CC8D7AB00EE690E /* HandySnackbar.swift */,
+				021C76FF2CEA496D00AC7D7D /* List */,
 			);
 			path = Atom;
 			sourceTree = "<group>";
@@ -275,8 +292,8 @@
 			children = (
 				02ED76482C577998001569F1 /* Extension */,
 				029C446B2C468F8E00331F61 /* Font */,
-				029E47FE2C49FD2E00D2F3B7 /* Atom */,
 				02BDB7FA2C3E964A0050FB67 /* Foundation */,
+				029E47FE2C49FD2E00D2F3B7 /* Atom */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -295,14 +312,14 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
-		02ED762F2C52849A001569F1 /* HandyButton */ = {
+		02ED762F2C52849A001569F1 /* Button */ = {
 			isa = PBXGroup;
 			children = (
 				02ED76302C5284BB001569F1 /* HandyButtonProtocol.swift */,
 				02ED76322C5284E6001569F1 /* HandyBoxButton.swift */,
 				02ED76342C5284F3001569F1 /* HandyTextButton.swift */,
 			);
-			path = HandyButton;
+			path = Button;
 			sourceTree = "<group>";
 		};
 		02ED76482C577998001569F1 /* Extension */ = {
@@ -462,6 +479,7 @@
 				A5A12A7E2C57A6D900996916 /* ChipViewController.swift in Sources */,
 				A5A12A7F2C57A92000996916 /* HandySematic.swift in Sources */,
 				A5F6D36D2C97099C00FB961F /* DividerViewController.swift in Sources */,
+				021C77042CEA504B00AC7D7D /* HandyListViewController.swift in Sources */,
 				025776392C4EA98C00272EC6 /* LabelViewController.swift in Sources */,
 				0257765D2C4EB9EF00272EC6 /* BaseViewController.swift in Sources */,
 				02ED764C2C57BD09001569F1 /* HandyBoxButtonViewController.swift in Sources */,
@@ -489,6 +507,7 @@
 				E5669A3F2C443E7300DABC21 /* HandyBasicColor.swift in Sources */,
 				02ED76312C5284BB001569F1 /* HandyButtonProtocol.swift in Sources */,
 				02ED76352C5284F3001569F1 /* HandyTextButton.swift in Sources */,
+				02BCB2302CDF417500D0C796 /* HandyListItem.swift in Sources */,
 				A5F6D36B2C96F32D00FB961F /* HandyDivider.swift in Sources */,
 				02BDB7FC2C3E99920050FB67 /* HandyFont.swift in Sources */,
 				02ED764A2C5779C3001569F1 /* UIImage+.swift in Sources */,
@@ -497,6 +516,7 @@
 				029E47FD2C49FD1A00D2F3B7 /* HandyLabel.swift in Sources */,
 				A56B3DE22C4E51D300C3610A /* HandyChip.swift in Sources */,
 				E5650D472C512B07002790CC /* HandyIcon.swift in Sources */,
+				021C77022CEA49A300AC7D7D /* HandyList.swift in Sources */,
 				E5650D472C512B07002790CC /* HandyIcon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

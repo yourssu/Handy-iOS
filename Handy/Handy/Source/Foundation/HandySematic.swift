@@ -320,4 +320,18 @@ public enum HandySemantic {
         return .redSub
     }
 
+    // MARK: - List
+
+    public static var listEnabled: UIColor {
+        return .white
+    }
+
+    public static var listPressed: UIColor {
+        return .gray50
+    }
+
+    public static var listDisabled: UIColor {
+        return .white
+    }
+
 }
