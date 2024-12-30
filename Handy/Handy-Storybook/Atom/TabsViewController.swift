@@ -13,49 +13,21 @@ final class TabsViewController: BaseViewController {
         tabs.viewControllers = [
             {
                 let viewController = UIViewController()
-                viewController.view.frame = UIScreen.main.bounds
                 viewController.view.backgroundColor = .red
                 return viewController
             }(),
             {
                 let viewController = UIViewController()
-                viewController.view.frame = UIScreen.main.bounds
                 viewController.view.backgroundColor = .green
                 return viewController
             }(),
             {
                 let viewController = UIViewController()
-                viewController.view.frame = UIScreen.main.bounds
                 viewController.view.backgroundColor = .red
                 return viewController
             }(),
             {
                 let viewController = UIViewController()
-                viewController.view.frame = UIScreen.main.bounds
-                viewController.view.backgroundColor = .green
-                return viewController
-            }(),
-            {
-                let viewController = UIViewController()
-                viewController.view.frame = UIScreen.main.bounds
-                viewController.view.backgroundColor = .red
-                return viewController
-            }(),
-            {
-                let viewController = UIViewController()
-                viewController.view.frame = UIScreen.main.bounds
-                viewController.view.backgroundColor = .green
-                return viewController
-            }(),
-            {
-                let viewController = UIViewController()
-                viewController.view.frame = UIScreen.main.bounds
-                viewController.view.backgroundColor = .red
-                return viewController
-            }(),
-            {
-                let viewController = UIViewController()
-                viewController.view.frame = UIScreen.main.bounds
                 viewController.view.backgroundColor = .green
                 return viewController
             }(),
@@ -96,12 +68,16 @@ open class HandyTabs: UIViewController {
             if let oldValue {
                 let previousViewController = viewControllers[oldValue]
                 previousViewController.removeFromParent()
+                previousViewController.view.snp.removeConstraints()
                 previousViewController.view.removeFromSuperview()
             }
 
             if let selectedVC = selectedViewController {
                 self.addChild(selectedVC)
                 self.tabsContent.addSubview(selectedVC.view)
+                selectedVC.view.snp.makeConstraints {
+                    $0.edges.equalToSuperview()
+                }
             }
         }
     }
@@ -113,7 +89,7 @@ open class HandyTabs: UIViewController {
     }
 
     private var tabsHeader: UICollectionView!
-    private var tabsContent: UIScrollView!
+    private var tabsContent: UIView!
 
     private var viewCount: Int {
         self.viewControllers.count
@@ -171,9 +147,8 @@ open class HandyTabs: UIViewController {
     }
 
     private func setTabsContent() {
-        tabsContent = UIScrollView()
+        tabsContent = UIView()
         tabsContent.backgroundColor = .blue
-        tabsContent.showsHorizontalScrollIndicator = false
 
         self.view.addSubview(tabsContent)
 
