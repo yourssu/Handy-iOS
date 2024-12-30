@@ -10,26 +10,26 @@ import Handy
 final class TabsViewController: BaseViewController {
     private let tabs: HandyTabs = {
         let tabs = HandyTabs(sizeType: .large)
-        tabs.viewControllers = [
+        tabs.tabs = [
             {
                 let viewController = UIViewController()
                 viewController.view.backgroundColor = .red
-                return viewController
+                return ("첫번째 탭입니다", viewController)
             }(),
             {
                 let viewController = UIViewController()
                 viewController.view.backgroundColor = .green
-                return viewController
+                return ("두번째 탭입니다", viewController)
             }(),
             {
                 let viewController = UIViewController()
                 viewController.view.backgroundColor = .red
-                return viewController
+                return ("세번째", viewController)
             }(),
             {
                 let viewController = UIViewController()
-                viewController.view.backgroundColor = .green
-                return viewController
+                viewController.view.backgroundColor = .red
+                return ("네번째", viewController)
             }(),
         ]
         return tabs
@@ -52,27 +52,29 @@ import UIKit
 
 open class HandyTabs: UIViewController {
     public var sizeType: HandyTabComponent.SizeType = .large
-    public var viewControllers: [UIViewController] = [] {
+    public var tabs: [(title: String, viewController: UIViewController)] = [] {
         didSet {
-            if viewControllers.isEmpty {
+            if tabs.isEmpty {
                 selectedIndex = nil
             } else if selectedIndex == nil {
                 selectedIndex = 0
-            } else if selectedIndex! >= viewControllers.count {
-                selectedIndex = viewControllers.count - 1
+            } else if selectedIndex! >= tabs.count {
+                selectedIndex = tabs.count - 1
             }
+
+            updateCollectionViewLayout()
         }
     }
     public var selectedIndex: Int? {
         didSet {
             if let oldValue {
-                let previousViewController = viewControllers[oldValue]
+                let previousViewController = tabs[oldValue].viewController
                 previousViewController.removeFromParent()
                 previousViewController.view.snp.removeConstraints()
                 previousViewController.view.removeFromSuperview()
             }
 
-            if let selectedVC = selectedViewController {
+            if let selectedVC = selectedTab?.viewController {
                 self.addChild(selectedVC)
                 self.tabsContent.addSubview(selectedVC.view)
                 selectedVC.view.snp.makeConstraints {
@@ -81,10 +83,10 @@ open class HandyTabs: UIViewController {
             }
         }
     }
-    public var selectedViewController: UIViewController? {
+    public var selectedTab: (title: String, viewController: UIViewController)? {
         guard let selectedIndex else { return nil }
-        return viewControllers.indices.contains(selectedIndex)
-        ? viewControllers[selectedIndex]
+        return tabs.indices.contains(selectedIndex)
+        ? tabs[selectedIndex]
         : nil
     }
 
@@ -92,16 +94,17 @@ open class HandyTabs: UIViewController {
     private var tabsContent: UIView!
 
     private var viewCount: Int {
-        self.viewControllers.count
+        self.tabs.count
     }
     private var tabsType: HandyTabsType {
         switch viewCount {
         case 1...3:
-            return .fixed(viewCount: self.viewControllers.count)
+            return .fixed(viewCount: viewCount)
         default:
             return .scrollable
         }
     }
+    private let tabSpacing: CGFloat = 8.0
     public init(sizeType: HandyTabComponent.SizeType) {
         super.init(nibName: nil, bundle: nil)
         self.sizeType = sizeType
@@ -121,8 +124,7 @@ open class HandyTabs: UIViewController {
         // configure collectionView
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.estimatedItemSize = CGSize(width: 0, height: 48)
-        flowLayout.minimumInteritemSpacing = 8.0
+        flowLayout.minimumInteritemSpacing = tabSpacing
 
         tabsHeader = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         tabsHeader.isScrollEnabled = true
@@ -157,17 +159,37 @@ open class HandyTabs: UIViewController {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
+
+    private func updateCollectionViewLayout() {
+        guard let layout = tabsHeader.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+
+        switch tabsType {
+        case .scrollable:
+            layout.scrollDirection = .horizontal
+            layout.minimumInteritemSpacing = tabSpacing
+            layout.estimatedItemSize = CGSize(width: 0, height: 48)
+        case .fixed(let viewCount):
+            let totalSpacing = tabSpacing * CGFloat(viewCount - 1)
+            let itemWidth = (self.view.frame.width - totalSpacing) / CGFloat(viewCount)
+            layout.scrollDirection = .horizontal
+            layout.minimumInteritemSpacing = tabSpacing
+            layout.itemSize = CGSize(width: itemWidth, height: 48)
+        }
+
+        tabsHeader.collectionViewLayout.invalidateLayout()
+    }
 }
 
 extension HandyTabs: UICollectionViewDelegate, UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewCount
     }
-    
+
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HandyTabComponent.reuseIdentifier, for: indexPath) as! HandyTabComponent
         cell.sizeType = sizeType
-        cell.title = "Tab \(indexPath.row)"
+        cell.title = tabs[indexPath.row].title
+        cell.backgroundColor = .green
         return cell
     }
 
@@ -205,7 +227,11 @@ open class HandyTabComponent: UICollectionViewCell {
         }
     }
 
-    private let titleLabel = HandyLabel(style: .B1Sb16)
+    private let titleLabel: HandyLabel = {
+        let label = HandyLabel(style: .B1Sb16)
+        label.alignment = .center
+        return label
+    }()
     private let selectedIndicator = UIView()
 
     public var title: String = "Tab" {
