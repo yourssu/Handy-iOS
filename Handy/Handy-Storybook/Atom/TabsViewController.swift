@@ -8,33 +8,69 @@
 import Handy
 
 final class TabsViewController: BaseViewController {
-    private let tab1: HandyTabComponent = {
-        let tabComponent = HandyTabComponent(size: .small)
-        tabComponent.backgroundColor = .gray100
-        tabComponent.title = "tabbbbb"
-        return tabComponent
-    }()
-
-    private let tab2: HandyTabComponent = {
-        let tabComponent = HandyTabComponent(size: .large)
-        tabComponent.backgroundColor = .gray100
-        tabComponent.title = "tabbbbb"
-        tabComponent.isSelected = true
-        return tabComponent
+    private let tabs: HandyTabs = {
+        let tabs = HandyTabs(sizeType: .large)
+        tabs.viewControllers = [
+            {
+                let viewController = UIViewController()
+                viewController.view.frame = UIScreen.main.bounds
+                viewController.view.backgroundColor = .red
+                return viewController
+            }(),
+            {
+                let viewController = UIViewController()
+                viewController.view.frame = UIScreen.main.bounds
+                viewController.view.backgroundColor = .green
+                return viewController
+            }(),
+            {
+                let viewController = UIViewController()
+                viewController.view.frame = UIScreen.main.bounds
+                viewController.view.backgroundColor = .red
+                return viewController
+            }(),
+            {
+                let viewController = UIViewController()
+                viewController.view.frame = UIScreen.main.bounds
+                viewController.view.backgroundColor = .green
+                return viewController
+            }(),
+            {
+                let viewController = UIViewController()
+                viewController.view.frame = UIScreen.main.bounds
+                viewController.view.backgroundColor = .red
+                return viewController
+            }(),
+            {
+                let viewController = UIViewController()
+                viewController.view.frame = UIScreen.main.bounds
+                viewController.view.backgroundColor = .green
+                return viewController
+            }(),
+            {
+                let viewController = UIViewController()
+                viewController.view.frame = UIScreen.main.bounds
+                viewController.view.backgroundColor = .red
+                return viewController
+            }(),
+            {
+                let viewController = UIViewController()
+                viewController.view.frame = UIScreen.main.bounds
+                viewController.view.backgroundColor = .green
+                return viewController
+            }(),
+        ]
+        return tabs
     }()
 
     override func setViewHierarchies() {
-        self.view.addSubview(tab1)
-        self.view.addSubview(tab2)
+        self.addChild(tabs)
+        self.view.addSubview(tabs.view)
     }
 
     override func setViewLayouts() {
-        tab1.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(100)
-        }
-
-        tab2.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(200)
+        tabs.view.snp.makeConstraints {
+            $0.edges.equalTo(self.view.safeAreaLayoutGuide)
         }
     }
 }
@@ -42,13 +78,162 @@ final class TabsViewController: BaseViewController {
 
 import UIKit
 
-open class HandyTabComponent: UIControl {
-    public var size: SizeType = .large
+open class HandyTabs: UIViewController {
+    public var sizeType: HandyTabComponent.SizeType = .large
+    public var viewControllers: [UIViewController] = [] {
+        didSet {
+            if viewControllers.isEmpty {
+                selectedIndex = nil
+            } else if selectedIndex == nil {
+                selectedIndex = 0
+            } else if selectedIndex! >= viewControllers.count {
+                selectedIndex = viewControllers.count - 1
+            }
+        }
+    }
+    public var selectedIndex: Int? {
+        didSet {
+            if let oldValue {
+                let previousViewController = viewControllers[oldValue]
+                previousViewController.removeFromParent()
+                previousViewController.view.removeFromSuperview()
+            }
+
+            if let selectedVC = selectedViewController {
+                self.addChild(selectedVC)
+                self.tabsContent.addSubview(selectedVC.view)
+            }
+        }
+    }
+    public var selectedViewController: UIViewController? {
+        guard let selectedIndex else { return nil }
+        return viewControllers.indices.contains(selectedIndex)
+        ? viewControllers[selectedIndex]
+        : nil
+    }
+
+    private var tabsHeader: UICollectionView!
+    private var tabsContent: UIScrollView!
+
+    private var viewCount: Int {
+        self.viewControllers.count
+    }
+    private var tabsType: HandyTabsType {
+        switch viewCount {
+        case 1...3:
+            return .fixed(viewCount: self.viewControllers.count)
+        default:
+            return .scrollable
+        }
+    }
+    public init(sizeType: HandyTabComponent.SizeType) {
+        super.init(nibName: nil, bundle: nil)
+        self.sizeType = sizeType
+        setTabsHeader()
+        setTabsContent()
+    }
+
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    private func setTabsHeader() {
+        // configure collectionView
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.estimatedItemSize = CGSize(width: 0, height: 48)
+        flowLayout.minimumInteritemSpacing = 8.0
+
+        tabsHeader = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        tabsHeader.isScrollEnabled = true
+        tabsHeader.allowsMultipleSelection = false
+        tabsHeader.showsHorizontalScrollIndicator = false
+        tabsHeader.showsVerticalScrollIndicator = false
+        tabsHeader.backgroundColor = .g400
+
+        self.view.addSubview(tabsHeader)
+
+        tabsHeader.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(48)
+        }
+
+        // register cells
+        tabsHeader.register(HandyTabComponent.self, forCellWithReuseIdentifier: HandyTabComponent.reuseIdentifier)
+
+        // set delegates
+        tabsHeader.delegate = self
+        tabsHeader.dataSource = self
+    }
+
+    private func setTabsContent() {
+        tabsContent = UIScrollView()
+        tabsContent.backgroundColor = .blue
+        tabsContent.showsHorizontalScrollIndicator = false
+
+        self.view.addSubview(tabsContent)
+
+        tabsContent.snp.makeConstraints {
+            $0.top.equalTo(tabsHeader.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+}
+
+extension HandyTabs: UICollectionViewDelegate, UICollectionViewDataSource {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewCount
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HandyTabComponent.reuseIdentifier, for: indexPath) as! HandyTabComponent
+        cell.sizeType = sizeType
+        cell.title = "Tab \(indexPath.row)"
+        return cell
+    }
+
+    // 새로운 cell을 선택했을 때 이전 cell은 선택 해제해줍니다.
+    // content를 선택한 ViewController로 바꿔줍니다.
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedIndex else { return }
+        let previousIndexPath = IndexPath(item: selectedIndex, section: 0)
+        if let previousCell = collectionView.cellForItem(at: previousIndexPath) as? HandyTabComponent {
+            previousCell.isSelected = false
+        }
+
+        self.selectedIndex = indexPath.row
+        let selectedCell = collectionView.cellForItem(at: indexPath) as? HandyTabComponent
+        selectedCell?.isSelected = true
+    }
+
+    // cell의 선택 속성은 willDisplay에서 결정해야 합니다.
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.isSelected = indexPath.row == selectedIndex
+    }
+}
+
+extension HandyTabs {
+    public enum HandyTabsType {
+        case scrollable
+        case fixed(viewCount: Int)
+    }
+}
+
+open class HandyTabComponent: UICollectionViewCell {
+    public var sizeType: SizeType = .large {
+        didSet {
+            setConfiguration()
+        }
+    }
 
     private let titleLabel = HandyLabel(style: .B1Sb16)
-    private let activeIndicatorBar = UIView()
+    private let selectedIndicator = UIView()
 
-    public var title: String? {
+    public var title: String = "Tab" {
         didSet {
             setTitleLabel()
         }
@@ -56,16 +241,15 @@ open class HandyTabComponent: UIControl {
 
     public override var isSelected: Bool {
         didSet {
+            if oldValue == isSelected { return }
             setConfiguration()
         }
     }
 
-    public init(size: SizeType) {
-        super.init(frame: .zero)
-        self.size = size
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         initializeViewHierarchy()
         initializeConstraints()
-        setConfiguration()
     }
     
     required public init?(coder: NSCoder) {
@@ -75,19 +259,19 @@ open class HandyTabComponent: UIControl {
     private func initializeViewHierarchy() {
         // Set View Hierarchy
         self.addSubview(titleLabel)
-        self.addSubview(activeIndicatorBar)
+        self.addSubview(selectedIndicator)
     }
 
     private func initializeConstraints() {
         // Set Constraints
         titleLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.top.bottom.equalToSuperview().inset(12)
+            $0.leading.trailing.equalToSuperview().inset(16).priority(999)
+            $0.top.bottom.equalToSuperview().inset(12).priority(999)
         }
 
-        activeIndicatorBar.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(18)
+        selectedIndicator.snp.makeConstraints {
+            $0.bottom.equalToSuperview().priority(999)
+            $0.leading.trailing.equalToSuperview().inset(18).priority(999)
             $0.height.equalTo(2)
         }
     }
@@ -99,7 +283,7 @@ open class HandyTabComponent: UIControl {
 
     private func setTitleLabel() {
         titleLabel.text = title
-        titleLabel.style = switch size {
+        titleLabel.style = switch sizeType {
         case .small:
             String.HandyTypoStyle.B3Sb14
         case .large:
@@ -108,9 +292,9 @@ open class HandyTabComponent: UIControl {
     }
 
     private func setIndicatorBar() {
-        activeIndicatorBar.backgroundColor = HandySemantic.bgBasicBlack
-        activeIndicatorBar.layer.cornerRadius = 1
-        activeIndicatorBar.isHidden = !isSelected
+        selectedIndicator.backgroundColor = HandySemantic.bgBasicBlack
+        selectedIndicator.layer.cornerRadius = 1
+        selectedIndicator.isHidden = !isSelected
     }
 }
 
@@ -119,4 +303,8 @@ extension HandyTabComponent {
         case small
         case large
     }
+}
+
+extension HandyTabComponent {
+    static let reuseIdentifier = "HandyTabComponent"
 }
