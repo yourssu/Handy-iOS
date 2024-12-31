@@ -9,27 +9,43 @@ import Handy
 
 final class TabsViewController: BaseViewController {
     private let tabs: HandyTabs = {
-        let tabs = HandyTabs(sizeType: .large)
+        let tabs = HandyTabs(sizeType: .small)
         tabs.tabs = [
             {
-                let viewController = UIViewController()
-                viewController.view.backgroundColor = .red
-                return ("첫번째 탭입니다", viewController)
+                let viewController = SnackbarViewController()
+                return ("SnackbarViewController", viewController)
             }(),
             {
-                let viewController = UIViewController()
-                viewController.view.backgroundColor = .green
-                return ("두번째 탭입니다", viewController)
+                let viewController = LabelViewController()
+                return ("LabelViewController", viewController)
             }(),
             {
-                let viewController = UIViewController()
-                viewController.view.backgroundColor = .red
-                return ("세번째", viewController)
+                let viewController = FabViewController()
+                return ("FabViewController", viewController)
             }(),
             {
-                let viewController = UIViewController()
-                viewController.view.backgroundColor = .red
-                return ("네번째", viewController)
+                let viewController = HandyBoxButtonViewController()
+                return ("HandyBoxButtonViewController", viewController)
+            }(),
+            {
+                let viewController = ChipViewController()
+                return ("ChipViewController", viewController)
+            }(),
+            {
+                let viewController = DividerViewController()
+                return ("DividerViewController", viewController)
+            }(),
+            {
+                let viewController = CheckBoxViewController()
+                return ("CheckBoxViewController", viewController)
+            }(),
+            {
+                let viewController = RadioButtonViewController()
+                return ("RadioButtonViewController", viewController)
+            }(),
+            {
+                let viewController = HansySwitchViewController()
+                return ("HansySwitchViewController", viewController)
             }(),
         ]
         return tabs
@@ -51,7 +67,7 @@ final class TabsViewController: BaseViewController {
 import UIKit
 
 open class HandyTabs: UIViewController {
-    public var sizeType: HandyTabComponent.SizeType = .large
+    public var sizeType: HandyTabComponent.SizeType
     public var tabs: [(title: String, viewController: UIViewController)] = [] {
         didSet {
             if tabs.isEmpty {
@@ -62,7 +78,7 @@ open class HandyTabs: UIViewController {
                 selectedIndex = tabs.count - 1
             }
 
-            updateCollectionViewLayout()
+            updateTabsHeaderLayout()
         }
     }
     public var selectedIndex: Int? {
@@ -106,8 +122,8 @@ open class HandyTabs: UIViewController {
     }
     private let tabSpacing: CGFloat = 8.0
     public init(sizeType: HandyTabComponent.SizeType) {
-        super.init(nibName: nil, bundle: nil)
         self.sizeType = sizeType
+        super.init(nibName: nil, bundle: nil)
         setTabsHeader()
         setTabsContent()
     }
@@ -116,22 +132,13 @@ open class HandyTabs: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     private func setTabsHeader() {
         // configure collectionView
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumInteritemSpacing = tabSpacing
-
-        tabsHeader = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        tabsHeader = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         tabsHeader.isScrollEnabled = true
         tabsHeader.allowsMultipleSelection = false
         tabsHeader.showsHorizontalScrollIndicator = false
         tabsHeader.showsVerticalScrollIndicator = false
-        tabsHeader.backgroundColor = .g400
 
         self.view.addSubview(tabsHeader)
 
@@ -150,7 +157,6 @@ open class HandyTabs: UIViewController {
 
     private func setTabsContent() {
         tabsContent = UIView()
-        tabsContent.backgroundColor = .blue
 
         self.view.addSubview(tabsContent)
 
@@ -160,22 +166,21 @@ open class HandyTabs: UIViewController {
         }
     }
 
-    private func updateCollectionViewLayout() {
-        guard let layout = tabsHeader.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+    private func updateTabsHeaderLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = tabSpacing
 
         switch tabsType {
         case .scrollable:
-            layout.scrollDirection = .horizontal
-            layout.minimumInteritemSpacing = tabSpacing
             layout.estimatedItemSize = CGSize(width: 0, height: 48)
         case .fixed(let viewCount):
             let totalSpacing = tabSpacing * CGFloat(viewCount - 1)
             let itemWidth = (self.view.frame.width - totalSpacing) / CGFloat(viewCount)
-            layout.scrollDirection = .horizontal
-            layout.minimumInteritemSpacing = tabSpacing
             layout.itemSize = CGSize(width: itemWidth, height: 48)
         }
 
+        tabsHeader.collectionViewLayout = layout
         tabsHeader.collectionViewLayout.invalidateLayout()
     }
 }
@@ -189,7 +194,6 @@ extension HandyTabs: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HandyTabComponent.reuseIdentifier, for: indexPath) as! HandyTabComponent
         cell.sizeType = sizeType
         cell.title = tabs[indexPath.row].title
-        cell.backgroundColor = .green
         return cell
     }
 
@@ -275,6 +279,10 @@ open class HandyTabComponent: UICollectionViewCell {
             $0.leading.trailing.equalToSuperview().inset(18).priority(999)
             $0.height.equalTo(2)
         }
+
+        self.snp.makeConstraints {
+            $0.height.equalTo(48)
+        }
     }
 
     private func setConfiguration() {
@@ -289,6 +297,10 @@ open class HandyTabComponent: UICollectionViewCell {
             String.HandyTypoStyle.B3Sb14
         case .large:
             String.HandyTypoStyle.B1Sb16
+        }
+        titleLabel.textColor = switch isSelected {
+        case true: HandySemantic.textBasicPrimary
+        case false: HandySemantic.textBasicTertiary
         }
     }
 
