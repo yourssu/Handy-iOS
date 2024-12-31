@@ -67,8 +67,8 @@ final class TabsViewController: BaseViewController {
 import UIKit
 
 open class HandyTabs: UIViewController {
-    public var sizeType: HandyTabComponent.SizeType
-    public var tabs: [(title: String, viewController: UIViewController)] = [] {
+    open var sizeType: HandyTabComponent.SizeType
+    open var tabs: [(title: String, viewController: UIViewController)] = [] {
         didSet {
             if tabs.isEmpty {
                 selectedIndex = nil
@@ -81,7 +81,7 @@ open class HandyTabs: UIViewController {
             updateTabsHeaderLayout()
         }
     }
-    public var selectedIndex: Int? {
+    open var selectedIndex: Int? {
         didSet {
             if let oldValue {
                 let previousViewController = tabs[oldValue].viewController
@@ -99,7 +99,7 @@ open class HandyTabs: UIViewController {
             }
         }
     }
-    public var selectedTab: (title: String, viewController: UIViewController)? {
+    open var selectedTab: (title: String, viewController: UIViewController)? {
         guard let selectedIndex else { return nil }
         return tabs.indices.contains(selectedIndex)
         ? tabs[selectedIndex]
@@ -200,20 +200,28 @@ extension HandyTabs: UICollectionViewDelegate, UICollectionViewDataSource {
     // 새로운 cell을 선택했을 때 이전 cell은 선택 해제해줍니다.
     // content를 선택한 ViewController로 바꿔줍니다.
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedIndex else { return }
-        let previousIndexPath = IndexPath(item: selectedIndex, section: 0)
-        if let previousCell = collectionView.cellForItem(at: previousIndexPath) as? HandyTabComponent {
-            previousCell.isSelected = false
-        }
+        guard selectedIndex != indexPath.row else { return }
 
-        self.selectedIndex = indexPath.row
-        let selectedCell = collectionView.cellForItem(at: indexPath) as? HandyTabComponent
-        selectedCell?.isSelected = true
+        let previousIndex = selectedIndex
+        selectedIndex = indexPath.row
+
+        collectionView.performBatchUpdates {
+            if let previousIndex = previousIndex {
+                collectionView.reloadItems(at: [IndexPath(item: previousIndex, section: 0)])
+            }
+            collectionView.reloadItems(at: [indexPath])
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3) {
+                if let selectedCell = collectionView.cellForItem(at: indexPath) as? HandyTabComponent {
+                    selectedCell.isSelected = true
+                }
+            }
+        }
     }
 
     // cell의 선택 속성은 willDisplay에서 결정해야 합니다.
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.isSelected = indexPath.row == selectedIndex
+        cell.isSelected = indexPath.row == self.selectedIndex
     }
 }
 
@@ -225,7 +233,7 @@ extension HandyTabs {
 }
 
 open class HandyTabComponent: UICollectionViewCell {
-    public var sizeType: SizeType = .large {
+    open var sizeType: SizeType = .large {
         didSet {
             setConfiguration()
         }
@@ -238,13 +246,13 @@ open class HandyTabComponent: UICollectionViewCell {
     }()
     private let selectedIndicator = UIView()
 
-    public var title: String = "Tab" {
+    open var title: String = "Tab" {
         didSet {
             setTitleLabel()
         }
     }
 
-    public override var isSelected: Bool {
+    open override var isSelected: Bool {
         didSet {
             if oldValue == isSelected { return }
             setConfiguration()
