@@ -9,8 +9,8 @@ import UIKit
 
 open class HandyTabs: UIViewController {
     // MARK: - open & public properties
-    /// `HandyTabComponent`의 크기를 결정합니다.
-    open var sizeType: HandyTabComponent.SizeType
+    /// `HandyTabCell`의 크기를 결정합니다.
+    open var sizeType: HandyTabCell.SizeType
 
 
     /// 보여질 탭의 정보를 의미합니다.
@@ -63,7 +63,7 @@ open class HandyTabs: UIViewController {
     // MARK: - private properties
 
     /// Tab의 정보 중 `title` 부분이 표현되는 헤더 영역입니다.
-    /// `FlowLayout`으로 구성되어 있습니다. cell은 ``HandyTabComponent``만 등록되어 있습니다.
+    /// `FlowLayout`으로 구성되어 있습니다. cell은 ``HandyTabCell``만 등록되어 있습니다.
     private var tabsHeader: UICollectionView!
     
     /// Tab의 정보 중 `ViewController` 부분이 표현되는 콘텐츠 영역입니다.
@@ -81,7 +81,7 @@ open class HandyTabs: UIViewController {
     }
 
     // MARK: - Init
-    public init(sizeType: HandyTabComponent.SizeType) {
+    public init(sizeType: HandyTabCell.SizeType) {
         self.sizeType = sizeType
         super.init(nibName: nil, bundle: nil)
         setTabsHeader()
@@ -113,7 +113,7 @@ open class HandyTabs: UIViewController {
         }
 
         // register cells
-        tabsHeader.register(HandyTabComponent.self, forCellWithReuseIdentifier: HandyTabComponent.reuseIdentifier)
+        tabsHeader.register(HandyTabCell.self, forCellWithReuseIdentifier: HandyTabCell.reuseIdentifier)
 
         // set delegates
         tabsHeader.delegate = self
@@ -169,7 +169,7 @@ extension HandyTabs: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HandyTabComponent.reuseIdentifier, for: indexPath) as! HandyTabComponent
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HandyTabCell.reuseIdentifier, for: indexPath) as! HandyTabCell
         cell.sizeType = sizeType
         cell.title = tabs[indexPath.row].title
         return cell
@@ -190,7 +190,7 @@ extension HandyTabs: UICollectionViewDelegate, UICollectionViewDataSource {
             collectionView.reloadItems(at: [indexPath])
         } completion: { _ in
             UIView.animate(withDuration: 0.3) {
-                if let selectedCell = collectionView.cellForItem(at: indexPath) as? HandyTabComponent {
+                if let selectedCell = collectionView.cellForItem(at: indexPath) as? HandyTabCell {
                     selectedCell.isSelected = true
                 }
             }

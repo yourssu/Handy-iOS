@@ -1,5 +1,5 @@
 //
-//  HandyTabComponent.swift
+//  HandyTabCell.swift
 //  Handy
 //
 //  Created by chongin on 12/31/24.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// ``HandyTabs``의 Header를 구성하는 cell입니다.
-open class HandyTabComponent: UICollectionViewCell {
+open class HandyTabCell: UICollectionViewCell {
     // MARK: - open & public properties
 
     /// 글씨 크기를 결정합니다.
@@ -105,13 +105,13 @@ open class HandyTabComponent: UICollectionViewCell {
     }
 }
 
-extension HandyTabComponent {
+extension HandyTabCell {
     public enum SizeType {
         case small
         case large
     }
 }
 
-extension HandyTabComponent {
-    static let reuseIdentifier = "HandyTabComponent"
+extension HandyTabCell {
+    static let reuseIdentifier = "HandyTabCell"
 }
