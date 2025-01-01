@@ -6,11 +6,12 @@
 //
 
 import Handy
+import UIKit
 
 final class TabsViewController: BaseViewController {
-    private let tabs: HandyTabs = {
-        let tabs = HandyTabs(sizeType: .small)
-        tabs.tabs = [
+    let tabs: [(title: String, viewController: UIViewController)]
+    init(_ tabCount: Int) {
+        self.tabs = [
             {
                 let viewController = SnackbarViewController()
                 return ("SnackbarViewController", viewController)
@@ -47,17 +48,31 @@ final class TabsViewController: BaseViewController {
                 let viewController = HansySwitchViewController()
                 return ("HansySwitchViewController", viewController)
             }(),
-        ]
+        ][..<tabCount].map { $0 }
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.handyTabs.tabs = self.tabs
+    }
+
+    private let handyTabs: HandyTabs = {
+        let tabs = HandyTabs(sizeType: .small)
         return tabs
     }()
 
     override func setViewHierarchies() {
-        self.addChild(tabs)
-        self.view.addSubview(tabs.view)
+        self.addChild(handyTabs)
+        self.view.addSubview(handyTabs.view)
     }
 
     override func setViewLayouts() {
-        tabs.view.snp.makeConstraints {
+        handyTabs.view.snp.makeConstraints {
             $0.edges.equalTo(self.view.safeAreaLayoutGuide)
         }
     }

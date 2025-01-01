@@ -80,9 +80,6 @@ open class HandyTabs: UIViewController {
         }
     }
 
-    /// Tab 간 간격을 의미합니다.
-    private let tabSpacing: CGFloat = 8.0
-
     // MARK: - Init
     public init(sizeType: HandyTabComponent.SizeType) {
         self.sizeType = sizeType
@@ -146,15 +143,19 @@ open class HandyTabs: UIViewController {
     private func updateTabsHeaderLayout() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = tabSpacing
+        layout.minimumLineSpacing = 0.0
+        layout.minimumInteritemSpacing = 0.0
 
         switch tabsType {
         case .scrollable:
-            layout.estimatedItemSize = CGSize(width: 0, height: 48)
-        case .fixed(let viewCount):
-            let totalSpacing = tabSpacing * CGFloat(viewCount - 1)
-            let itemWidth = (self.view.frame.width - totalSpacing) / CGFloat(viewCount)
+            layout.estimatedItemSize = CGSize(width: 10, height: 48)
+
+            self.tabsHeader.isScrollEnabled = true
+        case .fixed(let tabCount):
+            let itemWidth = self.view.bounds.width / CGFloat(tabCount)
             layout.itemSize = CGSize(width: itemWidth, height: 48)
+
+            self.tabsHeader.isScrollEnabled = false
         }
 
         tabsHeader.collectionViewLayout = layout
