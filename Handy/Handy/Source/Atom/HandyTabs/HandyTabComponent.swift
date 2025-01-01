@@ -33,17 +33,17 @@ open class HandyTabComponent: UICollectionViewCell {
         }
     }
 
-    // MARK: - private properties
+    // MARK: - internal & private properties
 
     /// title이 표시될 label입니다.
-    private let titleLabel: HandyLabel = {
+    internal let titleLabel: HandyLabel = {
         let label = HandyLabel(style: .B1Sb16)
         label.alignment = .center
         return label
     }()
 
     /// 현재 선택됨을 알려주는, 아래쪽에 표시되는 검은색 바입니다.
-    private let selectedIndicator = UIView()
+    internal let selectedIndicator = UIView()
 
     // MARK: - init
     public override init(frame: CGRect) {
@@ -57,7 +57,7 @@ open class HandyTabComponent: UICollectionViewCell {
     }
 
     // MARK: - private methods
-    
+
     private func initializeViewHierarchy() {
         // Set View Hierarchy
         self.addSubview(titleLabel)
@@ -68,17 +68,14 @@ open class HandyTabComponent: UICollectionViewCell {
         // Set Constraints
         titleLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16).priority(999)
-            $0.top.bottom.equalToSuperview().inset(12).priority(999)
+            $0.centerY.equalToSuperview()
+            $0.height.equalTo(48)
         }
 
         selectedIndicator.snp.makeConstraints {
             $0.bottom.equalToSuperview().priority(999)
             $0.leading.trailing.equalToSuperview().inset(18).priority(999)
             $0.height.equalTo(2)
-        }
-
-        self.snp.makeConstraints {
-            $0.height.equalTo(48)
         }
     }
 
