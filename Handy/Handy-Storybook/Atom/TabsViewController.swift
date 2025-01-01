@@ -9,7 +9,19 @@ import Handy
 import UIKit
 
 final class TabsViewController: BaseViewController {
-    let tabs: [(title: String, viewController: UIViewController)]
+    var tabs: [(title: String, viewController: UIViewController)]
+
+    private let handyTabs: HandyTabs = {
+        let tabs = HandyTabs(sizeType: .small)
+        return tabs
+    }()
+
+    private let addingTabButton: HandyFab = {
+        let button = HandyFab()
+        button.iconImage = .add
+        return button
+    }()
+
     init(_ tabCount: Int) {
         self.tabs = [
             {
@@ -58,23 +70,30 @@ final class TabsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addingTabButton.addTarget(self, action: #selector(addingTabButtonDidTap(_:)), for: .touchUpInside)
         self.handyTabs.tabs = self.tabs
     }
 
-    private let handyTabs: HandyTabs = {
-        let tabs = HandyTabs(sizeType: .small)
-        return tabs
-    }()
+    @objc private func addingTabButtonDidTap(_ sender: UIButton) {
+        let randomViewController = UIViewController()
+        randomViewController.view.backgroundColor = UIColor.init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1)
+        handyTabs.tabs.append(("newTab!!", randomViewController))
+    }
 
     override func setViewHierarchies() {
         self.addChild(handyTabs)
         self.view.addSubview(handyTabs.view)
+        self.view.addSubview(addingTabButton)
     }
 
     override func setViewLayouts() {
         handyTabs.view.snp.makeConstraints {
             $0.edges.equalTo(self.view.safeAreaLayoutGuide)
         }
+
+        addingTabButton.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(32)
+            $0.width.height.equalTo(100)
+        }
     }
 }
-
