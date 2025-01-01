@@ -27,13 +27,15 @@ open class HandyTabs: UIViewController {
                 selectedIndex = tabs.count - 1
             }
 
+            tabsHeader.reloadData() // reload 후 layout을 수정해야 정상적으로 작동합니다.
+
             updateTabsHeaderLayout()
         }
     }
     
     /// 현재 선택되어있는 탭의 인덱스입니다. [0] 부터 시작합니다.
     /// * `nil`인 경우 : 탭이 0개이거나 초기 상태입니다.
-    open var selectedIndex: Int? {
+    open var selectedIndex: Int? = nil {
         didSet {
             if let oldValue {
                 let previousViewController = tabs[oldValue].viewController
