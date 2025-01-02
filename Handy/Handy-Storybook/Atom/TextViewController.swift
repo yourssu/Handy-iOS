@@ -1,0 +1,79 @@
+//
+//  TextViewController.swift
+//  Handy
+//
+//  Created by 정민지 on 11/18/24.
+//
+
+import UIKit
+import SnapKit
+
+import Handy
+
+final class TextViewController: BaseViewController {
+
+    private let defaultTextView: HandyTextView = {
+        let textView = HandyTextView()
+        textView.placeholder = "Input text"
+        textView.helperLabelText = "Helper text"
+        textView.placeholderColor = .lightGray
+        textView.minHeight = 187
+        textView.maxHeight = 187
+
+            return textView
+        }()
+
+    
+    private let errorTextView: HandyTextView = {
+        let textView = HandyTextView()
+        textView.placeholder = "Input text"
+        textView.helperLabelText = "Helper text"
+        textView.placeholderColor = .lightGray
+        textView.isNegative = true
+        textView.maxHeight = 80
+        
+        return textView
+    }()
+    
+    private let disabledTextView: HandyTextView = {
+        let textView = HandyTextView()
+        textView.placeholder = "Input text"
+        textView.helperLabelText = "Helper text"
+        textView.placeholderColor = .lightGray
+        textView.isDisabled = true
+        textView.maxHeight = 187
+        
+        return textView
+    }()
+
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setViewLayouts()
+    }
+    
+    override func setViewHierarchies() {
+        [
+            defaultTextView, errorTextView, disabledTextView
+        ].forEach {
+            view.addSubview($0)
+        }
+    }
+    
+    override func setViewLayouts() {
+        defaultTextView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(100)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+        errorTextView.snp.makeConstraints {
+            $0.top.equalTo(defaultTextView.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+        disabledTextView.snp.makeConstraints {
+            $0.top.equalTo(errorTextView.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+    }
+}
+
+
