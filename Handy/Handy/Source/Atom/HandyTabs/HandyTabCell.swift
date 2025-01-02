@@ -56,6 +56,12 @@ open class HandyTabCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - layoutSubviews
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.addBorder([.bottom], color: HandySemantic.lineBasicLight, width: 1)
+    }
+
     // MARK: - private methods
 
     private func initializeViewHierarchy() {
