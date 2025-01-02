@@ -86,12 +86,16 @@ open class HandyTabs: UIViewController {
     public init(sizeType: HandyTabCell.SizeType) {
         self.sizeType = sizeType
         super.init(nibName: nil, bundle: nil)
-        setTabsHeader()
-        setTabsContent()
     }
 
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        setTabsHeader()
+        setTabsContent()
     }
 
     // MARK: - private methods
