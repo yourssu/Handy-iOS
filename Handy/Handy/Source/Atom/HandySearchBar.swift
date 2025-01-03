@@ -137,6 +137,9 @@ final public class HandySearchBar: UIView {
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
     }
 
+    /**
+     텍스트 필드의 왼쪽에 표시되는 아이콘 뷰를 설정합니다.
+     */
     private func setupLeftView() {
         let leftViewContainer = UIView()
         leftViewContainer.addSubview(searchIconImageView)
@@ -150,6 +153,9 @@ final public class HandySearchBar: UIView {
         textField.leftView = leftViewContainer
     }
 
+    /**
+     텍스트 필드의 오른쪽에 표시되는 clearButton 뷰를 설정합니다.
+     */
     private func setupRightView() {
         let rightViewContainer = UIView()
         rightViewContainer.addSubview(clearButton)
@@ -165,11 +171,17 @@ final public class HandySearchBar: UIView {
 }
 
 private extension HandySearchBar {
+    /**
+     텍스트 필드의 내용을 지우고, clearButton을 숨깁니다.
+     */
     @objc func clearText() {
         textField.text = ""
         clearButton.isHidden = true
     }
 
+    /**
+     텍스트 필드의 내용이 변경될 때 clearButton의 표시 여부를 업데이트합니다.
+     */
     @objc func textDidChange() {
         clearButton.isHidden = textField.text?.isEmpty ?? true
     }
