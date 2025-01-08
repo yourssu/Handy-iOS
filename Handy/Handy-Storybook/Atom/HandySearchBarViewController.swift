@@ -16,18 +16,18 @@ final class HandySearchBarViewController: BaseViewController {
     }()
     private let searchBar2: HandySearchBar = {
         let uiSearchBar = HandySearchBar()
-        uiSearchBar.rightIcon = false
+        uiSearchBar.isRightButtonHidden = true
         return uiSearchBar
     }()
     private let searchBar3: HandySearchBar = {
         let uiSearchBar = HandySearchBar()
-        uiSearchBar.leftIcon = false
+        uiSearchBar.isLeftButtonHidden = true
         return uiSearchBar
     }()
     private let searchBar4: HandySearchBar = {
         let uiSearchBar = HandySearchBar()
-        uiSearchBar.leftIcon = false
-        uiSearchBar.rightIcon = false
+        uiSearchBar.isLeftButtonHidden = true
+        uiSearchBar.isRightButtonHidden = true
         uiSearchBar.placeholder = "Custom"
         return uiSearchBar
     }()

@@ -15,18 +15,18 @@ public class HandySearchBar: UIView {
     /**
      왼쪽 버튼의 활성화 여부를 설정합니다.
      */
-    public var leftIcon: Bool = true {
+    public var isLeftButtonHidden: Bool = false {
         didSet {
-            leftButton.isHidden = !leftIcon
+            leftButton.isHidden = isLeftButtonHidden
         }
     }
 
     /**
      오른쪽 버튼의 활성화 여부를 설정합니다.
      */
-    public var rightIcon: Bool = true {
+    public var isRightButtonHidden: Bool = false {
         didSet {
-            rightButton.isHidden = !rightIcon
+            rightButton.isHidden = isRightButtonHidden
         }
     }
 
