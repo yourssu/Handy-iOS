@@ -320,4 +320,14 @@ public enum HandySemantic {
         return .redSub
     }
 
+    // MARK: - BottomSheet
+
+    public static var bottomSheetHandle: UIColor {
+        return .gray300
+    }
+
+    public static var bottomSheetScrim: UIColor {
+        return .gray080
+    }
+
 }

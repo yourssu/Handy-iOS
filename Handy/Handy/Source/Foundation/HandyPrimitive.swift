@@ -122,21 +122,35 @@ public enum HandyPrimitive {
         return .redSub
     }
     
-    // MARK: - Spacing
-    
+    // MARK: - Number
+
     public static var number8: CGFloat {
         return 8
     }
+
     public static var number10: CGFloat {
         return 10
     }
+
     public static var number12: CGFloat {
         return 12
     }
+
     public static var number14: CGFloat {
         return 14
     }
+
     public static var number16: CGFloat {
         return 16
+    }
+
+    // MARK: - Opacity
+
+    public static var gray070: UIColor {
+        return .gray070
+    }
+
+    public static var gray080: UIColor {
+        return .gray080
     }
 }

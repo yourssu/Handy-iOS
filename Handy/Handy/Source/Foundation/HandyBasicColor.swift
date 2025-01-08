@@ -101,6 +101,14 @@ internal extension UIColor {
         return UIColor.load(name: "g_950")
     }
 
+    static var gray070: UIColor {
+        return UIColor.load(name: "g_070")
+    }
+
+    static var gray080: UIColor {
+        return UIColor.load(name: "g_080")
+    }
+
     // MARK: - Neutral
 
     static var black: UIColor {
