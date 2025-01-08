@@ -8,14 +8,14 @@
 import UIKit
 import SnapKit
 
-final public class HandySearchBar: UIView {
+public class HandySearchBar: UIView {
 
     // MARK: - 외부에서 설정할 수 있는 속성
 
     /**
      왼쪽 버튼의 활성화 여부를 설정합니다.
      */
-    @Invalidating(wrappedValue: true, .layout) public var leftIcon: Bool {
+    public var leftIcon: Bool = true {
         didSet {
             leftButton.isHidden = !leftIcon
         }
@@ -24,7 +24,7 @@ final public class HandySearchBar: UIView {
     /**
      오른쪽 버튼의 활성화 여부를 설정합니다.
      */
-    @Invalidating(wrappedValue: true, .layout) public var rightIcon: Bool {
+    public var rightIcon: Bool = true {
         didSet {
             rightButton.isHidden = !rightIcon
         }
@@ -33,7 +33,7 @@ final public class HandySearchBar: UIView {
     /**
      텍스트 필드의 플레이스홀더를 설정합니다.
      */
-    @Invalidating(wrappedValue: "", .layout) public var placeholder: String {
+    public var placeholder: String = "" {
         didSet {
             textField.placeholder = placeholder
         }

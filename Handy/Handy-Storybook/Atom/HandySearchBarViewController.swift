@@ -32,7 +32,6 @@ final class HandySearchBarViewController: BaseViewController {
         return uiSearchBar
     }()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,7 +44,6 @@ final class HandySearchBarViewController: BaseViewController {
         self.view.addSubview(searchBar2)
         self.view.addSubview(searchBar3)
         self.view.addSubview(searchBar4)
-
     }
 
     override func setViewLayouts() {
@@ -73,7 +71,7 @@ final class HandySearchBarViewController: BaseViewController {
 
         // searchBar2
         searchBar2.leftButton.addTarget(self, action: #selector(leftButtonTapped(_:)), for: .touchUpInside)
-        
+
         // searchBar3
         searchBar3.rightButton.addTarget(self, action: #selector(rightButtonTapped(_:)), for: .touchUpInside)
     }
