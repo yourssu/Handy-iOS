@@ -33,11 +33,19 @@ public class HandySearchBar: UIView {
     /**
      텍스트 필드의 플레이스홀더를 설정합니다.
      */
-    public var placeholder: String = "" {
+    open var placeholder: String = "" {
         didSet {
             textField.placeholder = placeholder
         }
     }
+
+    /**
+     텍스트 필드의 입력 값을 외부에서 가져올 수 있는 프로퍼티입니다.
+     */
+    open var text: String? {
+        return textField.text
+    }
+
 
     // MARK: - Properties
 
