@@ -22,6 +22,7 @@ class MainViewController: UITableViewController {
         .init(("TabsViewController(2개)", TabsViewController(2))),
         .init(("TabsViewController(3개)", TabsViewController(3))),
         .init(("TabsViewController(9개)", TabsViewController(9))),
+        .init(("HandyListViewController", HandyListViewController())),
     ]
 
     override func viewDidLoad() {
