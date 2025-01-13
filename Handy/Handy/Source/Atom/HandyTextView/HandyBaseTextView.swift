@@ -67,10 +67,6 @@ public class HandyBaseTextView: UITextView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     private func setupView() {
         self.delegate = self
         self.font = HandyFont.B3Rg14
@@ -102,10 +98,6 @@ public class HandyBaseTextView: UITextView {
                 $0.edges.equalToSuperview().inset(textContainerInset)
             }
             
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(textDidChange),
-                                                   name: UITextView.textDidChangeNotification,
-                                                   object: nil)
         } else {
             placeholderLabel?.text = placeholder
         }
@@ -155,7 +147,7 @@ public class HandyBaseTextView: UITextView {
         )
     }
     
-    @objc private func textDidChange() {
+    private func textDidChange() {
         placeholderLabel?.isHidden = !text.isEmpty
     }
 }
