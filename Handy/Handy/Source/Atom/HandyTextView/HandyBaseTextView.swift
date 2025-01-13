@@ -14,26 +14,22 @@ public class HandyBaseTextView: UITextView {
     /**
      텍스트 뷰를 비활성화 시킬 때 사용합니다.
      */
-    @Invalidating(.layout) public var isDisabled: Bool = false {
-        didSet { updateState() }
-    }
+    @Invalidating(wrappedValue: false, .display) public var isDisabled: Bool
     
     /**
      텍스트 필드의 오류 상태를 나타낼 때 사용합니다.
      */
-    @Invalidating(.layout) public var isNegative: Bool = false {
-        didSet { updateState() }
-    }
+    @Invalidating(wrappedValue: false, .display) public var isNegative: Bool
     
     /**
      텍스트 뷰의 최소 높이를 설정할 때 사용합니다.
      */
-    @Invalidating(.layout) public var minHeight: CGFloat? = 48
+    @Invalidating(wrappedValue: HandyTextViewConstants.Dimension.textViewHeight, .layout) public var minHeight: CGFloat?
     
     /**
      텍스트 뷰의 최대 높이를 설정할 때 사용합니다.
      */
-    @Invalidating(.layout) public var maxHeight: CGFloat? = nil
+    @Invalidating(wrappedValue: nil, .layout) public var maxHeight: CGFloat?
     
     /**
      텍스트 뷰의 플레이스홀더를 설정할 때 사용합니다.
@@ -72,8 +68,9 @@ public class HandyBaseTextView: UITextView {
         self.font = HandyFont.B3Rg14
         self.backgroundColor = HandySemantic.bgBasicLight
         self.isScrollEnabled = false
-        self.layer.cornerRadius = HandySemantic.radiusM
         self.layer.borderWidth = 1
+        self.layer.cornerRadius = HandySemantic.radiusM
+        self.layer.masksToBounds = true
         self.layer.borderColor = HandySemantic.bgBasicLight.cgColor
         self.textContainer.lineFragmentPadding = 0
         self.textContainerInset = UIEdgeInsets(
@@ -119,21 +116,26 @@ public class HandyBaseTextView: UITextView {
         }
     }
     
-  
+    private func textDidChange() {
+        placeholderLabel?.isHidden = !text.isEmpty
+    }
+    
+    // MARK: - Overridden Methods
+    
     public override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         if let minHeight = minHeight, let maxHeight = maxHeight {
             isScrollEnabled = contentSize.height > maxHeight || contentSize.height < minHeight
         } else if let maxHeight = maxHeight {
             isScrollEnabled = contentSize.height > maxHeight
         }
-
-         else if let minHeight = minHeight, bounds.height < minHeight {
+        
+        else if let minHeight = minHeight, bounds.height < minHeight {
             invalidateIntrinsicContentSize()
             frame.size.height = minHeight
         }
-
+        
         else if let maxHeight = maxHeight, bounds.height > maxHeight {
             invalidateIntrinsicContentSize()
             frame.size.height = maxHeight
@@ -147,8 +149,9 @@ public class HandyBaseTextView: UITextView {
         )
     }
     
-    private func textDidChange() {
-        placeholderLabel?.isHidden = !text.isEmpty
+    public override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        updateState()
     }
 }
 
