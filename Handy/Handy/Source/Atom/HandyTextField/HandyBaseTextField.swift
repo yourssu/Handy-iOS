@@ -35,9 +35,6 @@ public class HandyBaseTextField: UITextField {
     
     // MARK: - 초기화
     
-    /**
-     초기화 메소드입니다. 기본적인 텍스트 필드 속성과 Clear 버튼을 설정합니다.
-     */
     public init() {
         super.init(frame: .zero)
         setupTextField()
@@ -219,4 +216,3 @@ extension HandyBaseTextField: UITextFieldDelegate {
         updateState()
     }
 }
-

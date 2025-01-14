@@ -166,4 +166,3 @@ public class HandyTextFieldView: UIView {
         updateState()
     }
 }
-

@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 public class HandyTextView: UIView {
-    
     // MARK: - 외부에서 지정할 수 있는 속성
     
     /**
@@ -21,19 +20,6 @@ public class HandyTextView: UIView {
      텍스트 필드의 오류 상태를 나타낼 때 사용합니다.
      */
     @Invalidating(wrappedValue: false, .display) public var isNegative: Bool
-    
-    /**
-     텍스트 뷰의 최소 높이를 설정합니다.
-     */
-    @Invalidating(wrappedValue: HandyTextViewConstants.Dimension.textViewHeight, .layout) public var minHeight: CGFloat?
-    
-    /**
-     텍스트 뷰의 최대 높이를 설정합니다.
-     */
-    public var maxHeight: CGFloat? {
-        get { return textView.maxHeight }
-        set { textView.maxHeight = newValue }
-    }
     
     /**
      텍스트 필드의 텍스트를 설정하거나 가져올때 사용합니다.
@@ -85,7 +71,7 @@ public class HandyTextView: UIView {
     private let helperLabelContainer = UIView()
     private let helperLabel = HandyLabel(style: .B5Rg12)
     
-    // MARK: - 메소드
+    // MARK: - 초기화
     
     public init() {
         super.init(frame: .zero)
@@ -97,28 +83,35 @@ public class HandyTextView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - 메소드
+    
     private func setupView() {
         addSubview(stackView)
         
-        stackView.snp.makeConstraints { $0.edges.equalToSuperview()}
-        
+        stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
+
         stackView.addArrangedSubview(textView)
-        stackView.addArrangedSubview(helperLabelContainer)
         
-        textView.snp.makeConstraints {
-            $0.height.greaterThanOrEqualTo(minHeight ?? HandyTextViewConstants.Dimension.textViewHeight)
-            if let maxHeight = maxHeight {
-                $0.height.lessThanOrEqualTo(maxHeight)
+        if !helperLabel.isHidden {
+            stackView.addArrangedSubview(helperLabelContainer)
+            
+            helperLabelContainer.addSubview(helperLabel)
+            helperLabel.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(HandyTextViewConstants.Dimension.labelInsetWidth)
+                $0.top.verticalEdges.equalToSuperview()
             }
-        }
-        helperLabelContainer.addSubview(helperLabel)
-        helperLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(HandyTextViewConstants.Dimension.labelInsetWidth)
-            $0.top.verticalEdges.equalToSuperview()
-        }
-        
-        self.snp.makeConstraints {
-            $0.height.greaterThanOrEqualTo(minHeight ?? HandyTextViewConstants.Dimension.textViewHeight)
+            
+            let textViewHeight = HandyTextViewConstants.Dimension.textViewHeight
+            let helperLabelHeight = HandyTextViewConstants.Dimension.helperLabelHeight
+            let subviewSpacing = HandyTextViewConstants.Dimension.subviewSpacing
+            
+            self.snp.makeConstraints {
+                $0.height.greaterThanOrEqualTo(textViewHeight + helperLabelHeight + subviewSpacing)
+            }
+        } else {
+            self.snp.makeConstraints {
+                $0.height.greaterThanOrEqualTo(HandyTextViewConstants.Dimension.textViewHeight)
+            }
         }
     }
     
@@ -126,10 +119,28 @@ public class HandyTextView: UIView {
         textView.isDisabled = isDisabled
         textView.isNegative = isNegative
         helperLabel.textColor = isNegative ? HandySemantic.lineStatusNegative : HandySemantic.textBasicTertiary
+        
     }
     
     // MARK: - Overridden Methods
-    
+
+    public override func layoutSubviews() {
+        super.updateConstraints()
+        
+        let maxConstraints = self.constraints.filter {
+            $0.firstAttribute == .height && $0.relation == .lessThanOrEqual
+        }
+        
+        if !maxConstraints.isEmpty {
+            maxConstraints.forEach { maxConstraint in
+                let helperHeight =  helperLabel.isHidden ? 0 : (
+                    HandyTextViewConstants.Dimension.helperLabelHeight + HandyTextViewConstants.Dimension.subviewSpacing
+                )
+                textView.maxHeight = maxConstraint.constant - helperHeight
+            }
+        }
+    }
+
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
         updateState()

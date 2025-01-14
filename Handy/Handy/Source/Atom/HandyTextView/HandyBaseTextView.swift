@@ -22,16 +22,6 @@ public class HandyBaseTextView: UITextView {
     @Invalidating(wrappedValue: false, .display) public var isNegative: Bool
     
     /**
-     텍스트 뷰의 최소 높이를 설정할 때 사용합니다.
-     */
-    @Invalidating(wrappedValue: HandyTextViewConstants.Dimension.textViewHeight, .layout) public var minHeight: CGFloat?
-    
-    /**
-     텍스트 뷰의 최대 높이를 설정할 때 사용합니다.
-     */
-    @Invalidating(wrappedValue: nil, .layout) public var maxHeight: CGFloat?
-    
-    /**
      텍스트 뷰의 플레이스홀더를 설정할 때 사용합니다.
      */
     public var placeholder: String? {
@@ -44,6 +34,12 @@ public class HandyBaseTextView: UITextView {
     public var placeholderColor: UIColor = HandySemantic.textBasicTertiary {
         didSet {
             placeholderLabel?.textColor = placeholderColor
+        }
+    }
+    
+    public var maxHeight: CGFloat? {
+        didSet {
+            invalidateIntrinsicContentSize()
         }
     }
     
@@ -67,7 +63,7 @@ public class HandyBaseTextView: UITextView {
         self.delegate = self
         self.font = HandyFont.B3Rg14
         self.backgroundColor = HandySemantic.bgBasicLight
-        self.isScrollEnabled = false
+        self.isScrollEnabled = true
         self.layer.borderWidth = 1
         self.layer.cornerRadius = HandySemantic.radiusM
         self.layer.masksToBounds = true
@@ -94,13 +90,15 @@ public class HandyBaseTextView: UITextView {
             label.snp.makeConstraints {
                 $0.edges.equalToSuperview().inset(textContainerInset)
             }
-            
         } else {
             placeholderLabel?.text = placeholder
         }
     }
     
     private func updateState() {
+        self.layer.cornerRadius = HandySemantic.radiusM
+        self.layer.masksToBounds = true
+        
         if isDisabled {
             self.isEditable = false
             self.layer.borderColor = HandySemantic.bgBasicLight.cgColor
@@ -122,36 +120,27 @@ public class HandyBaseTextView: UITextView {
     
     // MARK: - Overridden Methods
     
+    public override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        updateState()
+    }
+    
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        if let minHeight = minHeight, let maxHeight = maxHeight {
-            isScrollEnabled = contentSize.height > maxHeight || contentSize.height < minHeight
-        } else if let maxHeight = maxHeight {
+        if let maxHeight = maxHeight {
             isScrollEnabled = contentSize.height > maxHeight
+            
+            scrollIndicatorInsets = UIEdgeInsets(
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: HandyTextViewConstants.Dimension.scrollIndicatorInsets
+            )
+        } else {
+            isScrollEnabled = false
         }
-        
-        else if let minHeight = minHeight, bounds.height < minHeight {
-            invalidateIntrinsicContentSize()
-            frame.size.height = minHeight
-        }
-        
-        else if let maxHeight = maxHeight, bounds.height > maxHeight {
-            invalidateIntrinsicContentSize()
-            frame.size.height = maxHeight
-        }
-        
-        scrollIndicatorInsets = UIEdgeInsets(
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: HandyTextViewConstants.Dimension.scrollIndicatorInsets
-        )
-    }
-    
-    public override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        updateState()
     }
 }
 

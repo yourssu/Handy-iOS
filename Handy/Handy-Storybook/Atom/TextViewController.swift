@@ -11,26 +11,29 @@ import SnapKit
 import Handy
 
 final class TextViewController: BaseViewController {
-
     private let defaultTextView: HandyTextView = {
         let textView = HandyTextView()
         textView.placeholder = "Input text"
         textView.helperLabelText = "Helper text"
         textView.placeholderColor = .lightGray
-        textView.minHeight = 187
-        textView.maxHeight = 187
-
-            return textView
-        }()
-
+        
+        return textView
+    }()
     
+    private let noHelperLabelTextView: HandyTextView = {
+        let textView = HandyTextView()
+        textView.placeholder = "Input text"
+        textView.placeholderColor = .lightGray
+        
+        return textView
+    }()
+
     private let errorTextView: HandyTextView = {
         let textView = HandyTextView()
         textView.placeholder = "Input text"
         textView.helperLabelText = "Helper text"
         textView.placeholderColor = .lightGray
         textView.isNegative = true
-        textView.maxHeight = 80
         
         return textView
     }()
@@ -41,11 +44,9 @@ final class TextViewController: BaseViewController {
         textView.helperLabelText = "Helper text"
         textView.placeholderColor = .lightGray
         textView.isDisabled = true
-        textView.maxHeight = 187
         
         return textView
     }()
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,7 @@ final class TextViewController: BaseViewController {
     
     override func setViewHierarchies() {
         [
-            defaultTextView, errorTextView, disabledTextView
+            defaultTextView, noHelperLabelTextView, errorTextView, disabledTextView
         ].forEach {
             view.addSubview($0)
         }
@@ -64,10 +65,19 @@ final class TextViewController: BaseViewController {
         defaultTextView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(100)
             $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.lessThanOrEqualTo(100)
+            $0.height.greaterThanOrEqualTo(100)
         }
-        errorTextView.snp.makeConstraints {
+        noHelperLabelTextView.snp.makeConstraints {
             $0.top.equalTo(defaultTextView.snp.bottom).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.lessThanOrEqualTo(100)
+            $0.height.greaterThanOrEqualTo(100)
+        }
+        errorTextView.snp.makeConstraints {
+            $0.top.equalTo(noHelperLabelTextView.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.greaterThanOrEqualTo(80)
         }
         disabledTextView.snp.makeConstraints {
             $0.top.equalTo(errorTextView.snp.bottom).offset(20)
@@ -75,5 +85,3 @@ final class TextViewController: BaseViewController {
         }
     }
 }
-
-

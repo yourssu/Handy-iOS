@@ -20,6 +20,11 @@ internal struct HandyTextViewConstants {
         static let textViewHeight: CGFloat = 48
         
         /**
+         placeholder 높이입니다.
+         */
+        static let helperLabelHeight: CGFloat = 18
+        
+        /**
          텍스트뷰의 스크롤바  여백 값입니다.
          */
         static let scrollIndicatorInsets: CGFloat = 8
