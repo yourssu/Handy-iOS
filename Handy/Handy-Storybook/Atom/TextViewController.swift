@@ -14,7 +14,7 @@ final class TextViewController: BaseViewController {
     private let defaultTextView: HandyTextView = {
         let textView = HandyTextView()
         textView.placeholder = "Input text"
-        textView.helperLabelText = "Helper text"
+        textView.helperLabelText = "알파벳과 숫자만 허용합니다."
         textView.placeholderColor = .lightGray
         
         return textView
@@ -53,6 +53,13 @@ final class TextViewController: BaseViewController {
         setViewLayouts()
     }
     
+    override func setViewProperties() {
+        self.view.backgroundColor = .white
+        defaultTextView.editingDelegate = self
+        defaultTextView.validationDelegate = self
+        defaultTextView.textChangeDelegate = self
+    }
+    
     override func setViewHierarchies() {
         [
             defaultTextView, noHelperLabelTextView, errorTextView, disabledTextView
@@ -85,3 +92,31 @@ final class TextViewController: BaseViewController {
         }
     }
 }
+
+extension TextViewController: HandyTextViewEditingDelegate {
+    func handyTextViewDidBeginEditing(_ handyTextView: HandyTextView) {
+        print("입력 시작")
+    }
+
+    func handyTextViewDidEndEditing(_ handyTextView: HandyTextView) {
+        print("입력 끝")
+    }
+}
+
+extension TextViewController: HandyTextViewValidationDelegate {
+    func handyTextView(_ handyTextView: HandyTextView, isValidText text: String) -> Bool {
+        let regex = "^[a-zA-Z0-9]*$"
+        return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: text)
+    }
+
+    func handyTextView(_ handyTextView: HandyTextView, didFailValidationWithError error: String) {
+        print("유효성 검사 에러: \(error)")
+    }
+}
+
+extension TextViewController: HandyTextViewTextChangeDelegate {
+    func handyTextViewDidChange(_ handyTextView: HandyTextView, text: String) {
+        print("입력된 텍스트: \(text)")
+    }
+}
+

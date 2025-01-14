@@ -8,8 +8,41 @@
 import UIKit
 import SnapKit
 
+
+// MARK: - Delegate
+/**
+ HandyTextView의 Delegate를 통해 텍스트 변경, 유효성 검사, 편집 시작/종료 등의 이벤트를 처리할 수 있습니다.
+ */
+
+public protocol HandyTextViewEditingDelegate: AnyObject {
+    /**
+     텍스트가 시작 또는 종료될 때  호출합니다.
+     */
+    func handyTextViewDidBeginEditing(_ handyTextView: HandyTextView)
+    func handyTextViewDidEndEditing(_ handyTextView: HandyTextView)
+}
+
+public protocol HandyTextViewValidationDelegate: AnyObject {
+    /**
+     입력 텍스트가 특정 조건에 만족하지 않을 때 호출합니다.
+     */
+    func handyTextView(_ handyTextView: HandyTextView, isValidText text: String) -> Bool
+    func handyTextView(_ handyTextView: HandyTextView, didFailValidationWithError error: String)
+}
+
+public protocol HandyTextViewTextChangeDelegate: AnyObject {
+    /**
+     텍스트가 변경될 때 호출합니다.
+     */
+    func handyTextViewDidChange(_ handyTextView: HandyTextView, text: String)
+}
+
 public class HandyTextView: UIView {
     // MARK: - 외부에서 지정할 수 있는 속성
+    
+    public weak var editingDelegate: HandyTextViewEditingDelegate?
+    public weak var validationDelegate: HandyTextViewValidationDelegate?
+    public weak var textChangeDelegate: HandyTextViewTextChangeDelegate?
     
     /**
      텍스트 필드를 비활성화 시킬 때 사용합니다.
@@ -26,7 +59,8 @@ public class HandyTextView: UIView {
      */
     public var text: String? {
         get { return textView.text }
-        set { textView.text = newValue }
+        set { textView.text = newValue
+            validateText() }
     }
     
     /**
@@ -75,6 +109,7 @@ public class HandyTextView: UIView {
     
     public init() {
         super.init(frame: .zero)
+        setDelegate()
         setupView()
         updateState()
     }
@@ -84,6 +119,10 @@ public class HandyTextView: UIView {
     }
     
     // MARK: - 메소드
+    
+    private func setDelegate() {
+        textView.delegate = self
+    }
     
     private func setupView() {
         addSubview(stackView)
@@ -119,7 +158,17 @@ public class HandyTextView: UIView {
         textView.isDisabled = isDisabled
         textView.isNegative = isNegative
         helperLabel.textColor = isNegative ? HandySemantic.lineStatusNegative : HandySemantic.textBasicTertiary
-        
+    }
+    
+    private func validateText() {
+        guard let text = textView.text else { return }
+        if let isValid = validationDelegate?.handyTextView(self, isValidText: text) {
+            isNegative = !isValid
+
+            if !isValid {
+                validationDelegate?.handyTextView(self, didFailValidationWithError: "유효하지 않은 입력입니다.")
+            }
+        }
     }
     
     // MARK: - Overridden Methods
@@ -144,5 +193,22 @@ public class HandyTextView: UIView {
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
         updateState()
+    }
+}
+
+// MARK: - UITextViewDelegate
+
+extension HandyTextView: UITextViewDelegate {
+    public func textViewDidChange(_ textView: UITextView) {
+        textChangeDelegate?.handyTextViewDidChange(self, text: textView.text ?? "")
+        validateText()
+    }
+    
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        editingDelegate?.handyTextViewDidBeginEditing(self)
+    }
+    
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        editingDelegate?.handyTextViewDidEndEditing(self)
     }
 }
